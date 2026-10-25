@@ -68,6 +68,8 @@ texts/
   pva_poster_mockup.it.pdf    the same in Italian
   pva_poster_pv_mockup.pdf    the wall version: 63 dials cut as solar cells on black (and .it.pdf)
   slow-art-sun-record.md      Slow Art: Sun Record, a year of Campbell–Stokes sunshine cards in 14 frames, plus sun-drawing workshops
+budget/
+  SUNDIAL-budget.xlsx         the cost of the nine panels and the first event (draft), and the script that builds it
 hardware/
   CARRIER.md                  the carrier board: everything factory-fitted except the ESP32 and buck converter
   PVA_carrier_board_spec_v1.pdf  the same as a PDF, for sending to a board designer
@@ -198,7 +200,7 @@ The visitor's phone counts once per solar hour as a dot on the dial, never ident
 
 Each panel is also a vertical sundial, mounted vertical and facing due south: see [hardware/GNOMON.md](hardware/GNOMON.md) for the gnomon, the drilling template, the installation and the noon-shadow wall test. Where there is no suitable wall, a panel can stand on its own post on private ground, such as a café's seating area, with USB sockets that charge phones from its sun in daylight: [hardware/POST.md](hardware/POST.md).
 
-**Stage 1:** 36 V 180 W PV panel · DC-DC buck converter (8–60 V in), set to exactly 5.0 V with a multimeter **before** connecting anything · 5.5 V 4 F supercapacitor across the 5 V output (in the shaded box: it ages fast in heat) · ELEGOO ESP32 30-pin on a screw-terminal breakout · DS18B20 waterproof probe on the panel back, data on GPIO 4, 4.7 kΩ from GPIO 4 to 3.3 V.
+**Stage 1:** 36 V 180–185 W PV panel (the panels chosen are the Trina TSM-185DC01: [hardware/GNOMON.md](hardware/GNOMON.md)) · DC-DC buck converter (8–60 V in), set to exactly 5.0 V with a multimeter **before** connecting anything · 5.5 V 4 F supercapacitor across the 5 V output (in the shaded box: it ages fast in heat) · ELEGOO ESP32 30-pin on a screw-terminal breakout · DS18B20 waterproof probe on the panel back, data on GPIO 4, 4.7 kΩ from GPIO 4 to 3.3 V.
 
 **Stage 2 adds** (or the carrier board in `hardware/CARRIER.md`, which fits all of this): fuse and reverse-polarity diode on the panel side · SMAJ5.0A TVS diode across 5 V · panel-voltage divider 100 kΩ / 4.7 kΩ + 100 nF into GPIO 34 (must be GPIO 32–39: the other analog pins stop working with Wi-Fi on) · DS3231 clock module on GPIO 21/22.
 

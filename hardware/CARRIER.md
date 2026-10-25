@@ -10,7 +10,7 @@ Every part on the board is fitted by the board maker; the builder only plugs in,
 
 ## What the board does
 
-The board sits in a weatherproof box behind a recycled 185 W solar panel mounted **vertically on an outdoor wall**. It is the panel's only load, and it has **no battery and no mains supply**: it lives entirely on the panel's own power.
+The board sits in a weatherproof box behind a recycled 185 W solar panel mounted **vertically on an outdoor wall** (or on a free-standing post: [POST.md](POST.md)). It is the panel's only load, and it has **no battery and no mains supply**: it lives entirely on the panel's own power.
 
 **Its job is to measure the panel and serve the results over Wi-Fi.** A plugged-in ESP32 dev board runs its own Wi-Fi access point (no internet), and visitors' phones read web pages from it. Behind those pages it records:
 

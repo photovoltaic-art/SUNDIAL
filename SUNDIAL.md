@@ -37,7 +37,7 @@ This document takes the carrier board v1 ([hardware/CARRIER.md](hardware/CARRIER
 
 **Purpose:** a recycled panel on a wall that is also a real vertical sundial, readable by anyone, every day, with no phone and no electricity. This is the layer most people will ever meet.
 
-**Specified in** [hardware/GNOMON.md](hardware/GNOMON.md): a 60 cm gnomon at 50° on the panel's centre line, 13 numbered hour brackets for solar hours 6–18, due-south mounting with the wall test and the noon-shadow check. Everything bolts to the frame; nothing touches the glass.
+**Specified in** [hardware/GNOMON.md](hardware/GNOMON.md) (and, where no wall works, a free-standing post on private ground: [hardware/POST.md](hardware/POST.md)): a 60 cm gnomon at 50° on the panel's centre line, 13 numbered hour brackets for solar hours 6–18, due-south mounting with the wall test and the noon-shadow check. Everything bolts to the frame; nothing touches the glass.
 
 **What the passer-by sees:** a panel, its shadow and the hour numbers, and a small wall plate with the panel's number and a QR code. **No visible digital layer.** The Wi-Fi and the dial on the phone are found only by those who look.
 
@@ -303,6 +303,7 @@ SUNDIAL is a **permanent installation**: a sundial and monitor all year, with an
 - **Comune and heritage authorities:** authorisation for permanent fixtures in the centro storico. This is the most likely obstacle; raise it first, with the sundial as the lead: a public timepiece on a recycled panel, no visible electronics, no advertising.
 - **The framing that may help:** a *patto di collaborazione* under a regolamento per l'amministrazione condivisa dei beni comuni, if Bosa has adopted one (check the Labsus register). The panels would be a sundial trail cared for by PVA alongside the Comune.
 - **Public liability insurance** for objects fixed to walls above a street; the gnomon projects about 46 cm.
+- **A panel on a post** (private ground, no suitable wall) needs the ground owner's consent, a structural sign-off and, in a protected area, possibly the comune's or the Soprintendenza's agreement ([hardware/POST.md](hardware/POST.md) 6).
 
 **Upkeep, per year:**
 
@@ -316,6 +317,7 @@ SUNDIAL is a **permanent installation**: a sundial and monitor all year, with an
 | Gnomon, brackets, fixings | Yearly, and after storms | Stainless M6; check torque and that the noon shadow still falls on 12 |
 | Wall plate | Every round | Number and QR code legible |
 | Panel | As needed | A failed panel or board is replaced; the day lost shows as the outline |
+| Post and USB sockets (post panels only) | Every round; base yearly | Sockets and caps intact; base fixings tight ([hardware/POST.md](hardware/POST.md)) |
 
 **Spares held by PVA:** one complete carrier board with ESP32 and buck converter, flashed and keyed as a spare; supercaps; coin cells; a probe; fixings.
 

@@ -115,7 +115,7 @@ Generated files are marked "do not edit" and rebuilt by one command.
   - [ ] print-shop enquiry (from Bosa's)
   - [ ] event introduction (structure only; the story is the town's own)
   - [ ] wall plate
-- [ ] A **cost and time sheet**: parts per panel, board order, fixings, print, and the hours for building, installing, each round and each event.
+- [ ] A **cost and time sheet**: parts per panel, board order, fixings, print, and the hours for building, installing, each round and each event. *Costs drafted for Bosa, 25 Oct 2026: [budget/SUNDIAL-budget.xlsx](budget/SUNDIAL-budget.xlsx); the hours are still to add.*
 
 ### 8. Checking it works
 
