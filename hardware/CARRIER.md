@@ -120,7 +120,7 @@ through a small fuse every 10 seconds. The fuse protects only the board side, so
 | D0 | Schottky diode, input protection | ≥ 100 V, ≥ 15 A, TO-220 or D2PAK (e.g. dual 20 A 100 V) | In `PANEL +`, straight after J1. **Protects Q1:** without it, a panel connected backwards would push its full short-circuit current through Q1's internal diode continuously and overheat it. Its ~0.5 V drop does not change the short-circuit reading. With AUX in use, D0 carries the AUX current too: size its cooling to that load |
 | Q1 | N-MOSFET | V_DS ≥ 60 V (≥ 100 V preferred if D6 is fitted, see below), I_D ≥ 20 A, R_DS(on) ≤ 20 mΩ at V_GS 4.5 V, DPAK/D2PAK or PowerPAK | Drain on the D0 cathode node (`PV+`), source on R_SH top |
 | R_SH | Shunt resistor | 5 mΩ, 1 %, 2512, ≥ 2 W | Between Q1 source and GND |
-| R_SH2 | Footprint only | 2512, parallel to R_SH | Option: two 10 mΩ in parallel instead of one 5 mΩ |
+| R_SH2 | Footprint only | 2512, parallel to R_SH | Option: two 10 mΩ in parallel instead of one 5 mΩ. **Always fit both or neither:** the firmware assumes 5 mΩ in total (0.5 V/A); one 10 mΩ alone would double every current reading |
 | U2 | Current-sense amplifier **INA180A3** | Gain 100 V/V, SOT-23-5 | Supply 3V3 (output then can never exceed 3.3 V); IN+ to R_SH top, IN− to R_SH bottom by **Kelvin traces** |
 | C6 | Capacitor | 100 nF, 0603 | U2 supply decoupling |
 | R6, C7 | RC on U2 output | 1 kΩ + 10 nF | Light filter into GPIO 35; time constant 10 µs, well inside the 400 µs settle |
@@ -306,5 +306,5 @@ The microSD socket and the spare pins are unused until a later firmware adds the
 
 1. **Jumper JP1 off.** Power the board from a 12–24 V bench supply into J1, with the buck connected: check 5V, `MID` (about half of 5V), 3V3, the LED, the clock (set from the admin page, unplug, plug back in) and the probe. Reverse the supply leads briefly: nothing should happen.
 2. Connect a real panel, jumper JP1 off: check `VDIV` against a multimeter on the panel voltage.
-3. Jumper on, clear sun near noon: check `PV+` on the oscilloscope at Q1 turn-off for an overshoot above V_oc (decides whether D6 is fitted, review 2). Check `ISENSE` on an oscilloscope or by the firmware's `isc` reading against a multimeter's short-circuit current reading of the same panel.
+3. Jumper on, clear sun near noon: check `PV+` on the oscilloscope at Q1 turn-off for an overshoot above V_oc (decides whether D6 is fitted, review 2). **Pass:** peak below 70 V (30 % margin on a 100 V Q1); D6 stays unfitted. **Above 70 V:** fit D6 and measure again; the peak must then stay below 80 V, otherwise choose a 150 V Q1. Check `ISENSE` on an oscilloscope or by the firmware's `isc` reading against a multimeter's short-circuit current reading of the same panel.
 4. Run a full day with `BENCH 0`, then fix anything in v2.
