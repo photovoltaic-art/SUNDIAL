@@ -13,8 +13,9 @@ Everything needed is linked from this page:
 2. **[Schematic PDF](carrier_schematic.pdf)** (A1): the full drawing, with notes on current paths and measurement ranges.
 3. **[Bill of materials: bom.csv](bom.csv)**: references, values and ratings, footprints, fitted or not, and a **proposed manufacturer and part number for every line** (equivalents welcome; the few lines to confirm are marked).
 4. **KiCad files:** [carrier.kicad_pro](carrier.kicad_pro), [carrier.kicad_sch](carrier.kicad_sch), and the netlist with footprints [carrier.net](carrier.net). Download the whole folder to open the project.
-5. **[Design checks: checks.txt](checks.txt)**: the calculations behind the ranges and ratings.
-6. **[Review log](#review-log)** and **[manufacturer sign-off](#manufacturer-review-and-sign-off)**, further down this page.
+5. **[Placement: PLACEMENT.md](PLACEMENT.md)**: which capacitor or resistor goes next to which part (the schematic joins parts by net name, so it does not show this).
+6. **[Design checks: checks.txt](checks.txt)**: the calculations behind the ranges and ratings.
+7. **[Review log](#review-log)** and **[manufacturer sign-off](#manufacturer-review-and-sign-off)**, further down this page.
 
 The board as a sundial on its panel, and its mounting: [GNOMON.md](../GNOMON.md). The firmware it runs: [panel_page_server.ino](../../firmware/panel_page_server/panel_page_server.ino).
 
@@ -28,6 +29,7 @@ The board as a sundial on its panel, and its mounting: [GNOMON.md](../GNOMON.md)
 
 **Using Altium or Allegro?** Recent versions of Altium Designer can import KiCad projects directly (Import Wizard). Otherwise the schematic PDF and the netlist are complete enough to redraw from: every part, value, footprint and pin connection is in them and in `bom.csv`.
 | [bom.csv](bom.csv) | Bill of materials: references, values and ratings, footprints, fitted or not, manufacturer and part number, what to confirm, notes |
+| [PLACEMENT.md](PLACEMENT.md), [placement.py](placement.py) | Where each passive goes: priority, which pin, why (also the *Placement* column in bom.csv) |
 | [mpn.py](mpn.py) | The proposed manufacturer part numbers, by reference (feeds bom.csv) |
 | [checks.py](checks.py), [checks.txt](checks.txt) | Calculations: divider and current-sense ranges, supercap ride-through, AUX diode heat |
 | [parts.py](parts.py) | **The source:** every part, footprint and pin-to-net connection, transcribed from CARRIER.md |
@@ -85,6 +87,8 @@ The board as a sundial on its panel, and its mounting: [GNOMON.md](../GNOMON.md)
 5. *Should fix: transients at the panel front end.* Partly agreed. When Q1 switches off, the panel lead's inductance can push PV+ above Voc. The energy is small (about 36 µJ for 2 µH at 6 A) and the buck's input capacitors should absorb it through F1 and D1, but it should be measured. **Change:** D6 TVS footprint (fit if needed; then Q1 ≥ 100 V), and a PV+ overshoot check added to the bench test.
 6. *Should fix: U4 depends on boot timing.* As intended: R18 keeps the switched output off until firmware enables it; GPIO 27 is not a strapping pin. **No change.**
 7. *Notes on the 60 V divider and INA180 margin:* covered by review 1. Above about 6.6 A the amplifier output clamps at its 3.3 V supply, which is harmless. **No change.**
+
+**Rush PCB, 26 Oct 2026:** *several resistors and capacitors are assigned only to a power net name; which need to be placed near their components?* Answered in [PLACEMENT.md](PLACEMENT.md) and the BOM's *Placement* column. Connectivity was already complete (net labels; 205 pin connections checked); placement intent was missing from the drawing.
 
 ## Manufacturer review and sign-off
 
