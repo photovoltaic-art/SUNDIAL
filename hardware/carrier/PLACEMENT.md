@@ -2,7 +2,7 @@
 
 *Added 26 Oct 2026, answering the manufacturer's question: the schematic joins parts by net name, so it does not show which capacitor or resistor belongs next to which part.*
 
-**Connectivity is complete.** Every pin connection is in the schematic and the netlist, checked by `verify.py` (205 pin connections, 0 mismatches). A part tied to `+5V`, `+3V3` or `GND` is connected to that whole net; what the drawing does not show is **where it should sit**. This page says, part by part. The same information is in the *Placement* column of [bom.csv](bom.csv), from [placement.py](placement.py).
+**Connectivity is complete.** Every pin connection is in the schematic and the netlist, checked by `verify.py` (209 pin connections, 0 mismatches). Since draft-2 the schematic draws each capacitor and resistor beside, and wired to, the pin it serves; this page adds **how close** it must sit on the board. This page says, part by part. The same information is in the *Placement* column of [bom.csv](bom.csv), from [placement.py](placement.py).
 
 **Priority:** **critical** = within a few mm, short direct traces to the named pins · **near** = same area, short trace · **free** = anywhere sensible.
 

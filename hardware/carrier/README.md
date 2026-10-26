@@ -2,7 +2,7 @@
 
 A KiCad schematic for the carrier board, generated from the specification in [CARRIER.md](../CARRIER.md).
 
-> **Status: draft-1, reviews 1 and 2 applied, 20 Oct 2026; part numbers added 23 Oct 2026. Awaiting the manufacturer's review. Do not manufacture from this yet.**
+> **Status: draft-2, 26 Oct 2026: schematic redrawn with wires at the board designer's request; reviews 1 and 2 applied, part numbers added 23 Oct. Awaiting the manufacturer's review. Do not manufacture from this yet.**
 > It is a faithful drawing of the spec, checked by script and by two reviews. Before layout it needs the manufacturer's review and sign-off ([below](#manufacturer-review-and-sign-off)). The board switches a 45 V panel's full short-circuit current every 10 seconds.
 
 ## Start here (for the board designer)
@@ -35,13 +35,13 @@ The board as a sundial on its panel, and its mounting: [GNOMON.md](../GNOMON.md)
 | [parts.py](parts.py) | **The source:** every part, footprint and pin-to-net connection, transcribed from CARRIER.md |
 | [gen_schematic.py](gen_schematic.py), [gen_bom.py](gen_bom.py), [verify.py](verify.py), [build.sh](build.sh) | Regenerate everything with `./build.sh` |
 
-**Drawing style.** Each pin has a short wire and a net label; parts are joined by net name, not drawn wires. Each section of CARRIER.md has its own block on the sheet. This is a standard KiCad style, and it means the drawing is exactly the netlist.
+**Drawing style (draft-2, wired).** Each block is drawn with wires: every capacitor and resistor sits beside the pin it serves and is wired to it (decoupling capacitors to the IC's supply pin, pull-ups to their line, the shunt with its two Kelvin wires to U2). +5V, +3V3 and GND are power symbols. Net labels are used only where a signal leaves its block (to the ESP32 socket, test points and headers). Draft-1 joined every pin by net label; the board designer asked for drawn wires to avoid misconnections between schematic and layout.
 
 **To change the board before hand-over,** edit `parts.py` and run `./build.sh`; hand edits to `carrier.kicad_sch` would be overwritten. **From the hand-over to the board designer,** the KiCad schematic becomes the master and the generator scripts are retired (see CARRIER.md, *Hand-over of the schematic*).
 
 ## How it was checked
 
-- **Connectivity:** `verify.py` reads the netlist KiCad itself exports and checks all **205 pin connections** against `parts.py`. Result: 0 mismatches, no net with fewer than two pins.
+- **Connectivity:** `verify.py` reads the netlist KiCad itself exports and checks all **209 pin connections** against `parts.py`, net by net: each intended net must be exactly one KiCad net with the same pins. Result: 0 mismatches, no net with fewer than two pins. Nets drawn only with wires inside one block (e.g. SHUNT_TOP, GATE_IN) get KiCad's automatic names; their members are still checked. `gen_schematic.py` also refuses to write a sheet where a wire end or pin touches the middle of another wire, or two wires overlap.
 - **Footprints:** all exist in KiCad's standard libraries.
 - **Coverage:** every reference in CARRIER.md's part tables is present. The extras are parts the spec describes in its text rather than its tables (headers J9, J10, J11, J13; test points; mounting holes; the ESP32 sockets), plus three capacitors I added (below).
 - **ERC (electrical rules check):** not yet run. KiCad 7's command line has no ERC; open the project in KiCad and run *Inspect → Electrical Rules Checker*. Power flags are placed on GND, +5V, +3V3, VBAT, PANEL+ and PV+.
@@ -88,7 +88,9 @@ The board as a sundial on its panel, and its mounting: [GNOMON.md](../GNOMON.md)
 6. *Should fix: U4 depends on boot timing.* As intended: R18 keeps the switched output off until firmware enables it; GPIO 27 is not a strapping pin. **No change.**
 7. *Notes on the 60 V divider and INA180 margin:* covered by review 1. Above about 6.6 A the amplifier output clamps at its 3.3 V supply, which is harmless. **No change.**
 
-**Rush PCB, 26 Oct 2026:** *several resistors and capacitors are assigned only to a power net name; which need to be placed near their components?* Answered in [PLACEMENT.md](PLACEMENT.md) and the BOM's *Placement* column. Connectivity was already complete (net labels; 205 pin connections checked); placement intent was missing from the drawing.
+**Rush PCB, 26 Oct 2026:** *several resistors and capacitors are assigned only to a power net name; which need to be placed near their components?* Answered in [PLACEMENT.md](PLACEMENT.md) and the BOM's *Placement* column. Connectivity was already complete (net labels; all pin connections checked); placement intent was missing from the drawing.
+
+**Rush PCB, 26 Oct 2026:** *we need the schematic with drawn wires, to avoid misconnections between schematic and layout.* Done in draft-2: the sheet is regenerated in wired style (see *Drawing style* above), with the same netlist, checked pin by pin.
 
 ## Manufacturer review and sign-off
 
