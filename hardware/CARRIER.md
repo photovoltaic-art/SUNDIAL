@@ -62,7 +62,7 @@ that the assembler can source, meeting the ratings in the table. List any substi
 **Provisional, to confirm before ordering**
 
 - ESP32 socket row spacing 25.4 mm (from the listing; the client confirms on a delivered board).
-- Mounting holes: 4 × M3, 3.5 mm in from the corners, until the client confirms the box. Board outline about 100 × 80 mm; smaller is fine.
+- **Board outline (fixed 27 Oct 2026): 100 × 80 mm, 1.6 mm FR-4, 4 × M3 holes (3.2 mm drill) 3.5 mm in from each corner: [carrier/outline.dxf](carrier/outline.dxf).** The board mounts on standoffs on the box's removable mounting plate, so the box does not constrain the hole pattern. The only change allowed to the outline is a slot or notch under the ESP32 antenna (see the antenna keep-out).
 - ESP32 pin order: from the ELEGOO 30-pin (USB-C) pinout; the client sends a photo of both sides of a delivered board.
 
 **Review:** before layout, the manufacturer confirms the sign-off points in carrier/README.md. Before anything is ordered,
@@ -86,7 +86,7 @@ maximum series fuse 9 A, 1581 × 809 × 40 mm, 15.6 kg. Field wiring at least 4 
 | Clock | DS3231 chip **on the board**, CR2032 holder, **no charging circuit** |
 | Supercapacitors | Two 2.7 V 10 F radial cells (10 × 25 mm, 5 mm lead pitch), **in screw terminals**, fitted by the builder |
 | Enclosure | Standard IP65 plastic junction box, about 150 × 110 × 70 mm: 2 glands for the panel leads, 1 for the probe, a breather vent; 2 more glands later if AUX is used |
-| Board | 2 layers, **2 oz copper** (1 oz acceptable if the designer widens the high-current paths and pours copper; say which), about 100 × 80 mm, 4 × M3 mounting holes, black solder mask, white silkscreen |
+| Board | 2 layers, **2 oz copper** (1 oz acceptable if the designer widens the high-current paths and pours copper; say which), 100 × 80 mm, 1.6 mm thick ([outline.dxf](carrier/outline.dxf)), 4 × M3 mounting holes, black solder mask, white silkscreen |
 | Maker | An Italian/European design-and-assembly house (first choice), or JLCPCB/PCBWay; SMD + through-hole assembly for the terminals |
 
 ## Block diagram

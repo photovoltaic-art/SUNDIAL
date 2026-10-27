@@ -30,6 +30,7 @@ The board as a sundial on its panel, and its mounting: [GNOMON.md](../GNOMON.md)
 **Using Altium or Allegro?** Recent versions of Altium Designer can import KiCad projects directly (Import Wizard). Otherwise the schematic PDF and the netlist are complete enough to redraw from: every part, value, footprint and pin connection is in them and in `bom.csv`.
 | [bom.csv](bom.csv) | Bill of materials: references, values and ratings, footprints, fitted or not, manufacturer and part number, what to confirm, notes |
 | [PLACEMENT.md](PLACEMENT.md), [placement.py](placement.py) | Where each passive goes: priority, which pin, why (also the *Placement* column in bom.csv) |
+| [outline.dxf](outline.dxf), [gen_outline.py](gen_outline.py) | Board outline: 100 × 80 mm, 4 × M3 holes 3.5 mm from the corners. 2 layers, 2 oz copper, 1.6 mm (CARRIER.md) |
 | [mpn.py](mpn.py) | The proposed manufacturer part numbers, by reference (feeds bom.csv) |
 | [checks.py](checks.py), [checks.txt](checks.txt) | Calculations: divider and current-sense ranges, supercap ride-through, AUX diode heat |
 | [parts.py](parts.py) | **The source:** every part, footprint and pin-to-net connection, transcribed from CARRIER.md |
