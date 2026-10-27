@@ -62,19 +62,25 @@ Everything town-specific moves into `site/`. A fork replaces this folder and not
 
 Generated files are marked "do not edit" and rebuilt by one command.
 
-### 3. Keys and per-panel set-up
+### 3. One image, nine panels
 
+**Keep it simple:** SUNDIAL has no money in it, so nothing on a panel is worth much to a thief beyond its admin keys. It keeps its light security (SUNDIAL.md 4.3) and borrows none of SUNSET's.
+
+**One firmware image for all nine panels.** The town's values (from `site.json`) are compiled in; **the panel's identity is not.** Its name and two keys are written to its flash once, at installation, so the first and the ninth panels run the very same file, and a fork has one build to check, not nine.
+
+- [ ] Move the panel name, Wi-Fi password and admin keys out of `panel_config.h` into a small settings area in flash (NVS).
 - [ ] `tools/pva_keys.py`:
   - generates the round master and setup master (128-bit, random)
   - derives each panel's two keys from the panel names in `site.json`
-  - writes nine `panel_config.h` files to a folder outside the repo
+  - writes nine small settings files to a folder outside the repo
   - prints the masters once, for the operator to store
-- [ ] The firmware **refuses to compile** with the example key (`change-me`) or an empty key.
-- [ ] `.gitignore` covers `panel_config.h`, key folders, raw downloads and round logs (already partly there).
+- [ ] `tools/pva_provision.py`: writes one panel's settings to its flash over USB, one command at installation; reads back the name to confirm.
+- [ ] The firmware **refuses to start** (a clear notice on the serial port and the panel page) with no settings, the example key (`change-me`) or an empty key.
+- [ ] `.gitignore` covers settings files, key folders, raw downloads and round logs (already partly there).
 
 ### 4. Reproducible build
 
-- [ ] `tools/build.sh` (arduino-cli): pinned ESP32 core version, pinned library versions (OneWire, DallasTemperature, RTClib), board settings, partition table. One command builds the firmware for each panel.
+- [ ] `tools/build.sh` (arduino-cli): pinned ESP32 core version, pinned library versions (OneWire, DallasTemperature, RTClib), board settings, partition table. One command builds **the one image** for the town.
 - [ ] `firmware/VERSIONS.md`: firmware version, rules version, the core and library versions it was tested with.
 - [ ] A **tagged release** for each tested firmware (the first: the version used at SUNDIAL 2027), so a fork can build exactly what was proven.
 
