@@ -299,7 +299,7 @@ With the key, a person could:
 SUNDIAL is a **permanent installation**: a sundial and monitor all year, with an event once a year. That is a different request from a seven-day exhibition, and it needs settling before installation.
 
 **Permissions:**
-- **Wall owners:** written consent for each site, for a permanent installation, with access for the fortnightly round and the yearly visit, and the right to remove.
+- **Wall owners:** written consent for each site, for a permanent installation that may grow into SUNSET in year 2 ([GROWTH.md](https://github.com/photovoltaic-art/PVA/blob/main/GROWTH.md)), with access for the fortnightly round and the yearly visit, and the right to remove.
 - **Comune and heritage authorities:** authorisation for permanent fixtures in the centro storico. This is the most likely obstacle; raise it first, with the sundial as the lead: a public timepiece on a recycled panel, no visible electronics, no advertising.
 - **The framing that may help:** a *patto di collaborazione* under a regolamento per l'amministrazione condivisa dei beni comuni, if Bosa has adopted one (check the Labsus register). The panels would be a sundial trail cared for by PVA alongside the Comune.
 - **Public liability insurance** for objects fixed to walls above a street; the gnomon projects about 46 cm.
@@ -363,5 +363,7 @@ Carrier v1 also runs a second kind of node, **unchanged**: an **interactive node
 | Sun reading | Short-circuit current (light) | Victron PV power over VE.Direct on J10 (energy harvested) |
 | GPIO 34 reads | Panel voltage | Battery voltage |
 | Firmware | Wall build | Interactive build |
+
+**Year 2:** under PVA's growth model, SUNDIAL's own nine panels become SUNSET's nodes at the spring visit: four as wall nodes by a firmware update, five as interactive nodes on this battery tier. The gnomons stay, so the sundials outlive the change; Sole carries on if each interactive node has a reference sun sensor ([GROWTH.md](https://github.com/photovoltaic-art/PVA/blob/main/GROWTH.md)). **So the year-1 site plan chooses each panel's site for its year-2 role too**, and the permissions request says the panels may grow into SUNSET.
 
 One board, two wirings, two firmware builds; the jumper says which. SUNSET, its nine panels and the full battery-tier specification are in their own repository: **[photovoltaic-art/sunset](https://github.com/photovoltaic-art/sunset)** (start with SUNSET.md; the tier is in battery-tier.md). Nothing in it affects SUNDIAL.

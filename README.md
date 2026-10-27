@@ -14,7 +14,7 @@ Each panel is three things at once, in order of importance:
 
 First event: **SUNDIAL · La Meridiana**, Bosa, summer 2027. SUNDIAL 2027 is a bare-bones trial of the technology and the dial: there is no story or media layer.
 
-The three layers are specified against the carrier board in **[SUNDIAL.md](SUNDIAL.md)**. PVA runs all three. The same carrier board also runs PVA's second work, [SUNSET](https://github.com/photovoltaic-art/sunset), in its own repository.
+The three layers are specified against the carrier board in **[SUNDIAL.md](SUNDIAL.md)**. PVA runs all three. **In year 2 the same nine panels grow into SUNSET** (4 by a firmware update, 5 with a battery and new hardware), each then owned separately; the sundials stay ([PVA growth model](https://github.com/photovoltaic-art/PVA/blob/main/GROWTH.md)). The same carrier board also runs PVA's second work, [SUNSET](https://github.com/photovoltaic-art/sunset), in its own repository.
 
 > Status: drafts, not yet compiled or tested on hardware. Firmware draft 6 records everything the dial needs (sun sections, heat, presence); the panel page and `tools/pva_rules.py` both draw rules v1. Firmware 6.2 (security, visitors' book, pages built into the firmware, event archive by year) and the Sole tools are specified in SUNDIAL.md, not yet written.
 
@@ -185,7 +185,8 @@ The visitor's phone counts once per solar hour as a dot on the dial, never ident
 - [ ] **"Stay connected"** wording on the flyer or wall plate: some phones warn about or drop a network with no internet.
 - [x] **After the last day:** the panel page shows the archive of past events (SUNDIAL.md 4.1).
 - [ ] **Firmware 6.2** (SUNDIAL.md 4.1): challenge-and-response admin login with round and setup keys, lockout and action log; the visitors' book; pages built into the firmware; no visitor clock-setting when the clock module is fitted; rules version check; event archive by year.
-- [ ] **Permissions** for a permanent installation: wall owners, Comune and heritage, insurance (SUNDIAL.md section 5).
+- [ ] **Permissions** for a permanent installation: wall owners, Comune and heritage, insurance (SUNDIAL.md section 5). Say the panels may grow into SUNSET in year 2.
+- [ ] **Site plan with year-2 roles:** choose each of the nine sites for its SUNSET role too (walls spread; the gateway pair together near footfall; the auction where people pass; the arm in shade; the set near the sunset spot): [GROWTH.md](https://github.com/photovoltaic-art/PVA/blob/main/GROWTH.md) 1.
 - [ ] **Sole tools and pages:** rules-2 in `pva_rules.py`, `pva_import.py`, `sole_edition.py`, `docs/sole/` and `docs/sundial/` (SUNDIAL.md 3.3–3.4).
 - [ ] **First compile and bench test** of firmware draft 6.
 - [ ] **The girasole:** sunflower variety and sowing in May; a moveable chalkboard and its stand; where it stands on the route.
