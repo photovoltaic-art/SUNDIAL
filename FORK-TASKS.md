@@ -8,7 +8,7 @@
 
 ## Summary
 
-**The one rule:** a SUNDIAL is **nine panels**. Everything else (the town, the walls, the event's name and dates, the languages, the stories) belongs to the fork.
+**The one rule:** a SUNDIAL is **nine panels**. A fork may make its own single-panel artist's proof to test and show with, outside its edition, as Bosa's is (PVA GROWTH.md, the path). Everything else (the town, the walls, the event's name and dates, the languages, the stories) belongs to the fork.
 
 **The one request:** a link back to this repository, wherever the fork is presented: its website, flyer and wall plates. It is a request, not a licence condition.
 

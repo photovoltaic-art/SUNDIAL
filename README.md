@@ -176,6 +176,7 @@ The visitor's phone counts once per solar hour as a dot on the dial, never ident
 
 ## To do
 
+- [ ] **The artist's proof** (*prova d'artista*): one panel, a complete SUNDIAL, made before the nine and kept by PVA outside the edition. It is the pilot panel below: proving the carrier, gnomon and hour lines, bench-testing every firmware build, and showing the comune and hosts ([GROWTH.md](https://github.com/photovoltaic-art/PVA/blob/main/GROWTH.md), the path).
 - [ ] **Import script:** turn an admin download into tile data for `pva_rules.py`, the canonical sheet and the website page.
 - [ ] **Separations script:** one file per ink for the screen print.
 - [ ] **Website page** for the canonical sheet, filled after each day's round.
@@ -190,7 +191,7 @@ The visitor's phone counts once per solar hour as a dot on the dial, never ident
 - [ ] **Sole tools and pages:** rules-2 in `pva_rules.py`, `pva_import.py`, `sole_edition.py`, `docs/sole/` and `docs/sundial/` (SUNDIAL.md 3.3–3.4).
 - [ ] **First compile and bench test** of firmware draft 6.
 - [ ] **The girasole:** sunflower variety and sowing in May; a moveable chalkboard and its stand; where it stands on the route.
-- [ ] **Hour lines on the glass** (test on the pilot panel): thin or dotted lines radiating from the gnomon root at the hour-line angles in `hardware/GNOMON.md`, in removable UV-stable pinstripe tape first. Measure short-circuit current near solar noon with and without the lines. If the loss is negligible and the dial reads well, keep the lines and shorten the gnomon (safer, less reach from the wall), since the shadow is then read along the line, not at the brackets.
+- [ ] **Hour lines on the glass** (test on the pilot panel, the artist's proof): thin or dotted lines radiating from the gnomon root at the hour-line angles in `hardware/GNOMON.md`, in removable UV-stable pinstripe tape first. Measure short-circuit current near solar noon with and without the lines. If the loss is negligible and the dial reads well, keep the lines and shorten the gnomon (safer, less reach from the wall), since the shadow is then read along the line, not at the brackets.
 
 **Optional**
 
