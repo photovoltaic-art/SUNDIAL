@@ -332,3 +332,14 @@ The microSD socket and the spare pins are unused until a later firmware adds the
 2. Connect a real panel, jumper JP1 off: check `VDIV` against a multimeter on the panel voltage.
 3. Jumper on, clear sun near noon: check `PV+` on the oscilloscope at Q1 turn-off for an overshoot above V_oc (decides whether D6 is fitted, review 2). **Pass:** peak below 70 V (30 % margin on a 100 V Q1); D6 stays unfitted. **Above 70 V:** fit D6 and measure again; the peak must then stay below 80 V, otherwise choose a 150 V Q1. Check `ISENSE` on an oscilloscope or by the firmware's `isc` reading against a multimeter's short-circuit current reading of the same panel.
 4. Run a full day with `BENCH 0`, then fix anything in v2.
+
+## Planned for v2 (not in v1)
+
+v1 stays as specified: it suits the panels in hand (Trina 185 W) and the many like them for sale in Italy. Changes noted here go into v2, after the v1 bench test.
+
+1. **Dual-gain sun sensor, for any panel from about 20 W to 450 W+** (noted 28 Oct 2026).
+   - Add **U2B, an INA180A1 (gain 20)**, on the same shunt as U2 (INA180A3, gain 100): its IN+ and IN− from the same Kelvin points, its own 1 kΩ / 10 nF filter, output to **GPIO 36** (ADC1, readable with Wi-Fi on; taken from the spare header, leaving GPIO 32 and 33 spare).
+   - Firmware reads both and uses U2 up to about 4.5 A, U2B above; between 1.5 and 4.5 A both are valid and cross-check each other.
+   - Result: label I_sc from about 1 A to 20 A on one board, with no part to choose and no setting to change. Panel compatibility drops from three parameters to two (V_oc ≤ 50 V, P_max ≥ 20 W).
+   - Cost: one SOT-23 part, one resistor, two capacitors; no change to the board outline.
+   - Not a socket or plug-in: a socket for a SOT-23 is unreliable outdoors, and a connector in the millivolt sense path invites trouble.
