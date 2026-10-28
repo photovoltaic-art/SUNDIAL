@@ -92,7 +92,7 @@
     document.querySelectorAll('#tabs button').forEach(b => b.setAttribute('aria-pressed', String(+b.dataset.n === ed.n)));
     const end = addDays(ed.start, 6);
     $('#edHead').textContent = `SUNDIAL Bosa · Sun n. ${ed.n}`;
-    $('#edFoot').textContent = `${shortDate(ed.start)} – ${shortDate(end)} 2027 · ${ed.week} · sample`;
+    $('#edFoot').textContent = `${shortDate(ed.start)} – ${shortDate(end)} 2027 · sample`;
     const all = buildSheet($('#sheet'), ed.start, { visitors: 'sole' }, show);
     const tot = Array(9).fill(0);
     all.forEach(x => { const f = figures(x.day); if (f) tot[x.p - 1] += f.hours; });

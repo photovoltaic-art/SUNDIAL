@@ -24,8 +24,9 @@
 <main class="wrap">
 
   <section class="col">
-    <span class="eyebrow">SUNDIAL no. 1 · Bosa, Sardinia</span>
+    <span class="eyebrow">The first SUNDIAL · Bosa, Sardinia</span>
     <h1>La Meridiana</h1>
+    <p><b>SUNDIAL: La Meridiana is the name of Bosa's summer event.</b></p>
     <p class="lede">For seven days around the summer solstice, nine old solar panels on walls across Bosa draw their day of sun. Each image forms live through the day and is sealed at Bosa's sunset. After that, nothing can change it.</p>
     <p>You can only see it there, standing in front of the panel, on your own phone, through the panel's own Wi-Fi.</p>
   </section>
@@ -72,8 +73,8 @@
   <section class="col">
     <span class="eyebrow">After the week</span>
     <h2>One print, and nine sundials that stay</h2>
-    <p>The 63 dials become one four-colour screen print, made in Bosa: the whole event on a single sheet, with its name and dates. It is the artwork; the web sheet is its record. Prints can be ordered at any time after the event.</p>
-    <p>The panels stay on their walls. They keep telling the time with their shadows, and keep recording their sun all year for the <a href="sun.html">Sun</a> page, the year-round sun record. Between events, a panel's Wi-Fi page shows the archive of past events.</p>
+    <p>The 63 dials become one four-colour screen print, made in Bosa: the whole event on a single sheet, with its name and dates. It is the artwork; the web sheet is its record. Details of how to order a print will follow after the event.</p>
+    <p>The panels stay on their walls. They keep telling the time with their shadows, and keep recording their sun all year, published here every week (see <a href="sun.html">Sun</a>). Between events, a panel's Wi-Fi page shows the archive of past events.</p>
   </section>
 
   <section class="col">
@@ -112,9 +113,8 @@
         <dt>Hours of sun</dt><dd>${hm(f.hours * 3600)}</dd>
         <dt>First and last sun</dt><dd>${f.first} – ${f.last}</dd>
         <dt>Panel temperature</dt><dd>${f.tmin.toFixed(0)}° – ${f.tmax.toFixed(0)}°</dd>
-        <dt>Visitors (per hour, added up)</dt><dd>${f.visits || '–'}</dd>
-        <dt>Sealed at sunset</dt><dd>${hhmm(day.set)}</dd>
-        <dt>Rules</dt><dd>${RULES}</dd></dl>`
+        <dt>Visits</dt><dd>${f.visits || '–'}</dd>
+        <dt>Sealed at sunset</dt><dd>${hhmm(day.set)}</dd></dl>`
       : `<p>The panel did not wake this day. Its dial is the outline of what could have been.</p>`}
       ${f && picks.length ? `<ul class="book">${picks.map(([t, w]) => `<li>${t}${w ? ` <cite>· ${w}</cite>` : ''}</li>`).join('')}</ul>` : ''}
     </div>`;

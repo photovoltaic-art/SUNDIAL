@@ -213,7 +213,7 @@ function bosaToday() { return new Date().toLocaleDateString('en-CA', { timeZone:
 function eventState(today = bosaToday()) {
   const len = Math.round((Date.parse(EVENT.end) - Date.parse(EVENT.start)) / 864e5) + 1;
   if (today < EVENT.start) return { phase: 'before',
-    line: EVENT.confirmed ? `${EVENT.name}: ${longDate(EVENT.start)} to ${longDate(EVENT.end)}` : `${EVENT.name}, Bosa: summer ${EVENT.start.slice(0, 4)}, dates to be confirmed`,
+    line: EVENT.confirmed ? `The first SUNDIAL installation will be in Bosa, ${longDate(EVENT.start)} to ${longDate(EVENT.end)}` : `The first SUNDIAL installation will be in Bosa, summer ${EVENT.start.slice(0, 4)}, dates to be confirmed`,
     links: [['What is planned', 'bosa.html']] };
   if (today <= EVENT.end) {
     const n = Math.round((Date.parse(today) - Date.parse(EVENT.start)) / 864e5) + 1;

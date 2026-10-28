@@ -52,7 +52,7 @@
       <div>
         <span class="k">All year, in the background</span>
         <h3>A sun monitor</h3>
-        <p>Behind the panel, a small board powered by the panel itself writes down its sun every day. The record is collected on foot every two weeks and published here on the <a href="sun.html">Sun</a> page, the year-round sun record: a weekly page of 63 dials, nine panels by seven days.</p>
+        <p>Behind the panel, a small board powered by the panel itself writes down its sun every day. The record is collected on foot every two weeks and published here every week (see <a href="sun.html">Sun</a>): 63 dials, nine panels by seven days.</p>
       </div>
       <div>
         <span class="k">One week a year</span>
@@ -92,7 +92,7 @@
     </div>
     <figure style="margin:0;display:grid;gap:10px">
       <div class="scroll">
-      <svg class="diagram" viewBox="0 0 960 580" role="img" aria-label="Visitors scan a QR code, open the map on this website, then walk from the sunflower stop through nine panels, joining each panel's Wi-Fi to see its dial and write in its book. The project walks the same panels to collect their records, which are published on this website.">
+      <svg class="diagram" viewBox="0 0 960 552" role="img" aria-label="Visitors scan a QR code, open the map on this website, then walk from the sunflower stop through nine panels, joining each panel's Wi-Fi to see its dial and write in its book. The project walks the same panels to collect their records, which are published on this website.">
         <defs>
           <marker id="hv" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="hv" d="M0 0L10 5L0 10z"/></marker>
           <marker id="ha" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="ha" d="M0 0L10 5L0 10z"/></marker>
@@ -101,7 +101,7 @@
         <text class="bandlab" x="16" y="30">ONLINE · ON YOUR MOBILE DATA</text>
         <rect class="bandbg" x="0" y="140" width="960" height="270" style="opacity:.25"/>
         <text class="bandlab" x="16" y="158">IN THE STREET · NO INTERNET</text>
-        <rect class="bandbg" x="0" y="430" width="960" height="140"/>
+        <rect class="bandbg" x="0" y="430" width="960" height="114"/>
         <text class="bandlab" x="16" y="448">COLLECTING THE RECORD · ON FOOT</text>
 
         <rect class="box" x="40" y="46" width="170" height="54" rx="4"/>
@@ -109,7 +109,7 @@
         <text class="s" x="125" y="86" text-anchor="middle">QR code</text>
         <rect class="box" x="340" y="40" width="300" height="66" rx="4"/>
         <text class="t" x="490" y="64" text-anchor="middle">This website</text>
-        <text class="s" x="490" y="84" text-anchor="middle">Map · the event's sheet · Sun</text>
+        <text class="s" x="490" y="84" text-anchor="middle">Map · the week's dials · Sun</text>
         <rect class="box" x="760" y="46" width="170" height="54" rx="4"/>
         <text class="t" x="845" y="68" text-anchor="middle">Project archive</text>
         <text class="s" x="845" y="86" text-anchor="middle">the full record, kept private</text>
@@ -127,7 +127,7 @@
         <path class="vis" d="M115 194 V274" marker-end="url(#hv)"/>
         <circle class="sun" cx="115" cy="310" r="30"/>
         <text class="t" x="115" y="314" text-anchor="middle">Girasole</text>
-        <text class="s" x="115" y="358" text-anchor="middle">first stop · chalkboard</text>
+        <text class="s" x="115" y="358" text-anchor="middle">the sunflower · first stop</text>
 
         <text class="tv" x="578" y="256" text-anchor="middle">At each panel: join its Wi-Fi → watch today's dial form → leave a line in the book</text>
         <path class="vis" d="M145 310 H226" marker-end="url(#hv)"/>
@@ -157,9 +157,7 @@
         </g>
         <rect class="box" x="40" y="481" width="150" height="38" rx="19"/>
         <text class="t" x="115" y="505" text-anchor="middle">The project</text>
-        <text class="ta" x="578" y="528" text-anchor="middle">During the event, every day: choose the book's lines to show · collect the day</text>
-        <text class="ta" x="578" y="546" text-anchor="middle">All year, every second Monday: collect the record for the Sun page · clean the glass</text>
-        <text class="ta" x="578" y="564" text-anchor="middle">Once a year, in spring: a check-up before the summer event</text>
+        <text class="ta" x="578" y="528" text-anchor="middle">Every two weeks, someone walks the route to collect the record</text>
       </svg>
       </div>
       <figcaption>The visitor's path in ochre, the collecting round in blue. Each panel powers only itself, has its own Wi-Fi, and is awake from dawn to dusk; the sundial on the wall works for everyone, with no phone. What you see at a panel is made there, and what appears here was carried.</figcaption>
@@ -169,7 +167,7 @@
   <section class="col">
     <span class="eyebrow">The rules</span>
     <h2>Nine panels, never more, never less</h2>
-    <p>A SUNDIAL is always nine panels in one town. Each panel runs only on its own sun: no battery charged from the grid, no cable, no internet. When the light comes up the panel wakes; after sunset it sleeps.</p>
+    <p>A SUNDIAL is always nine panels in one town. Each panel runs only on its own sun: no battery, no cable, no internet. When the light comes up the panel wakes; after sunset it sleeps.</p>
     <p>Visitors are counted, never identified. A phone is told apart only for an hour, and nothing about it is kept. The book keeps only what a visitor chooses to write.</p>
     <p>SUNDIAL will be open source once it has been tested in its first town, so other towns can make their own nine.</p>
   </section>
@@ -215,7 +213,7 @@
           ? `<p><b>${ev.line}.</b> Join the Wi-Fi <b class="num">${wifi(p)}</b> and today's dial opens by itself. Stay connected, even if your phone says there is no internet.</p>`
           : ev.phase === 'before'
             ? `<p>For one week in summer ${EVENT.start.slice(0, 4)} it will draw its day live on your phone, through its own Wi-Fi, <b class="num">${wifi(p)}</b>. The rest of the year it records its sun for the Sun page.</p>`
-            : `<p>For one week each summer it draws its day live on visitors' phones. The rest of the year it records its sun for the Sun page, and its Wi-Fi, <b class="num">${wifi(p)}</b>, shows the archive of past events.</p>`}
+            : `<p>For one week each summer it draws its day live on visitors' phones. The rest of the year it records its sun, published every week on this website, and its Wi-Fi, <b class="num">${wifi(p)}</b>, shows the archive of past events.</p>`}
         <div class="go"><a class="cta" href="map.html">Map <span aria-hidden="true">→</span></a>
           <a class="cta quiet" href="${during ? 'bosa.html' : ev.phase === 'after' ? 'sun.html' : 'bosa.html'}">${ev.phase === 'after' ? 'Sun' : 'Bosa 2027'}</a></div>
         <p class="mute">Below: what SUNDIAL is.</p>`;
