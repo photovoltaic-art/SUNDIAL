@@ -75,6 +75,30 @@ the client checks the updated schematic PDF, BOM and 3D render against this docu
 Trina Solar TSM-185DC01: P_max 185 W, V_mp 37.5 V, I_mp 4.95 A, **V_oc 44.5 V, I_sc 5.40 A**, NOCT 47 ± 2 °C,
 maximum series fuse 9 A, 1581 × 809 × 40 mm, 15.6 kg. Field wiring at least 4 mm² copper.
 
+## Panel compatibility: three parameters
+
+**As specified (U2 = INA180A3), the carrier suits panels with a label short-circuit current (I_sc) of about 1–5.5 A and an open-circuit voltage (V_oc) up to about 50 V, from about 20 W upwards.**
+
+In practice: 12 V panels (36 cells) of about 20–90 W, and older 24 V panels (60–72 cells) up to about 200 W, such as the Trina 185 W above.
+
+Checking a used panel, from its label:
+
+| Parameter | Limit (as built) | Why |
+| --- | --- | --- |
+| **I_sc** | ≤ 5.5 A | The sun sensor reads up to about 4.9 A at gain 100; a vertical panel stays below about 85 % of its label I_sc. Higher I_sc: change U2 (below) |
+| **V_oc** | ≤ 50 V | Leaves room for cold mornings (about +8 %) within the board's 60 V rating and the panel-voltage reading's 54 V limit |
+| **P_max** | ≥ 20 W | The board uses up to about 1 W with Wi-Fi on; smaller panels wake late, sleep early and drop out under cloud |
+
+**Panels with a higher I_sc** (100 W 12 V panels, modern 300–450 W panels) need a different U2. Same footprint and pins; only the firmware's `SENSE_GAIN` changes:
+
+| U2 | Gain (`SENSE_GAIN`) | Reads up to | Unreliable below | Label I_sc |
+| --- | --- | --- | --- | --- |
+| **INA180A3** (as specified) | 100 | about 4.9 A | about 0.3 A | 1–5.5 A |
+| INA180A2 | 50 | about 9.8 A | about 0.6 A | 5–10 A |
+| INA180A1 | 20 | about 24 A | about 1.5 A | 9–20 A |
+
+The floor comes from the ESP32's analog input, which cannot read the bottom ~0.15 V reliably. Use one panel model for all nine panels of a work, so every panel reads alike; record the U2 fitted on each build.
+
 ## Decisions
 
 | Decision | Choice |
