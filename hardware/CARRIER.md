@@ -304,6 +304,7 @@ add-on use that spare power through its own converter, switched by the relay out
 8. **In the box:** mount the box at the panel's edge with the antenna end pointing away from the panel (the aluminium frame and the cells shield the signal), and keep the buck module and cables away from the antenna end. Check the Wi-Fi range on the pilot from where visitors will stand.
 6. **Spacing:** panel V_oc 44.5 V (about 48 V on a cold morning), board rated to 60 V; normal 0.5 mm clearances are plenty.
 7. **Mounting:** 4 × M3 holes for standoffs in the box; keep 3 mm clear round them.
+9. **Headers together (added 28 Oct 2026):** place **J9, J10 and J13 side by side along one board edge**, with J11 beside them if it fits, away from the ESP32 antenna end. On SUNSET's interactive nodes three short cables run from these headers to an I/O board beside the carrier (SUNSET repository, io-board.md). A placement preference only: no circuit change.
 
 ## Parts the builder fits (no soldering)
 
