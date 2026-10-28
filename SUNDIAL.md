@@ -126,7 +126,7 @@ The raw downloads stay private with PVA. The public repo receives only the deriv
 
 ### 3.3 The website pages
 
-**Navigation:** About · Bosa 2027 · Map · Sole (README, The website). The year's SUNDIAL sheet appears on the Bosa page; a preview on invented data is there and in `sole.html` until these pages are built.
+**Navigation:** About · Bosa 2027 · Map · Sun (Sole, in Italian) (README, The website). The year's SUNDIAL sheet appears on the Bosa page; a preview on invented data is there and in `sun.html` until these pages are built.
 
 **SUNDIAL** (`docs/sundial/YEAR/`): one page per event, the canonical sheet as a web page, 9 × 7 dials with title and dates. Tap a dial for that day's figures and the chosen lines from that panel's book. Built during the run from the daily walks, frozen after the final walk. `docs/sundial/` lists the years, newest first.
 

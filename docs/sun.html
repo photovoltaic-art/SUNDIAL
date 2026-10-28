@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>SUNDIAL Bosa · Sole</title>
+<title>SUNDIAL Bosa · Sun</title>
 <meta name="claude:viewport-fit-sides" content="cover">
-<meta name="description" content="Sole: the sun on nine walls of Bosa, all year, published weekly as 63 dials.">
+<meta name="description" content="Sun: the sun on nine walls of Bosa, all year, published weekly as 63 dials.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Mono:wght@500&display=swap">
 <link rel="stylesheet" href="assets/site.css">
@@ -17,7 +17,7 @@
     <a href="index.html">About</a>
     <a href="bosa.html">Bosa 2027</a>
     <a href="map.html">Map</a>
-    <a href="sole.html" aria-current="page">Sole</a>
+    <a href="sun.html" aria-current="page">Sun</a>
   </nav>
 </div></header>
 
@@ -25,10 +25,10 @@
 
   <section class="col">
     <span class="eyebrow">The sun monitor · all year</span>
-    <h1>Sole</h1>
+    <h1>Sun</h1>
     <p class="lede">All year, the nine panels record the sun on their walls. Every second Monday someone walks the route and collects the record. Each week becomes an edition: 63 dials, nine panels by seven days.</p>
     <p>Over the years the editions become a portrait of the sun in nine streets of Bosa. Short winter days draw short arcs; summer fills the half circle. The panels measure the sunlight reaching each wall, not electricity: the headline figure is hours of direct sun.</p>
-    <div class="preview" role="note"><b>Preview.</b><span>Invented data. Sole starts after the first event in 2027. These sample editions are drawn by the real rules so you can see how the weeks will look.</span></div>
+    <div class="preview" role="note"><b>Preview.</b><span>Invented data. The weekly record starts after the first event in 2027. These sample editions are drawn by the real rules so you can see how the weeks will look.</span></div>
   </section>
 
   <section>
@@ -48,11 +48,11 @@
   </section>
 
   <section class="col">
-    <span class="eyebrow">How Sole is made</span>
+    <span class="eyebrow">How the record is made</span>
     <h2>Collected on foot, published every two weeks</h2>
     <p>A week is complete once Sunday's sunset has passed, so each walk brings back two complete weeks: two new editions. The panels have no internet, so nothing here is live; the newest edition is up to two weeks old.</p>
     <p>Every week gets a number, with no gaps. A week a panel did not wake shows its outline, like any day it missed.</p>
-    <p>Sole is the record. The only artworks are the prints made from each summer event, <a href="bosa.html">La Meridiana</a>.</p>
+    <p>These pages are the record. The only artworks are the prints made from each summer event, <a href="bosa.html">La Meridiana</a>.</p>
   </section>
 </main>
 
@@ -64,7 +64,7 @@
 
 <script src="assets/dial.js"></script>
 <script>
-  // Sample editions. Sole n. 1 is the first full week after the 2027 event.
+  // Sample editions. Sun n. 1 is the first full week after the 2027 event.
   const EDITIONS = [
     { n: 25, start: '2027-12-13', week: '2027-W50' },
     { n: 2,  start: '2027-07-05', week: '2027-W27' },
@@ -91,7 +91,7 @@
   function open(ed) {
     document.querySelectorAll('#tabs button').forEach(b => b.setAttribute('aria-pressed', String(+b.dataset.n === ed.n)));
     const end = addDays(ed.start, 6);
-    $('#edHead').textContent = `SUNDIAL Bosa · Sole n. ${ed.n}`;
+    $('#edHead').textContent = `SUNDIAL Bosa · Sun n. ${ed.n}`;
     $('#edFoot').textContent = `${shortDate(ed.start)} – ${shortDate(end)} 2027 · ${ed.week} · sample`;
     const all = buildSheet($('#sheet'), ed.start, { visitors: 'sole' }, show);
     const tot = Array(9).fill(0);

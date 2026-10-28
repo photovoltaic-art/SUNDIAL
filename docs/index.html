@@ -17,7 +17,7 @@
     <a href="index.html" aria-current="page">About</a>
     <a href="bosa.html">Bosa 2027</a>
     <a href="map.html">Map</a>
-    <a href="sole.html">Sole</a>
+    <a href="sun.html">Sun</a>
   </nav>
 </div></header>
 
@@ -52,7 +52,7 @@
       <div>
         <span class="k">All year, in the background</span>
         <h3>A sun monitor</h3>
-        <p>Behind the panel, a small board powered by the panel itself writes down its sun every day. The record is collected on foot every two weeks and published here as <a href="sole.html">Sole</a>, the year-round sun record: a weekly page of 63 dials, nine panels by seven days.</p>
+        <p>Behind the panel, a small board powered by the panel itself writes down its sun every day. The record is collected on foot every two weeks and published here on the <a href="sun.html">Sun</a> page, the year-round sun record: a weekly page of 63 dials, nine panels by seven days.</p>
       </div>
       <div>
         <span class="k">One week a year</span>
@@ -68,8 +68,9 @@
       <figcaption>Another invented day: a wall in shade until mid-morning that loses the sun again mid-afternoon.</figcaption>
     </figure>
     <div class="col">
-      <span class="eyebrow">How to read a dial</span>
-      <h2>Solar noon at the top. Morning on the left, evening on the right.</h2>
+      <span class="eyebrow">The dial</span>
+      <h2>How to read a dial</h2>
+      <p>Solar noon is at the top: morning on the left, evening on the right.</p>
       <ul class="key">
         <li><i class="sw o"></i><span><b>Ochre</b>: a quarter of an hour of direct sun on this panel.</span></li>
         <li><i class="sw b"></i><span><b>Blue</b>: a quarter of an hour of shade or cloud. Shade is a true record, not a missing one.</span></li>
@@ -108,7 +109,7 @@
         <text class="s" x="125" y="86" text-anchor="middle">QR code</text>
         <rect class="box" x="340" y="40" width="300" height="66" rx="4"/>
         <text class="t" x="490" y="64" text-anchor="middle">This website</text>
-        <text class="s" x="490" y="84" text-anchor="middle">Map · the event's sheet · Sole</text>
+        <text class="s" x="490" y="84" text-anchor="middle">Map · the event's sheet · Sun</text>
         <rect class="box" x="760" y="46" width="170" height="54" rx="4"/>
         <text class="t" x="845" y="68" text-anchor="middle">Project archive</text>
         <text class="s" x="845" y="86" text-anchor="middle">the full record, kept private</text>
@@ -157,7 +158,7 @@
         <rect class="box" x="40" y="481" width="150" height="38" rx="19"/>
         <text class="t" x="115" y="505" text-anchor="middle">The project</text>
         <text class="ta" x="578" y="528" text-anchor="middle">During the event, every day: choose the book's lines to show · collect the day</text>
-        <text class="ta" x="578" y="546" text-anchor="middle">All year, every second Monday: collect the record for Sole · clean the glass</text>
+        <text class="ta" x="578" y="546" text-anchor="middle">All year, every second Monday: collect the record for the Sun page · clean the glass</text>
         <text class="ta" x="578" y="564" text-anchor="middle">Once a year, in spring: a check-up before the summer event</text>
       </svg>
       </div>
@@ -213,10 +214,10 @@
         ${during
           ? `<p><b>${ev.line}.</b> Join the Wi-Fi <b class="num">${wifi(p)}</b> and today's dial opens by itself. Stay connected, even if your phone says there is no internet.</p>`
           : ev.phase === 'before'
-            ? `<p>For one week in summer ${EVENT.start.slice(0, 4)} it will draw its day live on your phone, through its own Wi-Fi, <b class="num">${wifi(p)}</b>. The rest of the year it records its sun for Sole.</p>`
-            : `<p>For one week each summer it draws its day live on visitors' phones. The rest of the year it records its sun for Sole, and its Wi-Fi, <b class="num">${wifi(p)}</b>, shows the archive of past events.</p>`}
+            ? `<p>For one week in summer ${EVENT.start.slice(0, 4)} it will draw its day live on your phone, through its own Wi-Fi, <b class="num">${wifi(p)}</b>. The rest of the year it records its sun for the Sun page.</p>`
+            : `<p>For one week each summer it draws its day live on visitors' phones. The rest of the year it records its sun for the Sun page, and its Wi-Fi, <b class="num">${wifi(p)}</b>, shows the archive of past events.</p>`}
         <div class="go"><a class="cta" href="map.html">Map <span aria-hidden="true">→</span></a>
-          <a class="cta quiet" href="${during ? 'bosa.html' : ev.phase === 'after' ? 'sole.html' : 'bosa.html'}">${ev.phase === 'after' ? 'Sole' : 'Bosa 2027'}</a></div>
+          <a class="cta quiet" href="${during ? 'bosa.html' : ev.phase === 'after' ? 'sun.html' : 'bosa.html'}">${ev.phase === 'after' ? 'Sun' : 'Bosa 2027'}</a></div>
         <p class="mute">Below: what SUNDIAL is.</p>`;
       here.hidden = false;
     } else {

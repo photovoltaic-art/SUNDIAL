@@ -1,6 +1,6 @@
 /* SUNDIAL website — the dial, drawn by the same rules as the panels.
    render() is copied unchanged from the panel page (firmware/panel_page_server/data/index.html, rules-1).
-   sampleDay() INVENTS data for the preview pages; it is replaced by the Sole import data later. */
+   sampleDay() INVENTS data for the preview pages; it is replaced by the Sun import data later. */
 
 const RULES = 'rules-1';
 const INK = { paper:'#F4EFE4', ochre:'#E8B33A', red:'#B5452F', blue:'#2E5A78', black:'#1E1D1B' };
@@ -221,5 +221,5 @@ function eventState(today = bosaToday()) {
       links: [['Open the map', 'map.html']] };
   }
   return { phase: 'after', line: `${EVENT.name} ${EVENT.start.slice(0, 4)} is over. The sundials stay, and keep recording`,
-    links: [['See the week', 'bosa.html'], ['Sole', 'sole.html']] };
+    links: [['See the week', 'bosa.html'], ['Sun', 'sun.html']] };
 }

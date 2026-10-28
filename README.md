@@ -31,7 +31,7 @@ The three layers are specified against the carrier board in **[SUNDIAL.md](SUNDI
 | The panel | PV panel + ESP32 + temperature probe + clock module, no battery, no internet | On a wall in Bosa |
 | The dial | Each day's image, drawn on the visitor's phone from the panel's data | The panel's own Wi-Fi during SUNDIAL; the website for Sole |
 | The visitors' book | One line per visitor per panel per day, read and chosen the next day | The panel's own Wi-Fi, during SUNDIAL |
-| The website | About (the introduction), Bosa 2027 (the event), the map, Sole | The SUNDIAL website (this repo's `docs/`); the sheet and Sole are previews on invented data until the real pages are built (`docs/sundial/`, `docs/sole/`) |
+| The website | About (the introduction), Bosa 2027 (the event), the map, Sun (Sole) | The SUNDIAL website (this repo's `docs/`); the sheet and Sole are previews on invented data until the real pages are built (`docs/sundial/`, `docs/sole/`) |
 | The girasole | A sunflower and a chalkboard: the Heliotropist legend re-enacted, drawn by visitors | First stop of the route during SUNDIAL, moveable |
 | The print | The whole event as one 9 × 9 four-colour screen print | Made after each event from the collected data |
 
@@ -47,7 +47,7 @@ docs/                         the website, the only part published (see The webs
   index.html                  About: the introduction; a date-aware line; a panel card from the wall plates' ?p=N
   bosa.html                   Bosa 2027: the event, a visit, the print, data and privacy; preview sheet (invented data)
   map.html                    the map
-  sole.html                   Sole: preview editions (invented data)
+  sun.html                    Sun (Sole in Italian): preview editions (invented data)
   assets/                     site.css; dial.js (the panel page's drawing rules, the event dates, preview data)
   sundial/, sole/, data/      planned: real SUNDIAL sheets and Sole editions (SUNDIAL.md 3.3)
 firmware/panel_page_server/
@@ -96,7 +96,7 @@ In the repository's GitHub Pages settings, publish from the `docs` folder on the
 | `index.html` (About) | Everyone: what SUNDIAL is | A line at the top follows the event dates (before, during, after); buttons to Bosa 2027 and the map |
 | `bosa.html` (Bosa 2027) | Visitors planning a visit | Dates, a visit step by step, the print, privacy; the sheet is a **preview** on invented data |
 | `map.html` | Visitors on the route | Pins, which panels are likely awake, the visitor's position; a one-line tip on first open |
-| `sole.html` | The year-round record | Sample editions, **preview** on invented data, until `sole_edition.py` writes the real ones |
+| `sun.html` (Sun) | The year-round record (Sole in Italian) | Sample editions, **preview** on invented data, until `sole_edition.py` writes the real ones |
 
 **Where each link goes:**
 
