@@ -57,7 +57,7 @@ Everything town-specific moves into `site/`. A fork replaces this folder and not
 
 **2.1 Generated config.** `tools/site_build.py` reads `site.json` and writes:
 - `firmware/panel_page_server/site_config.h` (coordinates, time zone, titles, languages)
-- the `PANELS` list and map centre for `docs/index.html`
+- the `PANELS` list and map centre for `docs/map.html`, and the event dates in `docs/assets/dial.js`
 - the website's titles and footer
 
 Generated files are marked "do not edit" and rebuilt by one command.

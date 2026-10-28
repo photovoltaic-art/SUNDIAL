@@ -1,0 +1,308 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>SUNDIAL · La Meridiana</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<style>
+  :root {
+    --bg:#f4f2ec; --fg:#1b1a17; --mute:#8a867c; --faint:#e4e0d6;
+    --sun:#e09a2b; --sun-soft:rgba(224,154,43,.2); --you:#2f6fd6;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg:#121110; --fg:#ebe7de; --mute:#8f8b82; --faint:#2a2825; --sun:#f0a838; --sun-soft:rgba(240,168,56,.2); }
+  }
+  * { box-sizing:border-box; }
+  html, body { margin:0; height:100%; background:var(--bg); color:var(--fg);
+    font:15px/1.45 system-ui, -apple-system, sans-serif; }
+  #map { position:fixed; inset:0; }
+
+  header { position:fixed; top:0; left:0; right:0; z-index:1000; display:flex; align-items:center; gap:10px;
+    padding:calc(12px + env(safe-area-inset-top)) 16px 12px; background:var(--bg); border-bottom:1px solid var(--faint); }
+  header h1 { margin:0; font-size:11px; font-weight:600; letter-spacing:.2em; text-transform:uppercase; }
+  header .count { font-size:12px; color:var(--mute); }
+  header button { margin-left:auto; }
+  header .back { color:var(--fg); text-decoration:none; font-size:20px; line-height:1; padding:0 4px; }
+
+  #today { position:fixed; left:0; right:0; bottom:0; z-index:1000; display:flex; align-items:center; gap:12px;
+    padding:14px 16px calc(14px + env(safe-area-inset-bottom)); background:var(--bg);
+    border-top:1px solid var(--faint); font-size:13px; color:var(--mute); }
+  #today b { color:var(--fg); font-weight:500; font-variant-numeric:tabular-nums; }
+  .disc { width:12px; height:12px; border-radius:50%; background:var(--sun); box-shadow:0 0 0 4px var(--sun-soft); flex:none; }
+
+  button { font:inherit; font-size:12px; color:var(--fg); background:transparent; border:1px solid var(--faint);
+    border-radius:99px; padding:5px 12px; cursor:pointer; }
+  #locate { position:fixed; right:14px; bottom:calc(66px + env(safe-area-inset-bottom)); z-index:1000;
+    width:40px; height:40px; padding:0; border-radius:50%; background:var(--bg); font-size:18px; line-height:1; }
+
+  #editbar { position:fixed; left:0; right:0; top:calc(52px + env(safe-area-inset-top)); z-index:1000; display:none;
+    gap:8px; align-items:center; flex-wrap:wrap; padding:10px 16px; background:var(--sun-soft);
+    backdrop-filter:blur(6px); font-size:12px; }
+  body.editing #editbar { display:flex; }
+  #hint { position:fixed; left:0; right:0; top:calc(52px + env(safe-area-inset-top)); z-index:999; display:flex;
+    gap:10px; align-items:center; padding:9px 16px; background:var(--bg); border-bottom:1px solid var(--faint);
+    font-size:13px; color:var(--fg); }
+  #hint button { margin-left:auto; border:0; font-size:18px; padding:0 4px; }
+  body.editing #hint, #hint[hidden] { display:none; }
+
+  /* pins */
+  .pin { width:30px; height:30px; border-radius:50%; display:grid; place-items:center;
+    font:600 13px/1 system-ui, sans-serif; font-variant-numeric:tabular-nums;
+    background:#fffdf8; color:#1b1a17; border:2px solid #1b1a17; box-shadow:0 1px 4px rgba(0,0,0,.25); }
+  .pin.flower { background:#fffdf8; padding:0; }
+  .pin.flower svg { width:22px; height:22px; display:block; }
+  .pin.awake { background:var(--sun); border-color:#1b1a17; box-shadow:0 0 0 6px var(--sun-soft), 0 1px 4px rgba(0,0,0,.25); }
+  body.editing .pin { cursor:grab; outline:2px dashed #1b1a17; outline-offset:3px; }
+
+  /* popups */
+  .leaflet-popup-content-wrapper, .leaflet-popup-tip { background:var(--bg); color:var(--fg); border-radius:6px; }
+  .leaflet-popup-content { margin:14px 16px; font:13px/1.5 system-ui, sans-serif; min-width:190px; }
+  .pop h2 { margin:0 0 6px; font-size:16px; font-weight:500;
+    font-family:"Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif; }
+  .pop .k { color:var(--mute); }
+  .pop .wifi { margin-top:8px; padding-top:8px; border-top:1px solid var(--faint); }
+  .pop b { font-weight:500; }
+  .leaflet-control-attribution { font-size:9px; }
+  .leaflet-bottom { bottom:calc(52px + env(safe-area-inset-bottom)); }
+</style>
+</head>
+<body>
+<div id="map"></div>
+
+<header>
+  <a href="index.html" class="back" aria-label="About SUNDIAL">‹</a>
+  <h1 id="title">SUNDIAL · La Meridiana</h1>
+  <span class="count" id="count"></span>
+  <button id="editToggle" hidden>Edit pins</button>
+</header>
+
+<div id="editbar">
+  <span>Drag pins into place.</span>
+  <button id="copy">Copy positions</button>
+  <button id="reset">Reset</button>
+</div>
+
+<div id="hint"><span>Start at the sunflower, then follow the numbers. Tap a pin for its Wi-Fi name.</span><button id="hintX" aria-label="Hide this tip">×</button></div>
+
+<button id="locate" aria-label="Show where I am">◎</button>
+
+<div id="today">
+  <span class="disc"></span>
+  <span>sunrise <b id="rise">–</b></span>
+  <span>sunset <b id="set">–</b></span>
+  <span style="margin-left:auto"><b id="awakeN">–</b> awake</span>
+</div>
+
+<script>
+/* ======================================================================
+   CONFIG — edit here
+   ll:      [lat, lng]. Placeholder positions around Bosa; drag them on site
+            with ?edit, then "Copy positions" and paste over the ll values.
+   ssid:    the panel's Wi-Fi network name
+   window:  usual awake hours per month, from the panel's own logs.
+            { 1:[9.2,15.8], 2:[...], ... }  (decimal hours, local time)
+            null = not measured yet; the town's sunrise/sunset is used instead.
+   twilight: true if the logs show this panel staying awake after sunset
+             (open western horizon). Optional; adds a line to its card.
+   ====================================================================== */
+const TOUR = { title: 'SUNDIAL · La Meridiana', center: [40.2986, 8.4970], zoom: 16 };
+
+const PANELS = [
+  { n: 1, name: 'Panel one',   ssid: 'panel-01', ll: [40.2978, 8.4955], window: null },
+  { n: 2, name: 'Panel two',   ssid: 'panel-02', ll: [40.2985, 8.4975], window: null },
+  { n: 3, name: 'Panel three', ssid: 'panel-03', ll: [40.2995, 8.4990], window: null },
+  { n: 4, name: 'Panel four',  ssid: 'panel-04', ll: [40.3005, 8.4998], window: null },
+  { n: 5, name: 'Panel five',  ssid: 'panel-05', ll: [40.3010, 8.4980], window: null },
+  { n: 6, name: 'Panel six',   ssid: 'panel-06', ll: [40.2998, 8.4960], window: null },
+  { n: 7, name: 'Panel seven', ssid: 'panel-07', ll: [40.2990, 8.4935], window: null },
+  { n: 8, name: 'Panel eight', ssid: 'panel-08', ll: [40.2970, 8.4925], window: null },
+  { n: 9, name: 'Panel nine',  ssid: 'panel-09', ll: [40.2960, 8.4945], window: null },
+];
+
+// The girasole: the Heliotropist legend re-enacted. A young sunflower in a pot and a chalkboard,
+// moveable, in front of a south-facing wall. First stop of the route. Not a panel: no Wi-Fi.
+const GIRASOLE = { name: 'Il Girasole', ll: [40.2982, 8.4945], show: true };
+/* ====================================================================== */
+
+const $ = s => document.querySelector(s);
+const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+const pad = n => String(n).padStart(2, '0');
+const fmt = h => pad(Math.floor(h)) + ':' + pad(Math.round(h % 1 * 60) % 60);
+const hourOfDate = d => d.getHours() + d.getMinutes() / 60;
+const EDIT = new URLSearchParams(location.search).has('edit');
+const KEY = 'sameSunPins';
+
+$('#title').textContent = TOUR.title;
+document.title = TOUR.title;
+$('#count').textContent = PANELS.length + ' panels' + (GIRASOLE.show ? ' · 1 girasole' : '');
+
+// pin positions placed on site (this browser only) override the config
+try {
+  const saved = JSON.parse(localStorage.getItem(KEY) || 'null');
+  if (saved) PANELS.forEach(p => { if (saved[p.n]) p.ll = saved[p.n]; });
+  if (saved && saved.g) GIRASOLE.ll = saved.g;
+} catch {}
+
+/* ---------- sunrise / sunset (after SunCalc, Agafonkin; no library) ---------- */
+function sunTimes(date, lat, lng) {
+  const rad = Math.PI / 180, J1970 = 2440588, J2000 = 2451545;
+  const fromJ = j => new Date((j + 0.5 - J1970) * 864e5);
+  const d = date.valueOf() / 864e5 - 0.5 + J1970 - J2000;
+  const lw = -lng * rad, phi = lat * rad;
+  const n = Math.round(d - 0.0009 - lw / (2 * Math.PI));
+  const ds = 0.0009 + lw / (2 * Math.PI) + n;
+  const M = rad * (357.5291 + 0.98560028 * ds);
+  const C = rad * (1.9148 * Math.sin(M) + 0.02 * Math.sin(2 * M) + 0.0003 * Math.sin(3 * M));
+  const L = M + C + rad * 102.9372 + Math.PI;
+  const dec = Math.asin(Math.sin(L) * Math.sin(rad * 23.4397));
+  const Jnoon = J2000 + ds + 0.0053 * Math.sin(M) - 0.0069 * Math.sin(2 * L);
+  const w = Math.acos((Math.sin(-0.833 * rad) - Math.sin(phi) * Math.sin(dec)) / (Math.cos(phi) * Math.cos(dec)));
+  const Jset = J2000 + 0.0009 + (w + lw) / (2 * Math.PI) + n + 0.0053 * Math.sin(M) - 0.0069 * Math.sin(2 * L);
+  return { rise: fromJ(2 * Jnoon - Jset), set: fromJ(Jset) };
+}
+
+/* ---------- map ---------- */
+const map = L.map('map', { zoomControl: false, attributionControl: true })
+  .setView(TOUR.center, TOUR.zoom);
+L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
+  maxZoom: 17, subdomains: 'abc',
+  attribution: 'Map data © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, SRTM · Style © <a href="https://opentopomap.org">OpenTopoMap</a> (CC-BY-SA)',
+}).addTo(map);
+
+const routeLL = () => (GIRASOLE.show ? [GIRASOLE.ll] : []).concat(PANELS.map(p => p.ll));
+const route = L.polyline(routeLL(), {
+  color: css('--sun'), weight: 3, opacity: .9, dashArray: '2 8', lineCap: 'round',
+}).addTo(map);
+
+let you = null, youCircle = null;
+
+function windowFor(p, now) {
+  const m = now.getMonth() + 1;
+  if (p.window && p.window[m]) return { from: p.window[m][0], to: p.window[m][1], measured: true };
+  const t = sunTimes(now, p.ll[0], p.ll[1]);
+  return { from: hourOfDate(t.rise), to: hourOfDate(t.set), measured: false };
+}
+function isAwake(p, now) {
+  const w = windowFor(p, now), h = hourOfDate(now);
+  return h >= w.from && h <= w.to;
+}
+function distanceText(p) {
+  if (!you) return '';
+  const m = map.distance(you, p.ll);
+  return m < 1000 ? Math.round(m / 10) * 10 + ' m from you' : (m / 1000).toFixed(1) + ' km from you';
+}
+function popupHtml(p) {
+  const now = new Date(), w = windowFor(p, now), awake = isAwake(p, now);
+  return `<div class="pop">
+    <h2>${p.n} · ${p.name}</h2>
+    <div><b>${awake ? 'Likely awake' : 'Likely asleep'}</b></div>
+    <div class="k">${w.measured ? 'usually awake' : 'awake at most'} ${fmt(w.from)}–${fmt(w.to)}${w.measured ? '' : ' (not measured yet)'}</div>
+    ${p.twilight ? `<div class="k">On clear evenings it may stay awake a few minutes after sunset, still showing the day's finished image.</div>` : ''}
+    ${you ? `<div class="k">${distanceText(p)}</div>` : ''}
+    <div class="wifi">At the panel, join Wi-Fi <b>${p.ssid}</b></div>
+  </div>`;
+}
+
+const markers = PANELS.map(p => {
+  const m = L.marker(p.ll, {
+    draggable: false,
+    icon: L.divIcon({ className: '', html: `<div class="pin">${p.n}</div>`, iconSize: [30, 30], iconAnchor: [15, 15], popupAnchor: [0, -16] }),
+  }).addTo(map);
+  m.bindPopup(() => popupHtml(p));
+  m.on('drag', () => { p.ll = [m.getLatLng().lat, m.getLatLng().lng]; route.setLatLngs(routeLL()); });
+  m.on('dragend', savePins);
+  return m;
+});
+
+/* ---------- the girasole ---------- */
+const FLOWER = `<svg viewBox="0 0 24 24" aria-hidden="true">${[0,45,90,135,180,225,270,315].map(a =>
+  `<ellipse cx="12" cy="4.6" rx="2.3" ry="3.6" fill="#e8b33a" transform="rotate(${a} 12 12)"/>`).join('')}
+  <circle cx="12" cy="12" r="4.4" fill="#5a3b1e"/></svg>`;
+let flower = null;
+function flowerHtml() {
+  const t = sunTimes(new Date(), GIRASOLE.ll[0], GIRASOLE.ll[1]);
+  return `<div class="pop">
+    <h2>${GIRASOLE.name}</h2>
+    <div>The legend, re-enacted: a young sunflower turning with the sun, and a chalkboard.</div>
+    <div class="k">Make a mark for the sun now (ochre for sun, blue for shade) and write the time beside it.
+      The board is photographed and wiped at sunset, ${fmt(hourOfDate(t.set))} today.</div>
+    ${you ? `<div class="k">${distanceText(GIRASOLE)}</div>` : ''}
+    <div class="wifi">No Wi-Fi here: this one is drawn by hand.</div>
+  </div>`;
+}
+if (GIRASOLE.show) {
+  flower = L.marker(GIRASOLE.ll, {
+    draggable: false,
+    icon: L.divIcon({ className: '', html: `<div class="pin flower">${FLOWER}</div>`, iconSize: [30, 30], iconAnchor: [15, 15], popupAnchor: [0, -16] }),
+  }).addTo(map);
+  flower.bindPopup(flowerHtml);
+  flower.on('drag', () => { GIRASOLE.ll = [flower.getLatLng().lat, flower.getLatLng().lng]; route.setLatLngs(routeLL()); });
+  flower.on('dragend', savePins);
+}
+const draggables = () => markers.concat(flower ? [flower] : []);
+
+function refresh() {
+  const now = new Date();
+  const t = sunTimes(now, TOUR.center[0], TOUR.center[1]);
+  $('#rise').textContent = fmt(hourOfDate(t.rise));
+  $('#set').textContent = fmt(hourOfDate(t.set));
+  let n = 0;
+  PANELS.forEach((p, i) => {
+    const a = isAwake(p, now); if (a) n++;
+    const el = markers[i].getElement()?.querySelector('.pin');
+    if (el) el.classList.toggle('awake', a);
+  });
+  $('#awakeN').textContent = n + ' of ' + PANELS.length;
+}
+
+if (PANELS.length) map.fitBounds(route.getBounds(), { padding: [50, 50], maxZoom: TOUR.zoom });
+refresh();
+setInterval(refresh, 60000);
+
+/* ---------- you are here ---------- */
+function watch(center) {
+  if (!navigator.geolocation) return;
+  navigator.geolocation.watchPosition(pos => {
+    const ll = [pos.coords.latitude, pos.coords.longitude];
+    const first = !you;
+    you = ll;
+    if (!youCircle) {
+      youCircle = L.circleMarker(ll, { radius: 7, color: '#fff', weight: 2, fillColor: css('--you'), fillOpacity: 1 }).addTo(map);
+    } else youCircle.setLatLng(ll);
+    if (first && center) map.setView(ll, Math.max(map.getZoom(), 16));
+  }, () => {}, { enableHighAccuracy: true, maximumAge: 10000 });
+}
+$('#locate').onclick = () => { you ? map.setView(you, Math.max(map.getZoom(), 16)) : watch(true); };
+
+/* ---------- the first-visit tip ---------- */
+try { if (sessionStorage.getItem('hintGone')) $('#hint').hidden = true; } catch {}
+$('#hintX').onclick = () => { $('#hint').hidden = true; try { sessionStorage.setItem('hintGone', '1'); } catch {} };
+
+/* ---------- placing pins on site: open with ?edit ---------- */
+function savePins() {
+  const o = {}; PANELS.forEach(p => o[p.n] = p.ll.map(v => +v.toFixed(6)));
+  if (GIRASOLE.show) o.g = GIRASOLE.ll.map(v => +v.toFixed(6));
+  try { localStorage.setItem(KEY, JSON.stringify(o)); } catch {}
+}
+if (EDIT) {
+  $('#editToggle').hidden = false;
+  $('#editToggle').onclick = () => {
+    const on = document.body.classList.toggle('editing');
+    draggables().forEach(m => on ? m.dragging.enable() : m.dragging.disable());
+    $('#editToggle').textContent = on ? 'Done' : 'Edit pins';
+    if (on) map.closePopup();
+  };
+  $('#copy').onclick = async () => {
+    const txt = (GIRASOLE.show ? [`girasole  ll: [${GIRASOLE.ll.map(v => v.toFixed(6)).join(', ')}]`] : [])
+      .concat(PANELS.map(p => `n: ${p.n}  ll: [${p.ll.map(v => v.toFixed(6)).join(', ')}]`)).join('\n');
+    try { await navigator.clipboard.writeText(txt); $('#copy').textContent = 'Copied'; }
+    catch { prompt('Copy these positions:', txt); }
+    setTimeout(() => $('#copy').textContent = 'Copy positions', 1500);
+  };
+  $('#reset').onclick = () => { try { localStorage.removeItem(KEY); } catch {} location.reload(); };
+}
+</script>
+</body>
+</html>

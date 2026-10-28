@@ -1,0 +1,160 @@
+/* SUNDIAL website — shared styles.
+   Layout: one reading column (about 68ch) with wide figures; dials always keep their own print paper.
+   Colours are the print's inks; the page ground follows the viewer's theme. */
+:root{
+  --bg:#f4f2ec; --fg:#1b1a17; --mute:#6f6b62; --faint:#e2ded3; --raise:#fbfaf6;
+  --ochre:#c98a1c; --ochre-soft:rgba(224,154,43,.18); --red:#b5452f; --blue:#2e5a78; --ink:#1e1d1b;
+  --display:"Archivo","Helvetica Neue",Arial,sans-serif;
+  --body:"Atkinson Hyperlegible",system-ui,-apple-system,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#121110; --fg:#ebe7de; --mute:#a19c91; --faint:#2c2a26; --raise:#1b1a18;
+  --ochre:#f0a838; --ochre-soft:rgba(240,168,56,.16); --red:#e0735c; --blue:#7fa3c0; --ink:#ebe7de; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#121110; --fg:#ebe7de; --mute:#a19c91; --faint:#2c2a26; --raise:#1b1a18;
+  --ochre:#f0a838; --ochre-soft:rgba(240,168,56,.16); --red:#e0735c; --blue:#7fa3c0; --ink:#ebe7de; color-scheme:dark}
+
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{margin:0;background:var(--bg);color:var(--fg);font:17px/1.6 var(--body)}
+a{color:inherit;text-decoration-color:var(--ochre);text-decoration-thickness:2px;text-underline-offset:3px}
+a:hover{color:var(--ochre)}
+:focus-visible{outline:2px solid var(--ochre);outline-offset:3px}
+
+.wrap{max-width:1000px;margin:0 auto;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+
+/* top bar, like the map's */
+.top{border-bottom:1px solid var(--faint);background:var(--bg);position:sticky;top:env(safe-area-inset-top,0px);z-index:5}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+.top .wrap{display:flex;flex-wrap:wrap;align-items:center;gap:6px 22px;padding-block:13px}
+.brand{font:700 11px/1 var(--display);letter-spacing:.2em;text-transform:uppercase;text-decoration:none;margin-right:auto}
+.brand:hover{color:inherit}
+.top nav{display:flex;gap:18px;font-size:14px}
+.top nav a{text-decoration:none;color:var(--mute);padding:4px 0;border-bottom:2px solid transparent}
+.top nav a[aria-current]{color:var(--fg);border-color:var(--ochre)}
+.top nav a:hover{color:var(--fg)}
+
+main{display:grid;gap:64px;padding-block:44px 72px}
+section{display:grid;gap:16px}
+.col{max-width:68ch;display:grid;gap:14px}
+.eyebrow{font:500 12px/1.2 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--mute)}
+h1,h2,h3{font-family:var(--display);margin:0;text-wrap:balance;line-height:1.1}
+h1{font-size:clamp(34px,6vw,58px);font-weight:700;letter-spacing:-.015em}
+h2{font-size:clamp(24px,3.4vw,32px);font-weight:700;letter-spacing:-.01em}
+h3{font-size:18px;font-weight:700}
+p{margin:0}
+.lede{font-size:20px;line-height:1.5}
+.mute{color:var(--mute)}
+.motto{font-style:italic;color:var(--mute)}
+.num{font-variant-numeric:tabular-nums}
+
+.preview{display:flex;gap:10px;align-items:flex-start;padding:12px 14px;border:1px dashed var(--ochre);
+  background:var(--ochre-soft);border-radius:4px;font-size:15px;max-width:68ch}
+.preview b{white-space:nowrap}
+
+/* hero with a dial */
+.hero{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:40px;align-items:center}
+.hero figure{margin:0;display:grid;gap:10px}
+@media (max-width:760px){.hero{grid-template-columns:1fr}}
+.dialbox{background:#F4EFE4;border-radius:4px;aspect-ratio:1;max-width:100%;overflow:hidden}
+.dialbox canvas{display:block;width:100%;height:100%}
+figcaption{font-size:14px;color:var(--mute)}
+
+/* three layers */
+.three{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px;counter-reset:l}
+@media (max-width:760px){.three{grid-template-columns:1fr}}
+.three div{display:grid;gap:8px;align-content:start;border-top:2px solid var(--fg);padding-top:14px}
+.three .k{font:500 12px var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--mute)}
+
+/* key to the dial */
+.key{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+.key li{display:grid;grid-template-columns:36px minmax(0,1fr);gap:12px;align-items:center}
+.sw{height:14px;border-radius:2px}
+.sw.o{background:#E8B33A}.sw.b{background:#2E5A78}.sw.r{height:4px;background:#B5452F;border-radius:2px}
+.sw.k{height:4px;background:var(--fg)}
+.sw.d{width:12px;height:12px;border-radius:50%;background:var(--fg);justify-self:center}
+.sw.x{height:14px;border:2px solid var(--fg);background:transparent}
+
+/* diagram */
+.scroll{overflow-x:auto;border-top:1px solid var(--faint);border-bottom:1px solid var(--faint)}
+.diagram{display:block;width:100%;min-width:760px;height:auto}
+.diagram text{font-family:var(--body);fill:var(--fg)}
+.diagram .bandbg{fill:var(--faint);opacity:.55}
+.diagram .bandlab{font:500 11px var(--mono);letter-spacing:.08em;fill:var(--mute)}
+.diagram .box{fill:var(--raise);stroke:var(--fg);stroke-width:1.4}
+.diagram .t{font-weight:700;font-size:13.5px}
+.diagram .s{font-size:11.5px;fill:var(--mute)}
+.diagram .m{font:500 12px var(--mono)}
+.diagram .vis{stroke:var(--ochre);stroke-width:2.4;fill:none}
+.diagram .adm{stroke:var(--blue);stroke-width:2;fill:none;stroke-dasharray:2 4;stroke-linecap:round}
+.diagram .tv{fill:var(--ochre);font-size:12px}.diagram .ta{fill:var(--blue);font-size:12px}
+.diagram .hv{fill:var(--ochre)}.diagram .ha{fill:var(--blue)}
+.diagram .sun{fill:var(--ochre);fill-opacity:.2;stroke:var(--ochre);stroke-width:1.4}
+.lines{display:flex;flex-wrap:wrap;gap:8px 24px;font-size:14px}
+.lines span{display:inline-flex;align-items:center;gap:8px}
+.lines i{width:34px;border-top:3px solid var(--ochre)}
+.lines i.a{border-top-style:dotted;border-color:var(--blue)}
+
+/* steps */
+.steps{margin:0;padding:0;list-style:none;display:grid;gap:14px;counter-reset:s;max-width:68ch}
+.steps li{display:grid;grid-template-columns:34px minmax(0,1fr);gap:12px;counter-increment:s}
+.steps li::before{content:counter(s);font:700 15px/1 var(--display);width:28px;height:28px;border-radius:50%;
+  border:1.5px solid var(--fg);display:grid;place-items:center;margin-top:1px}
+
+/* facts */
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:2px;background:var(--faint);border:1px solid var(--faint)}
+.facts div{background:var(--bg);padding:14px 16px;display:grid;gap:4px;align-content:start}
+.facts .k{font:500 11px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--mute)}
+
+/* sheets of dials: nine panels across, seven days down */
+.sheet{background:#F4EFE4;color:#1E1D1B;padding:clamp(10px,2.4vw,26px);border-radius:4px;display:grid;gap:clamp(6px,1.4vw,14px)}
+.sheet .head,.sheet .foot{font:700 clamp(9px,1.4vw,13px)/1 var(--display);letter-spacing:.24em;text-transform:uppercase;text-align:center}
+.grid{display:grid;grid-template-columns:repeat(9,minmax(0,1fr));gap:clamp(1px,.5vw,5px)}
+.grid button{all:unset;cursor:pointer;aspect-ratio:1;display:block;position:relative;border-radius:2px}
+.grid button canvas{display:block;width:100%;height:100%}
+.grid button:focus-visible{outline:2px solid #1E1D1B;outline-offset:1px}
+.grid button[aria-pressed="true"]{box-shadow:0 0 0 2px #1E1D1B}
+.axislab{display:grid;grid-template-columns:repeat(9,minmax(0,1fr));gap:clamp(1px,.5vw,5px);
+  font:500 clamp(8px,1.2vw,11px) var(--mono);text-align:center;opacity:.7}
+
+.detail{display:grid;grid-template-columns:180px minmax(0,1fr);gap:22px;align-items:start;padding:18px;
+  border:1px solid var(--faint);border-radius:4px;background:var(--raise)}
+@media (max-width:560px){.detail{grid-template-columns:1fr;gap:14px;padding:14px}.detail .dialbox{width:160px}.detail dl{grid-template-columns:1fr}.detail dd{margin-bottom:6px}}
+.detail .dialbox{border-radius:3px}
+.detail dl{margin:0;display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 14px;font-size:15px}
+.detail dt{color:var(--mute)}
+.detail dd{margin:0;font-variant-numeric:tabular-nums;font-weight:700}
+.detail h3{margin-bottom:8px}
+.book{margin:12px 0 0;padding:0;list-style:none;display:grid;gap:6px;font-size:15px}
+.book li{border-left:3px solid var(--ochre);padding-left:10px}
+.book cite{font-style:normal;color:var(--mute)}
+
+.tabs{display:flex;flex-wrap:wrap;gap:8px}
+.tabs button{font:inherit;font-size:14px;color:var(--fg);background:transparent;border:1px solid var(--faint);
+  border-radius:99px;padding:6px 14px;cursor:pointer}
+.tabs button[aria-pressed="true"]{border-color:var(--fg);background:var(--fg);color:var(--bg)}
+
+.week{display:grid;grid-template-columns:repeat(9,minmax(0,1fr));gap:2px;font-size:13px;text-align:center}
+.week div{display:grid;gap:2px;padding:8px 2px;background:var(--raise);border-top:3px solid var(--faint)}
+.week div.hi{border-color:var(--ochre)} .week div.lo{border-color:var(--blue)}
+.week b{font-variant-numeric:tabular-nums;font-size:15px}
+.week span{color:var(--mute);font:500 11px var(--mono)}
+
+.cta{display:inline-flex;align-items:center;gap:10px;font:700 16px var(--display);text-decoration:none;
+  padding:12px 18px;border:2px solid var(--fg);border-radius:3px;width:max-content;max-width:100%}
+.cta:hover{background:var(--fg);color:var(--bg)}
+
+footer{border-top:1px solid var(--faint);font-size:14px;color:var(--mute)}
+footer .wrap{display:flex;flex-wrap:wrap;gap:8px 22px;padding-block:22px 40px}
+
+@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+
+/* the date-aware line, and the wall plate's "you are here" card */
+.now{display:flex;flex-wrap:wrap;align-items:center;gap:6px 16px;font-size:15px;padding:10px 0 0;margin-bottom:-32px}
+.now a{font-weight:700}
+.disc{width:12px;height:12px;border-radius:50%;background:var(--ochre);box-shadow:0 0 0 4px var(--ochre-soft);flex:none}
+.here{border:2px solid var(--fg);border-radius:4px;padding:20px;gap:12px;max-width:68ch;background:var(--raise);margin-bottom:-24px}
+.go{display:flex;flex-wrap:wrap;gap:10px}
+.cta.quiet{border-color:var(--faint)}

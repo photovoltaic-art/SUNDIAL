@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>SUNDIAL · La Meridiana</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="SUNDIAL · La Meridiana: nine solar panels on nine walls of Bosa, drawing seven days of sun around the summer solstice 2027.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Mono:wght@500&display=swap">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="brand" href="index.html">SUNDIAL</a>
+  <nav aria-label="Site">
+    <a href="index.html">About</a>
+    <a href="bosa.html" aria-current="page">Bosa 2027</a>
+    <a href="map.html">Map</a>
+    <a href="sole.html">Sole</a>
+  </nav>
+</div></header>
+
+<main class="wrap">
+
+  <section class="col">
+    <span class="eyebrow">SUNDIAL no. 1 · Bosa, Sardinia</span>
+    <h1>La Meridiana</h1>
+    <p class="lede">For seven days around the summer solstice, nine old solar panels on walls across Bosa draw their day of sun. Each image forms live through the day and is sealed at Bosa's sunset. After that, nothing can change it.</p>
+    <p>You can only see it there, standing in front of the panel, on your own phone, through the panel's own Wi-Fi.</p>
+  </section>
+
+  <section>
+    <div class="facts">
+      <div><span class="k">When</span><b>Seven days in June 2027</b><span class="mute">Around the solstice. Dates to be confirmed.</span></div>
+      <div><span class="k">Hours</span><b>Sunrise to sunset</b><span class="mute">No opening hours but the sun's.</span></div>
+      <div><span class="k">Where</span><b>Nine walls across Bosa</b><span class="mute"><a href="map.html">Open the map</a></span></div>
+      <div><span class="k">Cost</span><b>Free</b><span class="mute">Bring a phone, or just read the sundials.</span></div>
+    </div>
+  </section>
+
+  <section class="col">
+    <span class="eyebrow">A visit</span>
+    <h2>Walk from wall to wall after the light</h2>
+    <ol class="steps">
+      <li><span>Scan the QR code on the flyer or on any panel's wall plate. The map opens on your mobile data: the route, the nine panels, which are awake now, and where you are.</span></li>
+      <li><span>Start at the <b>girasole</b>, the first stop: a young sunflower turning with the sun beside a chalkboard. Add your mark, ochre for sun or blue for shade, and write the time beside it. The board is photographed and wiped at sunset.</span></li>
+      <li><span>At a panel, read the time from its shadow. Then join its Wi-Fi, <span class="num">panel-01</span> to <span class="num">panel-09</span>. Its page opens by itself.</span></li>
+      <li><span>Stay connected, even if your phone says there is no internet. There isn't, by design.</span></li>
+      <li><span>Watch today's dial forming, or see it sealed after sunset. Tap it for the day's facts. Below it are the earlier days of the week.</span></li>
+      <li><span>Leave a line in this panel's book. The book is read the next day, and chosen lines appear beside the day's dial, on the panel and on this website.</span></li>
+      <li><span>Leave the Wi-Fi, back to the map, on to the next panel.</span></li>
+    </ol>
+  </section>
+
+  <section>
+    <div class="col">
+      <span class="eyebrow">The week on one sheet</span>
+      <h2>63 dials: nine panels across, seven days down</h2>
+      <p>During the event this sheet fills in day by day, from each day's collecting walk. Tap a dial to see that day's figures and the lines chosen from that panel's book.</p>
+      <div class="preview" role="note"><b>Preview.</b><span>Invented data and sample dates. The panels go up in 2027; this is how the sheet will look, drawn by the panels' real rules.</span></div>
+    </div>
+    <div class="sheet" aria-label="Sample sheet of 63 dials">
+      <div class="head">SUNDIAL · La Meridiana · Bosa</div>
+      <div class="axislab" aria-hidden="true"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span></div>
+      <div class="grid" id="sheet"></div>
+      <div class="foot">18 – 24 June 2027 · sample</div>
+    </div>
+    <div class="detail" id="detail" aria-live="polite"></div>
+  </section>
+
+  <section class="col">
+    <span class="eyebrow">After the week</span>
+    <h2>One print, and nine sundials that stay</h2>
+    <p>The 63 dials become one four-colour screen print, made in Bosa: the whole event on a single sheet, with its name and dates. It is the artwork; the web sheet is its record. Prints can be ordered at any time after the event.</p>
+    <p>The panels stay on their walls. They keep telling the time with their shadows, and keep recording their sun all year for <a href="sole.html">Sole</a>, the year-round sun record. Between events, a panel's Wi-Fi page shows the archive of past events.</p>
+  </section>
+
+  <section class="col">
+    <span class="eyebrow">Your visit and your data</span>
+    <h2>Counted, never identified</h2>
+    <p>A panel tells phones apart only within one hour, so it can count visitors as dots on the dial. It keeps no names, numbers or addresses, and forgets everything each night when it switches off.</p>
+    <p>The book keeps only what you write: a line, and a first name or town if you want to give one.</p>
+  </section>
+</main>
+
+<footer><div class="wrap">
+  <span>SUNDIAL is the first work of <a href="https://photovoltaic.art">PVA, Photovoltaic Art</a>.</span>
+  <a href="https://github.com/photovoltaic-art/SUNDIAL">Source</a>
+  <span>Draft, not yet licensed for reuse.</span>
+</div></footer>
+
+<script src="assets/dial.js"></script>
+<script>
+  // INVENTED sample book lines, for the preview only
+  const LINES = [
+    ['Came back at noon to watch the ochre fill in.', 'Giulia'],
+    ['Our wall at home loses the sun by three as well.', 'Cagliari'],
+    ['The sundial and my phone agree. Almost.', ''],
+    ['My daughter drew a sun on the girasole board first.', 'Marta'],
+    ['Shade all morning. Fair enough, so was I.', 'Turin'],
+    ['Blue is a true record. I like that.', ''],
+    ['Sat here until it sealed.', 'Pietro'],
+  ];
+  const detail = document.getElementById('detail');
+  function show({ d, p, day }) {
+    const f = figures(day), r = rng(hash('book' + d + p)), n = Math.floor(r() * 3);
+    const picks = Array.from({ length: n }, () => LINES[Math.floor(r() * LINES.length)]).filter((x, i, a) => a.indexOf(x) === i);
+    detail.innerHTML = `<div class="dialbox"><canvas></canvas></div><div>
+      <h3>Panel ${p} · ${longDate(d)}</h3>
+      ${f ? `<dl>
+        <dt>Hours of sun</dt><dd>${hm(f.hours * 3600)}</dd>
+        <dt>First and last sun</dt><dd>${f.first} – ${f.last}</dd>
+        <dt>Panel temperature</dt><dd>${f.tmin.toFixed(0)}° – ${f.tmax.toFixed(0)}°</dd>
+        <dt>Visitors (per hour, added up)</dt><dd>${f.visits || '–'}</dd>
+        <dt>Sealed at sunset</dt><dd>${hhmm(day.set)}</dd>
+        <dt>Rules</dt><dd>${RULES}</dd></dl>`
+      : `<p>The panel did not wake this day. Its dial is the outline of what could have been.</p>`}
+      ${f && picks.length ? `<ul class="book">${picks.map(([t, w]) => `<li>${t}${w ? ` <cite>· ${w}</cite>` : ''}</li>`).join('')}</ul>` : ''}
+    </div>`;
+    const cv = detail.querySelector('canvas'); cv.dataset.day = d; cv.__day = day;
+    requestAnimationFrame(() => draw(cv, day));
+  }
+  const all = buildSheet(document.getElementById('sheet'), '2027-06-18', { visitors: 'event' }, show);
+  const first = all.find(x => x.d === '2027-06-21' && x.p === 5);
+  first.b.setAttribute('aria-pressed', 'true'); show(first);
+</script>
+</body>
+</html>

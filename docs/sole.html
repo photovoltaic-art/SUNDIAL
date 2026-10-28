@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>SUNDIAL Bosa · Sole</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Sole: the sun on nine walls of Bosa, all year, published weekly as 63 dials.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Mono:wght@500&display=swap">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="brand" href="index.html">SUNDIAL</a>
+  <nav aria-label="Site">
+    <a href="index.html">About</a>
+    <a href="bosa.html">Bosa 2027</a>
+    <a href="map.html">Map</a>
+    <a href="sole.html" aria-current="page">Sole</a>
+  </nav>
+</div></header>
+
+<main class="wrap">
+
+  <section class="col">
+    <span class="eyebrow">The sun monitor · all year</span>
+    <h1>Sole</h1>
+    <p class="lede">All year, the nine panels record the sun on their walls. Every second Monday someone walks the route and collects the record. Each week becomes an edition: 63 dials, nine panels by seven days.</p>
+    <p>Over the years the editions become a portrait of the sun in nine streets of Bosa. Short winter days draw short arcs; summer fills the half circle. The panels measure the sunlight reaching each wall, not electricity: the headline figure is hours of direct sun.</p>
+    <div class="preview" role="note"><b>Preview.</b><span>Invented data. Sole starts after the first event in 2027. These sample editions are drawn by the real rules so you can see how the weeks will look.</span></div>
+  </section>
+
+  <section>
+    <div class="tabs" role="group" aria-label="Editions" id="tabs"></div>
+    <div class="sheet">
+      <div class="head" id="edHead"></div>
+      <div class="axislab" aria-hidden="true"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span></div>
+      <div class="grid" id="sheet"></div>
+      <div class="foot" id="edFoot"></div>
+    </div>
+    <div class="col" style="max-width:none">
+      <h3>Hours of sun this week, per panel</h3>
+      <div class="week" id="week"></div>
+      <p class="mute" id="weekNote"></p>
+    </div>
+    <div class="detail" id="detail" aria-live="polite"></div>
+  </section>
+
+  <section class="col">
+    <span class="eyebrow">How Sole is made</span>
+    <h2>Collected on foot, published every two weeks</h2>
+    <p>A week is complete once Sunday's sunset has passed, so each walk brings back two complete weeks: two new editions. The panels have no internet, so nothing here is live; the newest edition is up to two weeks old.</p>
+    <p>Every week gets a number, with no gaps. A week a panel did not wake shows its outline, like any day it missed.</p>
+    <p>Sole is the record. The only artworks are the prints made from each summer event, <a href="bosa.html">La Meridiana</a>.</p>
+  </section>
+</main>
+
+<footer><div class="wrap">
+  <span>SUNDIAL is the first work of <a href="https://photovoltaic.art">PVA, Photovoltaic Art</a>.</span>
+  <a href="https://github.com/photovoltaic-art/SUNDIAL">Source</a>
+  <span>Draft, not yet licensed for reuse.</span>
+</div></footer>
+
+<script src="assets/dial.js"></script>
+<script>
+  // Sample editions. Sole n. 1 is the first full week after the 2027 event.
+  const EDITIONS = [
+    { n: 25, start: '2027-12-13', week: '2027-W50' },
+    { n: 2,  start: '2027-07-05', week: '2027-W27' },
+    { n: 1,  start: '2027-06-28', week: '2027-W26' },
+  ];
+  const $ = s => document.querySelector(s);
+  const detail = $('#detail');
+
+  function show({ d, p, day }) {
+    const f = figures(day);
+    detail.innerHTML = `<div class="dialbox"><canvas></canvas></div><div>
+      <h3>Panel ${p} · ${longDate(d)}</h3>
+      ${f ? `<dl>
+        <dt>Hours of sun</dt><dd>${hm(f.hours * 3600)}</dd>
+        <dt>First and last sun</dt><dd>${f.first} – ${f.last}</dd>
+        <dt>Panel temperature</dt><dd>${f.tmin.toFixed(0)}° – ${f.tmax.toFixed(0)}°</dd>
+        <dt>Sunrise and sunset</dt><dd>${hhmm(day.rise)} – ${hhmm(day.set)}</dd></dl>`
+      : `<p>The panel did not wake this day, or its record was lost.</p>`}
+    </div>`;
+    const cv = detail.querySelector('canvas'); cv.dataset.day = d; cv.__day = day;
+    requestAnimationFrame(() => draw(cv, day));
+  }
+
+  function open(ed) {
+    document.querySelectorAll('#tabs button').forEach(b => b.setAttribute('aria-pressed', String(+b.dataset.n === ed.n)));
+    const end = addDays(ed.start, 6);
+    $('#edHead').textContent = `SUNDIAL Bosa · Sole n. ${ed.n}`;
+    $('#edFoot').textContent = `${shortDate(ed.start)} – ${shortDate(end)} 2027 · ${ed.week} · sample`;
+    const all = buildSheet($('#sheet'), ed.start, { visitors: 'sole' }, show);
+    const tot = Array(9).fill(0);
+    all.forEach(x => { const f = figures(x.day); if (f) tot[x.p - 1] += f.hours; });
+    const hi = Math.max(...tot), lo = Math.min(...tot);
+    $('#week').innerHTML = tot.map((h, i) =>
+      `<div class="${h === hi ? 'hi' : h === lo ? 'lo' : ''}"><span>${i + 1}</span><b>${h.toFixed(1)}</b></div>`).join('');
+    $('#weekNote').textContent = `Sunniest wall: panel ${tot.indexOf(hi) + 1} (${hi.toFixed(1)} h). Shadiest: panel ${tot.indexOf(lo) + 1} (${lo.toFixed(1)} h).`;
+    const first = all[22]; first.b.setAttribute('aria-pressed', 'true'); show(first);
+  }
+
+  $('#tabs').innerHTML = EDITIONS.map(e =>
+    `<button type="button" data-n="${e.n}" aria-pressed="false">n. ${e.n} · ${shortDate(e.start)}</button>`).join('');
+  document.querySelectorAll('#tabs button').forEach(b => b.onclick = () => open(EDITIONS.find(e => e.n === +b.dataset.n)));
+  open(EDITIONS[0]);
+</script>
+</body>
+</html>

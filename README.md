@@ -31,22 +31,25 @@ The three layers are specified against the carrier board in **[SUNDIAL.md](SUNDI
 | The panel | PV panel + ESP32 + temperature probe + clock module, no battery, no internet | On a wall in Bosa |
 | The dial | Each day's image, drawn on the visitor's phone from the panel's data | The panel's own Wi-Fi during SUNDIAL; the website for Sole |
 | The visitors' book | One line per visitor per panel per day, read and chosen the next day | The panel's own Wi-Fi, during SUNDIAL |
-| The map | Route, pins, which panels are likely awake, the visitor's position | The SUNDIAL website (this repo's `docs/`) |
-| The website pages | SUNDIAL sheets (one per event) and Sole editions (one per week) | The SUNDIAL website (planned: `docs/sundial/`, `docs/sole/`) |
+| The website | About (the introduction), Bosa 2027 (the event), the map, Sole | The SUNDIAL website (this repo's `docs/`); the sheet and Sole are previews on invented data until the real pages are built (`docs/sundial/`, `docs/sole/`) |
 | The girasole | A sunflower and a chalkboard: the Heliotropist legend re-enacted, drawn by visitors | First stop of the route during SUNDIAL, moveable |
 | The print | The whole event as one 9 × 9 four-colour screen print | Made after each event from the collected data |
 
 Between events the panel's page shows the archive of past SUNDIAL events, and the panels take no input.
 
-A visit during SUNDIAL: the flyer's QR code opens the map → at a pin, join that panel's Wi-Fi → the dial opens on its own → leave a line in the book → leave the Wi-Fi and return to the map. The rest of the year: read the sundial on the wall; the wall plate's QR code opens the map and Sole.
+A visit during SUNDIAL: the flyer's QR code opens About → the map → at a pin, join that panel's Wi-Fi → the dial opens on its own → leave a line in the book → leave the Wi-Fi, and the panel's link returns to the map. The rest of the year: read the sundial on the wall; the wall plate's QR code opens About with a card for that panel (see *The website*, below).
 
 ## Repository
 
 ```
 SUNDIAL.md                    the three layers specified against carrier v1: sundial, Sole, the annual event
-docs/
-  index.html                  the map — the only part published on the website
-  sundial/, sole/, data/      planned: SUNDIAL sheets and Sole editions (SUNDIAL.md 3.3)
+docs/                         the website, the only part published (see The website, below)
+  index.html                  About: the introduction; a date-aware line; a panel card from the wall plates' ?p=N
+  bosa.html                   Bosa 2027: the event, a visit, the print, data and privacy; preview sheet (invented data)
+  map.html                    the map
+  sole.html                   Sole: preview editions (invented data)
+  assets/                     site.css; dial.js (the panel page's drawing rules, the event dates, preview data)
+  sundial/, sole/, data/      planned: real SUNDIAL sheets and Sole editions (SUNDIAL.md 3.3)
 firmware/panel_page_server/
   panel_page_server.ino       ESP32 firmware
   partitions.csv              4 MB flash layout for the ELEGOO ESP32 (~2 MB for pages and data)
@@ -84,11 +87,28 @@ tools/
   requirements.txt
 ```
 
-## Publishing the map
+## The website
 
-In the repository's GitHub Pages settings, publish from the `docs` folder on the main branch, then point the instance's domain at it (Bosa: `bosa.photovoltaic.art`). Only `docs/` is published; the panel files stay in the repo but never appear online.
+In the repository's GitHub Pages settings, publish from the `docs` folder on the main branch, then point the instance's domain at it (Bosa: `bosa.photovoltaic.art`). Only `docs/` is published; the panel files stay in the repo but never appear online. English only for now.
 
-Pins are placed on site: open the map with `?edit` after the address, drag the pins, tap **Copy positions** and paste them into the `PANELS` list at the top of `docs/index.html`.
+| Page | For | Notes |
+| --- | --- | --- |
+| `index.html` (About) | Everyone: what SUNDIAL is | A line at the top follows the event dates (before, during, after); buttons to Bosa 2027 and the map |
+| `bosa.html` (Bosa 2027) | Visitors planning a visit | Dates, a visit step by step, the print, privacy; the sheet is a **preview** on invented data |
+| `map.html` | Visitors on the route | Pins, which panels are likely awake, the visitor's position; a one-line tip on first open |
+| `sole.html` | The year-round record | Sample editions, **preview** on invented data, until `sole_edition.py` writes the real ones |
+
+**Where each link goes:**
+
+| Link | Address | Lands on |
+| --- | --- | --- |
+| Flyer QR code | `https://bosa.photovoltaic.art/` | About |
+| Wall plate QR code, panel N | `https://bosa.photovoltaic.art/?p=N` | About, opening with a "You are here: panel N" card: how to read the sundial, its Wi-Fi name, and during the event how to see today's dial; buttons to the map |
+| Panel page, "back to the map" | `map.txt`: `https://bosa.photovoltaic.art/map.html` | The map, for visitors mid-walk |
+
+**The event dates** live in one place: `EVENT` at the top of `docs/assets/dial.js`. Set the dates and `confirmed: true` when they are fixed; About's line and the panel card follow them.
+
+**Pins** are placed on site: open the map with `?edit` after the address (`map.html?edit`), drag the pins, tap **Copy positions** and paste them into the `PANELS` list at the top of `docs/map.html`.
 
 ## Preparing a panel
 
@@ -130,11 +150,11 @@ Without the divider (`PANEL_SENSE 0`) there is no dawn gate or dusk close: the s
 9. **Permission** from the wall owner and the Comune (and heritage authorities in the centro storico) **for a permanent installation**, plus public liability insurance (SUNDIAL.md section 5).
 10. **Wall test.** Compass for a first reading, then the noon-shadow test: which edge packs out, and by how much.
 11. **Mount.** Cut the stand-offs, hang, spirit level against the glass; box on the deep side, probe on the panel back.
-12. **Wall plate** beside the panel: its number and the QR code.
+12. **Wall plate** beside the panel: its number and the QR code, which opens `/?p=N` for that panel.
 13. **Solar-noon check.** The shadow falls on the 12 bracket; adjust the stand-offs if not.
 14. **Admin page.** Join the panel's Wi-Fi, open `http://192.168.4.1/admin.html`, enter the key, set the clock and the exhibition dates.
 15. **Calibrate the sun sensor** on a clear day near solar noon, in the two weeks before the event starts. Uncalibrated, every section draws as an outline.
-16. **Map pin.** Map with `?edit`, drag the pin, copy the positions into `docs/index.html`, push.
+16. **Map pin.** `map.html?edit`, drag the pin, copy the positions into `docs/map.html`, push.
 
 **The girasole (once, for the whole trail)**
 

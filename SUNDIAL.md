@@ -126,7 +126,7 @@ The raw downloads stay private with PVA. The public repo receives only the deriv
 
 ### 3.3 The website pages
 
-**Navigation:** Map · SUNDIAL · Sole.
+**Navigation:** About · Bosa 2027 · Map · Sole (README, The website). The year's SUNDIAL sheet appears on the Bosa page; a preview on invented data is there and in `sole.html` until these pages are built.
 
 **SUNDIAL** (`docs/sundial/YEAR/`): one page per event, the canonical sheet as a web page, 9 × 7 dials with title and dates. Tap a dial for that day's figures and the chosen lines from that panel's book. Built during the run from the daily walks, frozen after the final walk. `docs/sundial/` lists the years, newest first.
 
@@ -149,7 +149,7 @@ The raw downloads stay private with PVA. The public repo receives only the deriv
 | Rules-2 in `tools/pva_rules.py` | The seasonal threshold beside rules-1, selected by version, so the same drawing code serves the print, the SUNDIAL page and Sole | S |
 | `docs/sole/index.html` | Draws the editions in the browser from the JSON, with the same dial code as the panel page | M |
 | `docs/sundial/YEAR/index.html` | Each year's SUNDIAL sheet, from that event's downloads and chosen book lines | M |
-| Map awake windows | `pva_import.py` also writes each panel's usual awake hours per month into the map's `PANELS` list, replacing the hand-typed `window` values in `docs/index.html` | S |
+| Map awake windows | `pva_import.py` also writes each panel's usual awake hours per month into the map's `PANELS` list, replacing the hand-typed `window` values in `docs/map.html` | S |
 | Round log | A simple CSV kept by PVA: date, panel, status, issue | — |
 
 **Public data per edition** (about 30–60 KB): for each panel and day, the 15-minute sun sections, the 5-minute temperatures, visitors per solar hour, sunrise, sunset and the day figures. Nothing else from the raw logs is published.
