@@ -23,8 +23,8 @@ lines=[
 ("Panels and boards","IP65 box, glands, breather vent, tamper screws",10,32,E,"CARRIER.md: about 150 x 110 x 70 mm","Yes"),
 ("Panels and boards","Cable, fuses, terminals",10,15,E,"","Yes"),
 
-("Sundial hardware","Gnomon: 15 mm aluminium tube, 60 cm, TIG-welded to its mount",9,40,E,"Local fabrication; GNOMON.md","Yes"),
-("Sundial hardware","Hour brackets (13 per panel, aluminium angle) and vinyl numbers",9,25,E,"","Yes"),
+("Sundial hardware","Gnomon: 15 mm aluminium tube, 45 cm, TIG-welded to its mount",9,40,E,"Local fabrication; GNOMON.md","Yes"),
+("Sundial hardware","Hour lines and date marks: UV-stable vinyl pinstripe tape, per panel",9,10,E,"No numbers, no brackets; GNOMON.md","Yes"),
 ("Sundial hardware","Stand-offs (aluminium angle) and M6 stainless fixings",9,30,E,"","Yes"),
 ("Sundial hardware","Hour-line tape test (pilot panel)",1,20,E,"README to-do","Yes"),
 

@@ -2,30 +2,46 @@
 
 Each PVA panel is also a real vertical sundial. It reads the same solar time as the digital dial on the visitor's phone: solar noon at the top, morning on the left, afternoon on the right. The digital dial is drawn by the panel's data; the sundial is read from the gnomon's shadow on the glass. Two dials, one sun.
 
-> Status: design, not yet built. All figures are for Bosa (latitude 40.3° N), a vertical panel facing due south, 80 × 160 cm in portrait, and a June exhibition. See [Reusing the panels](#reusing-the-panels) before building for anything else.
+> Status: design, not yet built. **29 Oct 2026: the face simplified:** hour lines on the glass with **no numbers and no hour brackets**, and three **date marks** on the noon line for the solstices and equinoxes; the gnomon shortened to **45 cm** so all three marks fall on the glass ([The face](#the-face-lines-and-date-marks)). All figures are for Bosa (latitude 40.3° N), a vertical panel facing due south, 80 × 160 cm in portrait, and a June exhibition. See [Reusing the panels](#reusing-the-panels) before building for anything else.
 
 ## Principles
 
-- **Nothing touches the glass.** Everything bolts to the aluminium frame.
-- **One material.** Gnomon mount, hour brackets and stand-offs are all cut from the same aluminium angle stock.
+- **Nothing is fixed through the glass.** Everything that carries load bolts to the aluminium frame; the only things on the glass are the lines and marks, applied like a sticker and removable.
+- **One material.** Gnomon mount and stand-offs are both cut from the same aluminium angle stock.
 - **Bolted and demountable.** M6 stainless bolts, washers and nuts through 6.5 mm holes. No rivets, no glue.
-- **Every panel identical.** Same gnomon, same hour brackets, same drilling template. Walls that are not quite south-facing are handled by packing one edge out (see [Installation](#installation)), never by changing the dial.
+- **Every panel identical.** Same gnomon, same lines and marks, same template. Walls that are not quite south-facing are handled by packing one edge out (see [Installation](#installation)), never by changing the dial.
 
 ## Parts
 
 | Part | Specification |
 | --- | --- |
 | Panel | Trina Solar TSM-185DC01: 80 × 160 cm measured (label: 1581 × 809 × 40 mm, 15.6 kg), portrait, vertical, facing due south. Frame depth 40 mm |
-| Gnomon | 15 mm OD aluminium tube, **60 cm** long, mitred and TIG-welded to an aluminium angle mount; two M6 bolts through the top frame flange |
+| Gnomon | 15 mm OD aluminium tube, **45 cm** long, mitred and TIG-welded to an aluminium angle mount; two M6 bolts through the top frame flange |
 | Gnomon angle | **50°** from the glass, pointing down and out, exactly on the panel's vertical centre line (ideal for Bosa: 49.7°) |
-| Hour brackets | 13 short sections of aluminium angle, one M6 hole each, weatherproof vinyl numbers 6–18 |
+| Hour lines | 11 lines on the glass, solar hours 7 to 17, radiating from the gnomon's root to the frame edge. **No numbers.** 3 mm wide, a light colour, in UV-stable outdoor vinyl pinstripe tape, removable |
+| Date marks | 3 short ticks across the noon line, 8 cm wide, in the same tape: winter solstice, equinoxes, summer solstice ([Date marks](#date-marks)) |
 | Stand-offs | Aluminium angle, four per panel: two short on one long edge, two long on the other, cut to the measured depth |
 | Fasteners | M6 stainless bolts, nuts, flat and lock washers |
-| Tip cap | A cap on the gnomon's free end: it projects about 46 cm from the wall |
+| Tip cap | A cap on the gnomon's free end: it projects about 35 cm from the wall |
 
 ## Why 50° and why on the centre line
 
 A sundial keeps time all year only if its gnomon is parallel to the Earth's axis. On a vertical, south-facing face that means the gnomon lies in the north–south plane (on the panel's centre line, not leaning sideways) and meets the face at 90° minus the latitude: 90 − 40.3 = 49.7°. 50° is within 0.3°, close enough for a public sundial.
+
+## The face: lines and date marks
+
+![The sundial face, to scale](sundial-face.png)
+
+The face is as plain as the panel: **lines, no numbers.**
+
+- **Hour lines:** one line for each solar hour from 7 to 17, radiating from the gnomon's root at the top centre. The noon line runs straight down the middle. The 6 and 18 lines lie along the top edge of the frame and are left out.
+- **No numbers and no hour brackets.** Noon is the vertical line; the hours count out from it, morning on the left. Anyone who wants the hour counts the lines.
+- **Date marks:** three short ticks across the noon line, where the shadow of the gnomon's tip falls at solar noon: the winter solstice nearest the top (the shortest noon shadow), the summer solstice nearest the bottom (the longest), and the equinoxes between ([Date marks](#date-marks)).
+- **Reading it:** the shadow of the rod lies along an hour line and gives the solar time; at noon, the end of the shadow shows the season.
+
+The lines are read along their length, so the gnomon no longer has to reach brackets at the frame's edge: that is what lets it be shorter (45 cm instead of 60), with less reach from the wall.
+
+**To test on the artist's proof:** the tape shades a thin strip of cells. Measure the panel's short-circuit current near solar noon with and without the lines (expected: a small loss), and check that the lines read well from the street. If the tape fails, the fallback is plain, unnumbered brackets on the frame edge, as in the first design, with the date marks on a thin strip along the noon line.
 
 ## Hour lines
 
@@ -43,15 +59,14 @@ The dial reads **solar time**, not clock time. Each hour line's angle from the v
 
 Formula: tan(angle) = cos(latitude) × tan(15° × hours from noon).
 
-Do **not** calibrate the hour brackets against a clock on site. Clock time includes summer time and the equation of time, so marks set "on the hour" would be off by up to about 16 minutes on other days, and an hour in winter.
+Do **not** set the hour lines against a clock on site. Clock time includes summer time and the equation of time, so marks set "on the hour" would be off by up to about 16 minutes on other days, and an hour in winter.
 
-## Drilling template
+## Line template
 
-For an 80 × 160 cm panel in portrait. Positions are measured from the point where the gnomon's axis meets the face, at the centre of the top edge. Morning is on the left as you face the panel. The template is mirrored, so one template serves both sides, and all nine frames are drilled identically on the bench.
+For an 80 × 160 cm panel in portrait. Each line runs from the gnomon's root (where its axis meets the face, at the centre of the top edge) to the point below where it meets the frame edge. Morning is on the left as you face the panel. The template is mirrored, so one template serves both sides, and all nine panels are lined identically on the bench. The only holes drilled are for the gnomon's mount and the stand-offs.
 
-| Solar hour | Bracket position |
+| Solar hour | Where the line meets the frame edge |
 | --- | --- |
-| 6 / 18 | top corners |
 | 7 / 17 | side edges, 14.1 cm down from the top |
 | 8 / 16 | side edges, 30.3 cm down |
 | 9 / 15 | side edges, 52.4 cm down |
@@ -59,38 +74,44 @@ For an 80 × 160 cm panel in portrait. Positions are measured from the point whe
 | 11 / 13 | bottom edge, 7.3 cm in from each corner |
 | 12 | bottom edge, centre |
 
-Drill only the frame's outer flange, well clear of the channel holding the glass, and deburr every hole.
+Apply the tape on clean, dry glass, from the root outwards, stopping at the inner edge of the frame. Drill only the frame's outer flange (for the gnomon mount and stand-offs), well clear of the channel holding the glass, and deburr every hole.
 
 The template above is for an 800 × 1600 mm frame. The label gives 809 × 1581 mm; if a frame measures that, use:
 7/17 at 14.2 cm, 8/16 at 30.6 cm, 9/15 at 53.0 cm, 10/14 at 91.9 cm down the sides, and 11/13 on the bottom edge
-8.1 cm in from each corner. The angles do not change; only where each line meets the frame edge.
+8.1 cm in from each corner. The angles do not change; only where each line meets the frame edge. The date marks do not change either: they are measured from the root.
 
 ## Gnomon length
 
-The gnomon's shadow must reach the brackets; the noon bracket is 160 cm below the gnomon's root.
+**45 cm.** With lines on the glass the shadow is read along a line, so the gnomon only needs to be long enough to cast a clear shadow, and short enough for **all three date marks to fall on the glass**: the shadow of the tip at noon on the summer solstice falls 142.7 cm below the root, inside the 160 cm panel. (With the earlier 60 cm gnomon it would fall at 190 cm, below the panel.)
 
-- **60 cm** (chosen) reaches every bracket the sun can light in June. On 21 June that is 9 to 15; brackets 6–8 and 16–18 never catch a shadow in June but complete the dial for the rest of the year.
-- In winter the shadow line is still visible on the glass but falls short of the brackets. This is accepted.
-- A gnomon that reaches all brackets all year in Bosa would need about **105 cm**.
+- **Safety:** at 45 cm the gnomon projects about 35 cm from the wall (46 cm before). Mount it well above head height, with its end capped.
+- **The tip is the marker.** The date marks are set for the shadow of the gnomon's tip, so the tip cap must keep the tube's line and end exactly at 45 cm.
 
-Safety: at 60 cm the gnomon projects about 46 cm from the wall. Mount it well above head height, with its end capped.
+## Date marks
 
-### Future option: telescopic gnomon
+At solar noon the sun is due south, and the shadow of the gnomon's tip falls on the noon line. How far down depends on how high the sun is, which depends on the date. Measured down the noon line from the gnomon's root, for Bosa (latitude 40.3° N), a 45 cm gnomon at 50°:
 
-A thinner tube sliding inside the 15 mm gnomon (a 15 mm tube with a 1.5 mm wall has a 12 mm bore) would let one panel adjust to season or place: 60 cm for summer, about 105 cm for winter in Bosa.
+| Mark | Sun at noon | Below the root |
+| --- | --- | --- |
+| **Winter solstice** (about 21 December) | 26.3° high | **45.9 cm** |
+| **Equinoxes** (about 20 March, 22 September) | 49.7° high | **69.6 cm** |
+| **Summer solstice** (about 21 June) | 73.1° high | **142.7 cm** |
 
-- It must fit snugly and stay exactly in line: any sag or play bends the shadow line.
-- Lock it with a pin through drilled holes at the set lengths, not by friction.
-- At full length it doubles the leverage on the mount, so the mount needs bracing.
+Formula: distance = L × cos 50° + L × sin 50° × tan(sun's height at noon), with L the gnomon's length and the sun's height at noon = 90° − latitude + the sun's declination (+23.44° in June, 0° at the equinoxes, −23.44° in December).
+
+- **The winter mark is the shortest noon shadow, the summer mark the longest:** on a vertical wall the high summer sun throws the shadow far down.
+- **The equinox mark is not halfway between the two.** The shadow moves slowly near the winter mark and quickly towards summer; 69.6 cm is right.
+- **Through the year** the tip's noon shadow travels from the winter mark down to the summer mark and back, crossing the equinox mark twice: a calendar as well as a clock.
+- **Check on the artist's proof** at the next solstice or equinox: the tip's shadow at solar noon should touch the mark.
 
 ## Installation
 
 Like a satellite dish: everything is prepared on the bench, and on site you only aim it.
 
-1. **On the bench.** Drill every frame from the one template; fit the gnomon, the 13 hour brackets and the stand-off brackets.
+1. **On the bench.** Apply the hour lines and date marks from the one template; drill the frame and fit the gnomon and the stand-off brackets.
 2. **On site.** Measure the wall with the noon-shadow test below. It tells you which long edge to pack out and by how much.
 3. **Set the stand-offs.** Two short ones on one long edge, two long ones on the other, cut to the measured depth. The panel ends up vertical and facing due south, whatever the wall does.
-4. **Hang and check.** A spirit level against the glass for vertical. At the next solar noon, the gnomon's shadow should fall straight down the centre onto the 12 bracket. If it lands to one side, adjust the long stand-offs until it doesn't.
+4. **Hang and check.** A spirit level against the glass for vertical. At the next solar noon, the gnomon's shadow should fall straight down the noon line. If it lands to one side, adjust the long stand-offs until it doesn't.
 
 The deep side of the wedge is a natural home for the electronics box: shaded, ventilated and out of sight.
 
@@ -143,11 +164,12 @@ Between these dates it changes by at most a minute or two per week. For any othe
 - **Because every panel faces exactly south,** this is the same on all nine, and any difference between their dials comes purely from place.
 - **Summer noon sun strikes the glass steeply,** so a vertical panel gives roughly a third of its rated power at noon: still far more than the board needs. The sun rule is calibrated against each panel's own clear-noon current, so it is unaffected.
 - **The gnomon's shadow crosses the cells** and causes a small, regular dip in the panel's current each day, too small to change a section's colour.
+- **The lines and marks shade a thin strip of cells** all the time: a small, constant loss, measured on the artist's proof and taken into each panel's own calibration.
 
 ## Reusing the panels
 
 Everything above is calculated for Bosa, a June exhibition and a due-south vertical face. Before using the panels in a different season or place, recalculate:
 
-- **The gnomon's length:** shorter shadows in winter or further north need a longer gnomon.
-- **At another latitude:** the gnomon angle (90° − latitude), the hour-line angles and the drilling template.
+- **The date marks:** their distances from the root, from the formula in [Date marks](#date-marks), and whether the summer mark still falls on the glass (if not, a shorter gnomon).
+- **At another latitude:** the gnomon angle (90° − latitude), the hour-line angles and the line template.
 - **The solar-noon times** for the noon-shadow test.

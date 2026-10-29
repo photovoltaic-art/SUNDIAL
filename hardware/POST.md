@@ -19,13 +19,13 @@ A SUNDIAL panel on its own post, for a site with no suitable wall: a café's or 
 | | Wall panel | Post |
 | --- | --- | --- |
 | Panel | Trina TSM-185DC01, portrait, vertical, due south | The same |
-| Sundial | 50° gnomon on the centre line, 13 hour brackets | The same parts and drilling template |
+| Sundial | 45 cm gnomon at 50° on the centre line; hour lines and date marks on the glass, no numbers | The same parts and template |
 | Board | Carrier v1, unchanged, no battery | The same; AUX and switched 5 V now used (4) |
 | Firmware | SUNDIAL | SUNDIAL, plus the charger switch (4.3) |
 | Awake | Dawn to dusk | The same; the sockets are live only while the sun allows |
 | Sole record | Short-circuit current every 10 s | Unchanged: the sun sensor reads the short-circuit current, which a load on AUX doesn't affect, and D5 keeps the charger out of the pulse (CARRIER.md 10) |
 
-**Easier than a wall:** the post is simply turned to face due south when it is set. No stand-offs, no packing, no wall test. The noon shadow on the 12 bracket is the check, as on every panel.
+**Easier than a wall:** the post is simply turned to face due south when it is set. No stand-offs, no packing, no wall test. The noon shadow falling straight down the noon line is the check, as on every panel.
 
 ---
 
@@ -38,8 +38,8 @@ A SUNDIAL panel on its own post, for a site with no suitable wall: a café's or 
 
 | | Height above the ground |
 | --- | --- |
-| Panel bottom edge (the 12 bracket) | about 1.00 m |
-| Gnomon tip (60 cm at 50°: about 39 cm below the root, 46 cm out) | about 2.20 m |
+| Panel bottom edge | about 1.00 m |
+| Gnomon tip (45 cm at 50°: about 29 cm below the root, 35 cm out) | about 2.30 m |
 | Gnomon root, panel top edge | about 2.60 m |
 | USB sockets (4.2) | about 0.90–1.00 m, table height, on the post |
 

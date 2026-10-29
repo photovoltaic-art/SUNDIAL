@@ -47,7 +47,7 @@
       <div>
         <span class="k">Every day, for everyone</span>
         <h3>A sundial</h3>
-        <p>A rod on the panel casts a shadow across numbered hour marks. Anyone can read the solar time from it, with no phone and no electricity. Most people will only ever see this: a panel on a wall that tells the time.</p>
+        <p>A rod on the panel casts its shadow on a fan of thin lines, one for each hour; three short marks on the middle line show the solstices and the equinoxes. Anyone can read the solar time from it, with no phone and no electricity. Most people will only ever see this: a panel on a wall that tells the time.</p>
       </div>
       <div>
         <span class="k">All year, in the background</span>
@@ -208,7 +208,7 @@
       const during = ev.phase === 'during';
       here.innerHTML = `<span class="eyebrow">You are here</span>
         <h2>Panel ${p}</h2>
-        <p>Read the solar time from its shadow on the numbered marks: the shadow of the rod points to the hour.</p>
+        <p>Read the solar time from its shadow: the middle line is noon, and each line out from it is an hour.</p>
         ${during
           ? `<p><b>${ev.line}.</b> Join the Wi-Fi <b class="num">${wifi(p)}</b> and today's dial opens by itself. Stay connected, even if your phone says there is no internet.</p>`
           : ev.phase === 'before'

@@ -91,7 +91,7 @@ Generated files are marked "do not edit" and rebuilt by one command.
   - open-circuit voltage up to 50 V (board rated 60 V; cold mornings add about 10 %)
   - short-circuit current ranges and the shunt or gain to use for each, so the sun reading stays within the ESP32's input range
   - frame depth and size limits for the sundial fixings
-- [ ] `tools/sundial_template.py`: from latitude and panel size, prints the **gnomon angle** (90° − latitude), the **hour-line angles**, and a **drilling template** to scale (PDF), the same tables SUNDIAL.md gives for Bosa.
+- [ ] `tools/sundial_template.py`: from latitude and panel size, prints the **gnomon angle** (90° − latitude), the **hour-line angles**, the **date marks** (and whether the summer mark falls on the glass), and a **line template** to scale (PDF), the same tables SUNDIAL.md gives for Bosa.
 - [ ] SUNDIAL.md: the Bosa figures stay as the worked example; a short section explains the southern-hemisphere mirror (wall faces north, morning on the right).
 
 ### 6. Website

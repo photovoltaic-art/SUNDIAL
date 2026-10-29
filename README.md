@@ -22,7 +22,7 @@ The three layers are specified against the carrier board in **[SUNDIAL.md](SUNDI
 
 | Layer | What it is | When | Where |
 | --- | --- | --- | --- |
-| **Sundial** | Gnomon, hour brackets and wall plate on the panel ([hardware/GNOMON.md](hardware/GNOMON.md)) | Always | On the wall |
+| **Sundial** | Gnomon, hour lines and date marks on the glass (no numbers), and the wall plate ([hardware/GNOMON.md](hardware/GNOMON.md)) | Always | On the wall |
 | **Sole** | The panels' daily record of sun, collected every fortnight, published as weekly editions of 63 dials | All year | The SUNDIAL website |
 | **The annual event** | Each day's dial drawn live and sealed at sunset; the visitors' book; one print per event | One week a year | The panel's own Wi-Fi, then the website |
 
@@ -143,7 +143,7 @@ Without the divider (`PANEL_SENSE 0`) there is no dawn gate or dusk close: the s
 5. **Power chain.** Buck converter set to exactly 5.0 V before anything is connected; then fuse, diode, supercapacitor, TVS.
 6. **Sensors.** Probe on GPIO 4 · divider on GPIO 34 · DS3231 on GPIO 21/22 · sun sensor gate on GPIO 25, amplifier on GPIO 35.
 7. **Bench test.** On USB: set the clock, set the exhibition dates to today, check status (clock module fitted, probe found, voltage plausible), watch a dial form.
-8. **Frame.** Drill from the template; fit the gnomon at 50°, the 13 numbered hour brackets and the stand-off brackets ([hardware/GNOMON.md](hardware/GNOMON.md)).
+8. **Face and frame.** Apply the hour lines and the three date marks from the template; drill the frame; fit the 45 cm gnomon at 50° and the stand-off brackets ([hardware/GNOMON.md](hardware/GNOMON.md)).
 
 **On site**
 
@@ -151,7 +151,7 @@ Without the divider (`PANEL_SENSE 0`) there is no dawn gate or dusk close: the s
 10. **Wall test.** Compass for a first reading, then the noon-shadow test: which edge packs out, and by how much.
 11. **Mount.** Cut the stand-offs, hang, spirit level against the glass; box on the deep side, probe on the panel back.
 12. **Wall plate** beside the panel: its number and the QR code, which opens `/?p=N` for that panel.
-13. **Solar-noon check.** The shadow falls on the 12 bracket; adjust the stand-offs if not.
+13. **Solar-noon check.** The shadow falls straight down the noon line; adjust the stand-offs if not.
 14. **Admin page.** Join the panel's Wi-Fi, open `http://192.168.4.1/admin.html`, enter the key, set the clock and the exhibition dates.
 15. **Calibrate the sun sensor** on a clear day near solar noon, in the two weeks before the event starts. Uncalibrated, every section draws as an outline.
 16. **Map pin.** `map.html?edit`, drag the pin, copy the positions into `docs/map.html`, push.
@@ -212,7 +212,7 @@ The visitor's phone counts once per solar hour as a dot on the dial, never ident
 - [ ] **Sole tools and pages:** rules-2 in `pva_rules.py`, `pva_import.py`, `sole_edition.py`, `docs/sole/` and `docs/sundial/` (SUNDIAL.md 3.3–3.4).
 - [ ] **First compile and bench test** of firmware draft 6.
 - [ ] **The girasole:** sunflower variety and sowing in May; a moveable chalkboard and its stand; where it stands on the route.
-- [ ] **Hour lines on the glass** (test on the pilot panel, the artist's proof): thin or dotted lines radiating from the gnomon root at the hour-line angles in `hardware/GNOMON.md`, in removable UV-stable pinstripe tape first. Measure short-circuit current near solar noon with and without the lines. If the loss is negligible and the dial reads well, keep the lines and shorten the gnomon (safer, less reach from the wall), since the shadow is then read along the line, not at the brackets.
+- [ ] **Test the face on the artist's proof** (hardware/GNOMON.md, the face): hour lines and date marks on the glass, no numbers, 45 cm gnomon. Measure short-circuit current near solar noon with and without the tape; check the lines read from the street; at the next solstice or equinox, check the tip's noon shadow touches its mark. Fallback: unnumbered brackets on the frame edge.
 
 **Optional**
 

@@ -37,13 +37,13 @@ This document takes the carrier board v1 ([hardware/CARRIER.md](hardware/CARRIER
 
 **Purpose:** a recycled panel on a wall that is also a real vertical sundial, readable by anyone, every day, with no phone and no electricity. This is the layer most people will ever meet.
 
-**Specified in** [hardware/GNOMON.md](hardware/GNOMON.md) (and, where no wall works, a free-standing post on private ground: [hardware/POST.md](hardware/POST.md)): a 60 cm gnomon at 50° on the panel's centre line, 13 numbered hour brackets for solar hours 6–18, due-south mounting with the wall test and the noon-shadow check. Everything bolts to the frame; nothing touches the glass.
+**Specified in** [hardware/GNOMON.md](hardware/GNOMON.md) (and, where no wall works, a free-standing post on private ground: [hardware/POST.md](hardware/POST.md)): a 45 cm gnomon at 50° on the panel's centre line; hour lines on the glass for solar hours 7–17, **with no numbers**; three date marks on the noon line for the winter solstice, the equinoxes and the summer solstice; due-south mounting with the wall test and the noon-shadow check. Everything that carries load bolts to the frame; only the tape lines are on the glass.
 
-**What the passer-by sees:** a panel, its shadow and the hour numbers, and a small wall plate with the panel's number and a QR code. **No visible digital layer.** The Wi-Fi and the dial on the phone are found only by those who look.
+**What the passer-by sees:** a panel, its shadow on a fan of thin lines, and a small wall plate with the panel's number and a QR code. **No visible digital layer.** The Wi-Fi and the dial on the phone are found only by those who look.
 
 **Software:** none. The physical dial and the digital dial read the same solar time, and that is the only link between them.
 
-**Open, from the README:** hour lines on the glass in removable tape, tested on the pilot for any loss of current. If they work, the gnomon can be shorter.
+**To test on the artist's proof:** the tape's loss of current, how the lines read from the street, and the date marks at the next solstice or equinox (README, To do).
 
 ---
 
@@ -302,7 +302,7 @@ SUNDIAL is a **permanent installation**: a sundial and monitor all year, with an
 - **Wall owners:** written consent for each site, for a permanent installation that may grow into SUNSET in year 2 ([GROWTH.md](https://github.com/photovoltaic-art/PVA/blob/main/GROWTH.md)), with access for the fortnightly round and the yearly visit, and the right to remove.
 - **Comune and heritage authorities:** authorisation for permanent fixtures in the centro storico. This is the most likely obstacle; raise it first, with the sundial as the lead: a public timepiece on a recycled panel, no visible electronics, no advertising.
 - **The framing that may help:** a *patto di collaborazione* under a regolamento per l'amministrazione condivisa dei beni comuni, if Bosa has adopted one (check the Labsus register). The panels would be a sundial trail cared for by PVA alongside the Comune.
-- **Public liability insurance** for objects fixed to walls above a street; the gnomon projects about 46 cm.
+- **Public liability insurance** for objects fixed to walls above a street; the gnomon projects about 35 cm.
 - **A panel on a post** (private ground, no suitable wall) needs the ground owner's consent, a structural sign-off and, in a protected area, possibly the comune's or the Soprintendenza's agreement ([hardware/POST.md](hardware/POST.md) 6).
 
 **Upkeep, per year:**
@@ -314,7 +314,7 @@ SUNDIAL is a **permanent installation**: a sundial and monitor all year, with an
 | Coin cell (CR2032) | Check yearly; replace about every 5 years | A dead cell means undated days until the round |
 | Box seal, vent, glands | Yearly | IP65 box; check for water and insects |
 | Probe and cable | Yearly | Sun and heat on the panel back |
-| Gnomon, brackets, fixings | Yearly, and after storms | Stainless M6; check torque and that the noon shadow still falls on 12 |
+| Gnomon, lines and marks, fixings | Yearly, and after storms | Stainless M6; check torque, that the noon shadow still falls down the noon line, and that no tape is lifting |
 | Wall plate | Every round | Number and QR code legible |
 | Panel | As needed | A failed panel or board is replaced; the day lost shows as the outline |
 | Post and USB sockets (post panels only) | Every round; base yearly | Sockets and caps intact; base fixings tight ([hardware/POST.md](hardware/POST.md)) |
