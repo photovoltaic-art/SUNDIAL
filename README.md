@@ -203,6 +203,7 @@ The visitor's phone counts once per solar hour as a dot on the dial, never ident
 - [ ] **Calibration** of every panel before the run; prove the step on the pilot.
 - [ ] **"How to read the dial" key** in the panel page's info overlay, as well as on the flyer and website.
 - [ ] **Italian and English** on the panel page, info overlay and map.
+- [ ] **Wall plate design:** the number, and the QR code to `/?p=N`; the panel's node logo (SUNSET [logos/](https://github.com/photovoltaic-art/SUNSET/tree/main/logos)) sits in the centre of the QR code, with the QR's highest error correction (level H) so it still scans; panel N carries node N's logo, so one plate serves SUNDIAL and SUNSET. The logo is a sign to be recognised, not a code: the QR does the scanning. Test the scan on several phones before ordering plates.
 - [ ] **"Stay connected"** wording on the flyer or wall plate: some phones warn about or drop a network with no internet.
 - [x] **After the last day:** the panel page shows the archive of past events (SUNDIAL.md 4.1).
 - [ ] **Firmware 6.2** (SUNDIAL.md 4.1): challenge-and-response admin login with round and setup keys, lockout and action log; the visitors' book; pages built into the firmware; no visitor clock-setting when the clock module is fitted; rules version check; event archive by year.
