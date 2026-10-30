@@ -95,7 +95,7 @@ The board as a sundial on its panel, and its mounting: [GNOMON.md](../GNOMON.md)
 
 ## Manufacturer review and sign-off
 
-> **Pending, for the next email to Rush PCB (28 Oct 2026):** please place J9, J10 and J13 side by side along one board edge (J11 too if it fits), away from the antenna end. Layout rule 9 in CARRIER.md. A placement preference only, no circuit change.
+> **Sent to Rush PCB, 30 Oct 2026; acknowledged:** J9, J10 and J13 side by side along one board edge (J11 too if it fits), away from the antenna end (layout rule 9 in CARRIER.md). Also confirmed: 100 × 80 mm, 2 oz copper preferred, black mask, lead-free finish. Open: whether the layout is done directly in KiCad; fixed price and lead time.
 
 This package (CARRIER.md, this folder, `bom.csv`, the KiCad project) goes to the design-and-build company for review before layout. Please confirm each point in writing.
 
