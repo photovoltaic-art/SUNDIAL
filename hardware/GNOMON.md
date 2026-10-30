@@ -4,6 +4,12 @@ Each PVA panel is also a real vertical sundial. It reads the same solar time as 
 
 > Status: design, not yet built. **29 Oct 2026: the face simplified:** hour lines on the glass with **no numbers and no hour brackets**, and three **date marks** on the noon line for the solstices and equinoxes; the gnomon shortened to **45 cm** so all three marks fall on the glass ([The face](#the-face-lines-and-date-marks)). All figures are for Bosa (latitude 40.3° N), a vertical panel facing due south, 80 × 160 cm in portrait, and a June exhibition. See [Reusing the panels](#reusing-the-panels) before building for anything else.
 
+## Every part
+
+![A SUNDIAL panel: front, side, plan and the enclosure](sundial-exploded.png)
+
+Front: the face, the gnomon and the wall plate. Side: the noon sun and the three date marks. Plan: the wedge of stand-offs that turns the panel due south, with the box on the deep side. The enclosure: lid, carrier board and IP65 box ([CARRIER.md](CARRIER.md)).
+
 ## Principles
 
 - **Nothing is fixed through the glass.** Everything that carries load bolts to the aluminium frame; the only things on the glass are the lines and marks, applied like a sticker and removable.
