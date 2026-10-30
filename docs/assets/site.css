@@ -158,3 +158,17 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:8px 22px;padding-block:22px 40px}
 .here{border:2px solid var(--fg);border-radius:4px;padding:20px;gap:12px;max-width:68ch;background:var(--raise);margin-bottom:-24px}
 .go{display:flex;flex-wrap:wrap;gap:10px}
 .cta.quiet{border-color:var(--faint)}
+
+/* the sundial figure: the panel is a physical object, so its glass keeps its own colour in both themes */
+.sundial-fig{display:block;width:100%;max-width:760px;min-width:560px;height:auto}
+.sundial-fig text{font-family:var(--body);fill:var(--fg)}
+.sundial-fig .sd-t{font-size:5.2px;font-weight:700}
+.sundial-fig .sd-m{font-size:4.4px;fill:var(--mute)}
+.sundial-fig .sd-frame{fill:#1d2433;stroke:var(--faint);stroke-width:.4}
+.sundial-fig .sd-glass{fill:#26324a}
+.sundial-fig .sd-line{stroke:#f2efe8;stroke-width:.45}
+.sundial-fig .sd-mark{stroke:#e8b33a;stroke-width:1.3}
+.sundial-fig .sd-gnomon{stroke:#b9bec6;stroke-width:1.6;stroke-linecap:round}
+.sundial-fig .sd-shadow{stroke:#000;stroke-opacity:.6;stroke-width:1.6;stroke-linecap:round}
+.sundial-fig .sd-ray{stroke:var(--ochre);stroke-width:.5;stroke-dasharray:2 1.4}
+.sundial-fig .sd-wall{fill:var(--faint)}
