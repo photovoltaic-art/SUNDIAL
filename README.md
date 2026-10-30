@@ -44,7 +44,7 @@ A visit during SUNDIAL: the flyer's QR code opens About → the map → at a pin
 ```
 SUNDIAL.md                    the three layers specified against carrier v1: sundial, Sole, the annual event
 docs/                         the website, the only part published (see The website, below)
-  index.html                  About: the introduction; a date-aware line; a panel card from the wall plates' ?p=N
+  index.html                  About: the introduction; a panel card from the wall plates' ?p=N
   bosa.html                   Bosa 2027: the event, a visit, the print, data and privacy; preview sheet (invented data)
   map.html                    the map
   sun.html                    Sun (Sole in Italian): preview editions (invented data)
@@ -94,7 +94,7 @@ In the repository's GitHub Pages settings, publish from the `docs` folder on the
 
 | Page | For | Notes |
 | --- | --- | --- |
-| `index.html` (About) | Everyone: what SUNDIAL is | A line at the top follows the event dates (before, during, after); buttons to Bosa 2027 and the map |
+| `index.html` (About) | Everyone: what SUNDIAL is | Buttons to Bosa 2027 and the map |
 | `bosa.html` (Bosa 2027) | Visitors planning a visit | Dates, a visit step by step, the print, privacy; the sheet is a **preview** on invented data |
 | `map.html` | Visitors on the route | Pins, which panels are likely awake, the visitor's position; a one-line tip on first open |
 | `sun.html` (Sun) | The year-round record (Sole in Italian) | Sample editions, **preview** on invented data, until `sole_edition.py` writes the real ones |
@@ -107,7 +107,7 @@ In the repository's GitHub Pages settings, publish from the `docs` folder on the
 | Wall plate QR code, panel N | `https://bosa.photovoltaic.art/?p=N` | About, opening with a "You are here: panel N" card: how to read the sundial, its Wi-Fi name, and during the event how to see today's dial; buttons to the map |
 | Panel page, "back to the map" | `map.txt`: `https://bosa.photovoltaic.art/map.html` | The map, for visitors mid-walk |
 
-**The event dates** live in one place: `EVENT` at the top of `docs/assets/dial.js`. Set the dates and `confirmed: true` when they are fixed; About's line and the panel card follow them.
+**The event dates** live in one place: `EVENT` at the top of `docs/assets/dial.js`. Set the dates and `confirmed: true` when they are fixed; the wall plates' panel card follows them.
 
 **Pins** are placed on site: open the map with `?edit` after the address (`map.html?edit`), drag the pins, tap **Copy positions** and paste them into the `PANELS` list at the top of `docs/map.html`.
 

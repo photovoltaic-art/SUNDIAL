@@ -23,7 +23,6 @@
 
 <main class="wrap">
 
-  <div class="now" id="now" hidden></div>
   <section class="here" id="here" hidden aria-live="polite"></section>
 
   <section class="hero">
@@ -216,11 +215,11 @@
   const hero = document.getElementById('heroDial'); hero.__day = sampleDay('2027-06-21', 5); draw(hero, hero.__day);
   const key = document.getElementById('keyDial'); key.__day = sampleDay('2027-06-23', 4); draw(key, key.__day);
 
-  /* Where the visitor is in the year, and (from a wall plate's QR code, ?p=4) which panel they stand at. */
+  /* From a wall plate's QR code (?p=4): which panel the visitor stands at, and where we are in the event year. */
   (function () {
     const ev = eventState();
     const p = +new URLSearchParams(location.search).get('p');
-    const now = document.getElementById('now'), here = document.getElementById('here');
+    const here = document.getElementById('here');
     const wifi = n => 'panel-' + String(n).padStart(2, '0');
     if (p >= 1 && p <= 9) {
       const during = ev.phase === 'during';
@@ -236,9 +235,6 @@
           <a class="cta quiet" href="${during ? 'bosa.html' : ev.phase === 'after' ? 'sun.html' : 'bosa.html'}">${ev.phase === 'after' ? 'Sun' : 'Bosa 2027'}</a></div>
         <p class="mute">Below: what SUNDIAL is.</p>`;
       here.hidden = false;
-    } else {
-      now.innerHTML = `<i class="disc" aria-hidden="true"></i><span>${ev.line}</span>${ev.links.map(([t, h]) => `<a href="${h}">${t} →</a>`).join('')}`;
-      now.hidden = false;
     }
   })();
 </script>
