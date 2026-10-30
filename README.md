@@ -4,7 +4,7 @@
 
 Nine end-of-life solar panels placed around Bosa, each powering only itself. Same sun, different data.
 
-SUNDIAL is the first work of **Photovoltaic Art(PVA)**, a manifesto for new uses of end-of-life PV panels: [photovoltaic.art](https://photovoltaic.art). It is a public art installation and the proof of concept for PVA. **A SUNDIAL is nine panels;** that is its one rule.
+SUNDIAL is the first work of **Photovoltaic Art (PVA)**, a manifesto for new uses of end-of-life PV panels: [photovoltaic.art](https://photovoltaic.art). It is a public art installation and the proof of concept for PVA. **A SUNDIAL is nine panels;** that is its one rule.
 
 Each panel is three things at once, in order of importance:
 
