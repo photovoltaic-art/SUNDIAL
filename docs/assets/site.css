@@ -161,6 +161,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:8px 22px;padding-block:22px 40px}
 
 /* the sundial figure: the panel is a physical object, so its glass keeps its own colour in both themes */
 .sundial-fig{display:block;width:100%;max-width:760px;min-width:560px;height:auto}
+.sundial-fig .sd-t,.sundial-fig .sd-m{font-family:var(--body)}
 .sundial-fig text{font-family:var(--body);fill:var(--fg)}
 .sundial-fig .sd-t{font-size:5.2px;font-weight:700}
 .sundial-fig .sd-m{font-size:4.4px;fill:var(--mute)}
