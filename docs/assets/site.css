@@ -173,3 +173,5 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:8px 22px;padding-block:22px 40px}
 .sundial-fig .sd-shadow{stroke:#000;stroke-opacity:.6;stroke-width:1.6;stroke-linecap:round}
 .sundial-fig .sd-ray{stroke:var(--ochre);stroke-width:.5;stroke-dasharray:2 1.4}
 .sundial-fig .sd-wall{fill:var(--faint)}
+
+.readdial{display:grid;gap:20px}
