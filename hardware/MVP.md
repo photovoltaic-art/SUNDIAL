@@ -2,7 +2,7 @@
 
 The simplest wall that makes the full SUNDIAL dial: **off-the-shelf modules on a screw-terminal breakout, no PCB to design, no soldering.** Any town can build it from this page.
 
-> Status: draft 1, 31 Oct 2026. **The build to make first**, starting with the artist's proof. The carrier board ([CARRIER.md](CARRIER.md), [carrier/](carrier/README.md)) is **on hold**: kept, complete and quoted, for the day the module build proves too fragile outdoors or the walls need what only it offers.
+> Status: draft 1, 31 Oct 2026. **The core build for every panel, in both years:** SUNDIAL's walls in year 1, and every SUNSET node in year 2 (interactive nodes add a battery, section 8). Made first as the artist's proof. The carrier board ([CARRIER.md](CARRIER.md), [carrier/](carrier/README.md)) is **on hold**: kept, complete and quoted, for the day the module build proves too fragile outdoors or the walls need what only it offers.
 
 ---
 
@@ -45,6 +45,10 @@ The simplest wall that makes the full SUNDIAL dial: **off-the-shelf modules on a
 **Rough cost** without the panel: about €50–60 per wall. Estimates, not quotes.
 
 ## 3. Wiring
+
+![MVP wiring](mvp-wiring.png)
+
+*Drawing: [mvp-wiring.svg](mvp-wiring.svg). The text version:*
 
 ```
 panel + ── MC4 fuse 2 A ──┬── buck IN+        buck OUT+ (5.0 V) ── breakout 5V / VIN
@@ -117,3 +121,17 @@ Readings are now **continuous and silent**: no 1 ms short of the panel every 10 
 | Protection on board (TVS, input diode, fuses) | The inline fuse and MC4 polarity; nothing else |
 | AUX output, switched 5 V, spare headers, microSD | None. A garden node or an add-on takes its power from the panel through its own converter. The SUNSET I/O board connects to the breakout's pins instead of the carrier's headers |
 | A designed and quoted board | Nothing to design: parts from a list |
+
+## 8. With a battery (SUNSET's interactive nodes, year 2)
+
+The same build, with three things added and one taken away. **The sun reading and the dial don't change:** the reference cell measures the sun on every tier.
+
+| | Change |
+| --- | --- |
+| **Add** | Victron SmartSolar MPPT 75/10 between the panel and a **12 V LiFePO₄ battery, 3–6 Ah**, with BMS and low-temperature charge cut-off; a fuse at the battery; charge current set low (2–3 A) in VictronConnect |
+| **Add** | VE.Direct from the Victron to GPIO 16, through a two-resistor divider if its TX is 5 V (battery-tier.md 1.3, SUNSET repository) |
+| **Change** | The buck converter takes the Victron's load output (about 13 V) instead of the panel |
+| **Remove** | The panel-voltage divider: the Victron reports panel and battery voltage |
+| **Plus** | The SUNSET I/O board for whatever the node switches (io-board.md, SUNSET repository), wired to the breakout's pins |
+
+**Why the Victron data alone can't draw the dial:** a small battery is full by mid-morning, after which the Victron holds the panel back to the wall's ~1 W load. Its harvest figures would show shade for the rest of every sunny day. The reference cell avoids that, and keeps Sole honest on every node.
