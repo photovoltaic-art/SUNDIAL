@@ -1,5 +1,7 @@
 # Carrier board v1 — schematic draft
 
+> **On hold (31 Oct 2026):** the walls are built first as the module-based MVP ([../MVP.md](../MVP.md)). Quotes received (Rush PCB 6227) are kept; nothing ordered.
+
 A KiCad schematic for the carrier board, generated from the specification in [CARRIER.md](../CARRIER.md).
 
 > **Status: draft-2, 26 Oct 2026: schematic redrawn with wires at the board designer's request; reviews 1 and 2 applied, part numbers added 23 Oct. Awaiting the manufacturer's review. Do not manufacture from this yet.**

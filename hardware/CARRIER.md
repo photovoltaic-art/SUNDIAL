@@ -1,5 +1,7 @@
 # PVA carrier board — specification v1
 
+> **On hold (31 Oct 2026).** The walls are built first from off-the-shelf modules: [MVP.md](MVP.md). The carrier stays complete and quoted, for the day the module build proves too fragile outdoors or the walls need what only the carrier offers.
+
 One small board per panel. It carries everything except the ESP32 and the buck converter, which plug in or wire on.
 Every part on the board is fitted by the board maker; the builder only plugs in, screws down and fits a coin cell.
 
