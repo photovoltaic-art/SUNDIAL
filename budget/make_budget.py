@@ -25,7 +25,7 @@ lines=[
 ("Panels and boards","Radiation shield, small multi-plate",10,25,E,"About €5 each if printed in ASA instead of bought","Yes"),
 ("Panels and boards","BME280 module, from a reputable seller",10,12,E,"Cheap 'BME280' modules are often BMP280 (no humidity): check the square chip","Yes"),
 ("Panels and boards","microSD module, SPI, 3.3 V",10,3,E,"","Yes"),
-("Panels and boards","Industrial microSD 8 GB, Kingston SDCIT2/8GB (pSLC, −40 to 85 °C) (10 + 1 spare)",11,20,L,"About €18–30 depending on seller (Nov 2026)","Yes"),
+("Panels and boards","Industrial microSD 8 GB, SanDisk SDSDQAF3-008G-XI (−40 to 85 °C) (10 + 1 spare)",11,9,L,"RS Italy 759-929, €8.99 incl. VAT (Nov 2026); other sellers up to €65","Yes"),
 ("Panels and boards","Small parts: 1000 µF cap, divider resistors, R_cell 4.7 Ω, pull-up, 100 nF",10,2,E,"","Yes"),
 ("Panels and boards","IP65 box, 5 glands, breather vent, desiccant, tamper screws",10,25,E,"About 115 x 90 x 55 mm","Yes"),
 ("Panels and boards","Wire, ferrules, standoffs",10,8,E,"","Yes"),

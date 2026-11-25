@@ -152,7 +152,7 @@
 <circle cx="820" cy="652" r="3.5" fill="#222"/>
 <rect x="560" y="700" width="200" height="80" rx="6" fill="#fff" stroke="#334" stroke-width="2"/>
 <text x="660" y="722" font-size="14" fill="#222" text-anchor="middle" font-weight="bold">microSD module (SPI)</text>
-<text x="660" y="740" font-size="12" fill="#555" text-anchor="middle">Kingston industrial 8 GB card</text>
+<text x="660" y="740" font-size="12" fill="#555" text-anchor="middle">industrial 8 GB card</text>
 <text x="660" y="756" font-size="12" fill="#555" text-anchor="middle">years of raw data</text>
 <polyline points="610,640 610,700" fill="none" stroke="#1f6feb" stroke-width="2.5"/>
 <text x="614" y="676" font-size="10" fill="#1f6feb" text-anchor="start">SCK</text>

@@ -87,7 +87,7 @@ module(490,82,"SHT-30 probe, outside",[("air temperature + humidity · I2C 0x44"
 module(590,72,"BME280, inside the box",[("air pressure · I2C 0x76","#555"),("box temperature + humidity (maintenance)","#555")],[(605,850),(620,870)],[(640,800,O),(652,820,K)])
 # SD
 box(560,700,200,80,"#fff")
-t(660,722,"microSD module (SPI)",anchor="middle",bold=True); t(660,740,"Kingston industrial 8 GB card",12,"#555","middle"); t(660,756,"years of raw data",12,"#555","middle")
+t(660,722,"microSD module (SPI)",anchor="middle",bold=True); t(660,740,"industrial 8 GB card",12,"#555","middle"); t(660,756,"years of raw data",12,"#555","middle")
 for x,l in [(610,"SCK"),(645,"MISO"),(680,"MOSI"),(715,"CS")]:
     pl([(x,640),(x,700)],B,2.5); t(x+4,676,l,10,B)
 t(30,800,"All grounds meet at the breakout's GND, the panel's − included. GPIO 34 and 35 are ADC1: the only analog inputs that work with Wi-Fi on.",12,"#555")
