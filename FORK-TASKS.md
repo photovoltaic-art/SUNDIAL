@@ -12,7 +12,7 @@
 
 **The one request:** a link back to this repository, wherever the fork is presented: its website, flyer and wall plates. It is a request, not a licence condition.
 
-**The model:** fork and run separately. Each town has its own repository, website, keys, data and print. There is no central server and no network between towns. Improvements can be offered back, but nobody has to.
+**The model:** fork and run separately. Each town has its own repository, website, keys, data and print. There is no central server. The only link between towns is optional and data-only: each town's weather record on openSenseMap under the group tag `SUNDIAL` ([DATA.md](DATA.md) 6). Improvements can be offered back, but nobody has to.
 
 **What stands in the way today:**
 

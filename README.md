@@ -73,9 +73,11 @@ texts/
   slow-art-sun-record.md      Slow Art: Sun Record, a year of Campbell–Stokes sunshine cards in 14 frames, plus sun-drawing workshops
 budget/
   SUNDIAL-budget.xlsx         the cost of the nine panels and the first event (draft), and the script that builds it
+MVP-TASKS.md                  the build checklist for MVP v1: parts, firmware, tests, the artist's proof, data, the nine
 DATA.md                       the panel as a long-term logger: file format, archive, openSenseMap network, Data page
 hardware/
-  MVP.md                      the build to make first: modules on a screw-terminal breakout, reference-cell sun sensor, no custom board
+  MVP.md                      MVP v1, the build: modules on a screw-terminal breakout, reference-cell sun sensor, logger layer, no custom board
+  mvp-wiring.png/.svg         the MVP v1 wiring
   CARRIER.md                  the carrier board: everything factory-fitted except the ESP32 and buck converter
   PVA_carrier_board_spec_v1.pdf  the same as a PDF, for sending to a board designer
   carrier/                    the carrier board schematic draft (KiCad project, PDF, netlist, BOM): start at carrier/README.md
@@ -85,6 +87,7 @@ hardware/
 tools/
   pva_rules.py                the dial rules as drawing code (canonical print, separations); rules-2 for Sole planned
   pva_import.py, sole_edition.py  planned: round downloads → SUNDIAL pages and Sole editions (SUNDIAL.md 3.4)
+  mvp_wiring.py               draws hardware/mvp-wiring.svg
   sample_a4.py                A4 sample sheet, invented data
   poster_mockup.py            A4 mock-up of the canonical print, invented data
   requirements.txt
@@ -129,6 +132,7 @@ In the repository's GitHub Pages settings, publish from the `docs` folder on the
 | 1, panel | + panel, buck converter, supercapacitor | 0 | 0 | 0 | 0 |
 | 2, full | + voltage divider, DS3231 clock, protection | 0 | 1 | 1 | 0 |
 | 2, sun | + sun sensor (MOSFET, shunt, INA180) | 0 | 1 | 1 | 1 |
+| **MVP v1** (planned, MVP-TASKS.md) | the full MVP build: reference cell, logger layer, card | 0 | 1 | 1 | 0, plus `SUN_CELL 1`, `LOGGER 1` |
 | Desk test | any ESP32 on USB, no sensors at all | 1 | 0 | 0 | 0, plus `BENCH_FAKE 1` |
 
 `BENCH_FAKE 1` invents a temperature curve and a sun with passing clouds, so the dial shows every layer on the desk. It refuses to compile unless `BENCH` is 1.
@@ -226,11 +230,9 @@ The visitor's phone counts once per solar hour as a dot on the dial, never ident
 
 Each panel is also a vertical sundial, mounted vertical and facing due south: see [hardware/GNOMON.md](hardware/GNOMON.md) for the gnomon, the drilling template, the installation and the noon-shadow wall test. Where there is no suitable wall, a panel can stand on its own post on private ground, such as a café's seating area, with USB sockets that charge phones from its sun in daylight: [hardware/POST.md](hardware/POST.md).
 
-**Stage 1:** 36 V 180–185 W PV panel (the panels chosen are the Trina TSM-185DC01: [hardware/GNOMON.md](hardware/GNOMON.md)) · DC-DC buck converter (8–60 V in), set to exactly 5.0 V with a multimeter **before** connecting anything · 5.5 V 4 F supercapacitor across the 5 V output (in the shaded box: it ages fast in heat) · ELEGOO ESP32 30-pin on a screw-terminal breakout · DS18B20 waterproof probe on the panel back, data on GPIO 4, 4.7 kΩ from GPIO 4 to 3.3 V.
+**The build: [hardware/MVP.md](hardware/MVP.md) (v1).** Recycled panel, inline fuse, buck converter, ELEGOO ESP32 on a screw-terminal breakout, DS3231 clock, a small reference cell on the frame as the sun sensor, DS18B20 on the panel back, the panel-voltage divider, and the logger layer: SHT45 air temperature and humidity in a radiation shield, BME280 pressure, and a microSD card. No custom board, no soldering. Wiring: [hardware/mvp-wiring.png](hardware/mvp-wiring.png). Build order and open tasks: [MVP-TASKS.md](MVP-TASKS.md).
 
-**Stage 2 adds** (or the carrier board in `hardware/CARRIER.md`, which fits all of this): fuse and reverse-polarity diode on the panel side · SMAJ5.0A TVS diode across 5 V · panel-voltage divider 100 kΩ / 4.7 kΩ + 100 nF into GPIO 34 (must be GPIO 32–39: the other analog pins stop working with Wi-Fi on) · DS3231 clock module on GPIO 21/22.
-
-**Sun sensor:** logic-level N-MOSFET (≥60 V, ≥20 A) across the panel, after an input Schottky diode (≥100 V, ≥15 A, so a reversed panel cannot overheat the MOSFET) and before the fuse and the 1N5408 (the short-circuit current must not run through the fuse), gate on GPIO 25 (100 Ω series, 10 kΩ pull-down) · 5 mΩ shunt in its source leg · INA180A3 (gain 100) across the shunt, on 3.3 V, output to GPIO 35. Every 10 s the panel is shorted for about a millisecond and its short-circuit current read; the supercapacitor carries the board through the pulse. If the shunt or gain differ, change `SHUNT_OHM` and `SENSE_GAIN`.
+The earlier stage builds and the carrier board's sun sensor (shorting the panel through a MOSFET every 10 s) are kept in [hardware/CARRIER.md](hardware/CARRIER.md), on hold.
 
 ## The dial (rules v1, draft)
 
@@ -252,6 +254,7 @@ Each panel is also a vertical sundial, mounted vertical and facing due south: se
 | `/art/DATE.sun.csv` | each 15-minute solar section: sun 1 / 0 / −1 unknown, readings, readings above, mean current | visitors |
 | `/art/DATE.vis.csv` | each solar hour: distinct phones | visitors |
 | `/log/…`, `/archive/…` | every 5 min record, sun current every minute, visitors per hour, every day | admin only, as one CSV |
+| card: `/log/YYYY/MM/DD.csv` (MVP v1) | every minute: sun, air temperature, humidity, pressure, panel temperature and voltage; a hash per day | admin only; the weather record is published (DATA.md) |
 
 ## Data and privacy
 
@@ -259,4 +262,4 @@ Visitors are counted, never identified: a phone is told apart only by a salted h
 
 The visitors' book keeps only what the visitor writes: a line and an optional first name or town. Lines are read the next day; chosen lines appear on the panel and the website, the rest are deleted from the panel after the final walk. The full book is kept by PVA for the archive and catalogue.
 
-Raw data stays on each panel and is downloaded only through the admin page; visitors see the exhibition days' images, nothing else. The public website publishes only what the editions need: sun sections, temperatures, visitors per hour, and the day's figures.
+Raw data stays on each panel and is downloaded only through the admin page; visitors see the exhibition days' images, nothing else. The public website publishes only what the editions need: sun sections, temperatures, visitors per hour, and the day's figures. The weather record (sun, air, panel; never visitors) is published openly, in the data repository and on openSenseMap: [DATA.md](DATA.md).
