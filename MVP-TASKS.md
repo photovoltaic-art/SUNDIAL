@@ -27,9 +27,9 @@ Everything needed to build **one** MVP v1 panel, the artist's proof, and nothing
 | 5 | ELEGOO ESP32 30-pin, USB-C | 1 | 10 | ELEGOO; sold as a 3-pack, about €28 | L |
 | 6 | Screw-terminal breakout, 30-pin ESP32 | 1 | 6 | Any; check it fits the ELEGOO's row spacing | E |
 | 7 | DS3231 clock module + CR2032 | 1 | 5 | Generic; remove the charging parts on ZS-042 | E |
-| 8 | Sun cell, ANYSOLAR KXOB25-05X3F, 23 × 8 mm | 1 | 4 | DigiKey KXOB25-05X3F-CT (cut tape); about €3 + VAT | L |
+| 8 | Sun cell, ANYSOLAR KXOB25-05X3F, 23 × 8 mm | 1 | 4 | DigiKey 2994-KXOB25-05X3F-TB-ND, €2.87 + VAT | L |
 | 10 | DS18B20 waterproof probe | 1 | 4 | Generic | E |
-| 12 | Air probe, Adafruit 4099 SHT-30 weatherproof, 1 m | 1 | 26 | DigiKey 1528-4099-ND | L |
+| 12 | Air probe, Adafruit 4099 SHT-30 weatherproof, 1 m | 1 | 26 | DigiKey 1528-4099-ND, €22.15 + VAT | L |
 | 13 | Radiation shield, AcuRite (multi-plate, for small temperature/humidity sensors) | 1 | 20 | Amazon Italy, €20 (Nov 2026) | L |
 | 14 | BME280 module, I2C | 1 | 12 | Reputable seller; square chip = BME280, oblong = BMP280 | E |
 | 15 | microSD module, SPI, 3.3 V | 1 | 3 | Generic | E |
@@ -56,6 +56,27 @@ Everything needed to build **one** MVP v1 panel, the artist's proof, and nothing
 - [ ] Radiation shield: buy one, or print one in ASA and note the file used
 - [ ] DS3231: remove the charging diode and resistor if it is a ZS-042
 - [ ] R_cell: 39 Ω for the KXOB25-05X3F (MVP.md 4.1); note the value in station.json
+
+### The DigiKey order
+
+**Shipping is free only above €75** (DigiKey, Nov 2026; below that a shipping charge is added). Check at checkout whether the €75 is before or after VAT.
+
+In the cart so far (25 Nov 2026), about €25 + VAT:
+
+| DigiKey part | Part | Qty | Unit, before VAT |
+| --- | --- | --- | --- |
+| 2994-KXOB25-05X3F-TB-ND | Sun cell, ANYSOLAR KXOB25-05X3F | 1 | €2.87 |
+| 1528-4099-ND | Air probe, Adafruit 4099 SHT-30 | 1 | €22.15 |
+
+**Add before ordering, to pass €75 with parts the build needs anyway:**
+
+- [ ] **A second sun cell** (the spare: it is soldered and bonded, so one may be lost)
+- [ ] **A second air probe** (the long-lead part; it also gives a bench reference: run the two side by side before trusting nine)
+- [ ] **All the small parts:** 1000 µF / 10 V electrolytic capacitor; 100 nF capacitor; 1 % resistors: 100 kΩ, 4.7 kΩ (two: divider and DS18B20 pull-up), 39 Ω ¼ W (R_cell). Buy a few of each: they cost cents
+- [ ] **The 2 A gPV 10×38 fuse** (e.g. Eaton PV-2A10F), if DigiKey has it; plus a spare
+- [ ] **Move modules here from Amazon where it helps:** the **BME280** from Adafruit (product 2652) rules out a fake BMP280; Adafruit also makes the waterproof DS18B20 (381), a DS3231 breakout (3013, takes a CR1220 coin cell, no charging circuit to remove) and a microSD breakout (254). Compare each with its Amazon price
+
+Everything else in the BOM comes from Amazon.
 
 ## 2. Firmware
 
