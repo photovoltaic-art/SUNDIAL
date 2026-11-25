@@ -35,13 +35,13 @@
 | 12 | **SHT-30 weatherproof probe** (Adafruit 4099: sintered-mesh head, 1 m cable, bare wires) | Air temperature and humidity (±0.5 °C, ±2 % RH) | In part 13, never in the box, never touching the panel. I2C 0x44. Wires: red VCC, black GND, yellow SCL, green or blue SDA (swap SDA and SCL if it does not answer) |
 | 13 | **Radiation shield**, 5–8 plates | Keeps sun and wall heat off the air probe | Bought, or 3D-printed in ASA |
 | 14 | **BME280 module** (I2C), from a reputable seller | Air pressure; box temperature and humidity | Inside the box. Pressure is the same inside a vented box; box humidity says when the desiccant is spent. Cheap "BME280" modules are often BMP280s with no humidity: the BME280 chip is square, the BMP280 oblong |
-| 15 | **microSD module (SPI, 3.3 V)** + **industrial microSD, 8 GB** (SanDisk SDSDQAF3-008G-XI: −40 to 85 °C, with power-loss protection in its firmware; or Kingston SDCIT2/8GB) | Years of raw data | Consumer cards corrupt at brownout and in heat |
+| 15 | **microSD module (SPI, 3.3 V)** + **high-endurance microSD, 32 GB** (SanDisk High Endurance SDSQQNR-032G-GN6IA: −25 to 85 °C) | Years of raw data | 32 GB is SDHC, so it formats as FAT32, which the ESP32 reads. Consumer camera-grade card: the dusk write (5) protects it from power loss. **If the dusk test or the winter (7) shows corrupted files, use an industrial card** (with power-loss protection in its firmware, about €42–65) for the nine |
 | 16 | **IP65 box** (about 115 × 90 × 55 mm), 4–5 cable glands, a breather vent, a desiccant pack | Housing | Glands: panel, reference cell, DS18B20, air probe, spare |
 | 17 | Wire ferrules, short wires, standoffs | Assembly | Ferrules on every stranded wire into a screw terminal |
 
 **Optional, only if testing asks for them:** two 10 F supercaps in series, if dusk brownouts misbehave.
 
-**Rough cost** without the panel: about **€175 per wall** (Nov 2026), the largest items being the air probe (about €26), the shield (about €25, or €5 printed in ASA) and the box (about €25). The budget ([budget/](../budget/)) has the line-by-line figures and sources.
+**Rough cost** without the panel: about **€190 per wall** (Nov 2026), the largest items being the air probe (about €26), the shield (about €25, or €5 printed in ASA) and the box (about €25). The budget ([budget/](../budget/)) has the line-by-line figures and sources.
 
 ## 3. Wiring
 
