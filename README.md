@@ -132,7 +132,7 @@ In the repository's GitHub Pages settings, publish from the `docs` folder on the
 | 1, panel | + panel, buck converter, supercapacitor | 0 | 0 | 0 | 0 |
 | 2, full | + voltage divider, DS3231 clock, protection | 0 | 1 | 1 | 0 |
 | 2, sun | + sun sensor (MOSFET, shunt, INA180) | 0 | 1 | 1 | 1 |
-| **MVP v1** (planned, MVP-TASKS.md) | the full MVP build: reference cell, logger layer, card | 0 | 1 | 1 | 0, plus `SUN_CELL 1`, `LOGGER 1` |
+| **MVP v1** (planned, MVP-TASKS.md) | the full MVP build: sun cell, logger layer, card | 0 | 1 | 1 | 0, plus `SUN_CELL 1`, `LOGGER 1` |
 | Desk test | any ESP32 on USB, no sensors at all | 1 | 0 | 0 | 0, plus `BENCH_FAKE 1` |
 
 `BENCH_FAKE 1` invents a temperature curve and a sun with passing clouds, so the dial shows every layer on the desk. It refuses to compile unless `BENCH` is 1.
@@ -230,7 +230,7 @@ The visitor's phone counts once per solar hour as a dot on the dial, never ident
 
 Each panel is also a vertical sundial, mounted vertical and facing due south: see [hardware/GNOMON.md](hardware/GNOMON.md) for the gnomon, the drilling template, the installation and the noon-shadow wall test. Where there is no suitable wall, a panel can stand on its own post on private ground, such as a café's seating area, with USB sockets that charge phones from its sun in daylight: [hardware/POST.md](hardware/POST.md).
 
-**The build: [hardware/MVP.md](hardware/MVP.md) (v1).** Recycled panel, inline fuse, buck converter, ELEGOO ESP32 on a screw-terminal breakout, DS3231 clock, a small reference cell on the frame as the sun sensor, DS18B20 on the panel back, the panel-voltage divider, and the logger layer: SHT-30 air temperature and humidity in a radiation shield, BME280 pressure, and a microSD card. No custom board, no soldering. Wiring: [hardware/mvp-wiring.png](hardware/mvp-wiring.png). Build order and open tasks: [MVP-TASKS.md](MVP-TASKS.md).
+**The build: [hardware/MVP.md](hardware/MVP.md) (v1).** Recycled panel, inline fuse, buck converter, ELEGOO ESP32 on a screw-terminal breakout, DS3231 clock, a small sun cell (KXOB25, 23 × 8 mm) on the gnomon mount as the sun sensor, DS18B20 on the panel back, the panel-voltage divider, and the logger layer: SHT-30 air temperature and humidity in a radiation shield, BME280 pressure, and a microSD card. No custom board, no soldering. Wiring: [hardware/mvp-wiring.png](hardware/mvp-wiring.png). Build order and open tasks: [MVP-TASKS.md](MVP-TASKS.md).
 
 The earlier stage builds and the carrier board's sun sensor (shorting the panel through a MOSFET every 10 s) are kept in [hardware/CARRIER.md](hardware/CARRIER.md), on hold.
 
