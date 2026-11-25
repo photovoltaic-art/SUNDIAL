@@ -46,8 +46,8 @@ Each line is appended and the file closed after every write (MVP.md 9.2). A day 
 | Column | CF standard name, or a SUNDIAL name where CF has none | Unit | From |
 | --- | --- | --- | --- |
 | `time` | `time` (ISO 8601, UTC, `2027-06-21T05:31:00Z`) | — | DS3231 |
-| `sun_rel` | `sundial_relative_irradiance` (SUNDIAL): the reading divided by the calibrated clear noon | 1 (0 to about 1.2) | Reference cell |
-| `sun_raw` | `sundial_reference_cell_current` (SUNDIAL) | A | Reference cell |
+| `sun_rel` | `sundial_relative_irradiance` (SUNDIAL): the reading divided by the calibrated clear noon | 1 (0 to about 1.2) | Sun cell (KXOB25) |
+| `sun_raw` | `sundial_reference_cell_current` (SUNDIAL) | A | Sun cell (KXOB25) |
 | `t_air` | `air_temperature` | K in the file; °C on the website | SHT-30 |
 | `rh_air` | `relative_humidity` | 1 (0–1) in the file; % on the website | SHT-30 |
 | `p_air` | `air_pressure` (at the station, not reduced to sea level) | Pa | BME280 |
@@ -74,7 +74,7 @@ Missing values are empty fields, never zero. Every SUNDIAL-specific name is defi
     { "column": "t_air,rh_air", "model": "SHT-30 (Adafruit 4099)", "shield": "8-plate, ASA", "height_m": 2.0, "wall_distance_m": 0.15 },
     { "column": "p_air,t_box,rh_box", "model": "BME280", "position": "enclosure" },
     { "column": "t_panel", "model": "DS18B20", "position": "panel back, centre" },
-    { "column": "sun_rel,sun_raw", "model": "Voltaic P124", "r_cell_ohm": 4.7, "position": "frame, east edge" }
+    { "column": "sun_rel,sun_raw", "model": "ANYSOLAR KXOB25-05X3F", "r_cell_ohm": 39, "position": "gnomon mount, beside the root" }
   ],
   "calibrations": [ { "time": "2027-05-20T11:02:00Z", "iref_A": 0.142 } ],
   "osem_box_id": "",
@@ -127,7 +127,7 @@ The Zenodo deposit gives each town's year a DOI: a citable, permanent record tha
 | Air temperature | °C | SHT-30 | `t_air` |
 | Relative humidity | % | SHT-30 | `rh_air` |
 | Air pressure | hPa | BME280 | `p_air` |
-| Sun (relative) | % | Reference cell | `sun_rel` × 100 |
+| Sun (relative) | % | Sun cell (KXOB25) | `sun_rel` × 100 |
 | Panel temperature | °C | DS18B20 | `t_panel` |
 
 These use openSenseMap's usual titles and units (°C, %, hPa), so SUNDIAL boxes sit beside every other weather box on its map. The panel voltage and the box's own readings stay in SUNDIAL's archive only.

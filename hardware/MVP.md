@@ -1,6 +1,6 @@
 # SUNDIAL wall — MVP v1
 
-**The build for every SUNDIAL panel:** a recycled PV panel that is a sundial, makes the daily dial, and logs its wall's sun and weather for years. Off-the-shelf modules on a screw-terminal breakout: no PCB to design, and no soldering except two leads on the reference cell. Any town can build it from this page.
+**The build for every SUNDIAL panel:** a recycled PV panel that is a sundial, makes the daily dial, and logs its wall's sun and weather for years. Off-the-shelf modules on a screw-terminal breakout: no PCB to design, and no soldering except two fine leads on the sun cell. Any town can build it from this page.
 
 > Status: **v1, 25 Nov 2026: the final shape of the first version.** This is the starting point for the build; the build order and the open tasks are in [MVP-TASKS.md](../MVP-TASKS.md). It replaces drafts 1 (31 Oct) and 2 (25 Nov, which added the logger layer). The same build serves SUNDIAL's walls in year 1 and every SUNSET node in year 2 (interactive nodes add a battery, section 10). The carrier board ([CARRIER.md](CARRIER.md), [carrier/](carrier/README.md)) is **on hold**, kept complete and quoted for the day the module build proves too fragile outdoors.
 
@@ -28,20 +28,20 @@
 | 5 | **ELEGOO ESP32 30-pin** (USB-C) | The wall | Original ESP32, 4 MB flash |
 | 6 | **Screw-terminal breakout** for the 30-pin ESP32 | Every wire in a screw terminal | Check it fits the ELEGOO's row spacing before buying nine |
 | 7 | **DS3231 clock module + CR2032** | Time at dawn, offline | **Remove the charging part** on "ZS-042" modules (a diode and a 200 Ω resistor near the cell holder), or buy one without a charger |
-| 8 | **Reference solar cell: Voltaic P124**, 6 V 1.2 W, ETFE (113 × 66 mm, I_sc 0.22 A) | The sun sensor | Rated for 5–7 years outdoors, unlike cheap epoxy mini panels. Solder pads: fit short leads once, before mounting (the one soldering job). Any multi-cell 6 V panel works; not a single 0.5 V cell (4.1) |
-| 9 | **Cell resistor**, 1 %, ¼ W: **4.7 Ω** for the P124 (4.1) | Turns the cell's current into a voltage | Across the cell's leads, at the terminals |
+| 8 | **Sun cell: ANYSOLAR KXOB25-05X3F**, 23 × 8 mm, 3 monocrystalline cells (V_oc 2.07 V, I_sc 19.5 mA) | The sun sensor | Bonded to the gnomon mount's front face, in the panel's plane (4.1). Solder two fine wires to its pads; a clear UV-stable coat over the cell if the artist's proof shows it needs one |
+| 9 | **Cell resistor**, 1 %, ¼ W: **39 Ω** for the KXOB25-05X3F (4.1) | Turns the cell's current into a voltage | Across the cell's leads, at the terminals |
 | 10 | **DS18B20 waterproof probe** + 4.7 kΩ pull-up | Panel temperature | On the panel back, centre |
 | 11 | **Divider: 100 kΩ and 4.7 kΩ, 1 %**, + 100 nF | Panel voltage; the dawn and dusk gates | |
 | 12 | **SHT-30 weatherproof probe** (Adafruit 4099: sintered-mesh head, 1 m cable, bare wires) | Air temperature and humidity (±0.5 °C, ±2 % RH) | In part 13, never in the box, never touching the panel. I2C 0x44. Wires: red VCC, black GND, yellow SCL, green or blue SDA (swap SDA and SCL if it does not answer) |
-| 13 | **Radiation shield**, 5–8 plates | Keeps sun and wall heat off the air probe | Bought, or 3D-printed in ASA |
+| 13 | **Radiation shield**, multi-plate (AcuRite, or 3D-printed in ASA) | Keeps sun and wall heat off the air probe | The probe (14 × 50 mm) must sit inside, clear of the plates, with its cable through the base |
 | 14 | **BME280 module** (I2C), from a reputable seller | Air pressure; box temperature and humidity | Inside the box. Pressure is the same inside a vented box; box humidity says when the desiccant is spent. Cheap "BME280" modules are often BMP280s with no humidity: the BME280 chip is square, the BMP280 oblong |
-| 15 | **microSD module (SPI, 3.3 V)** + **industrial microSD, 8 GB** (Kingston SDCIT2/8GB: pSLC, −40 to 85 °C) | Years of raw data | Consumer cards corrupt at brownout and in heat |
-| 16 | **IP65 box** (about 115 × 90 × 55 mm), 4–5 cable glands, a breather vent, a desiccant pack | Housing | Glands: panel, reference cell, DS18B20, air probe, spare |
+| 15 | **microSD module (SPI, 3.3 V)** + **high-endurance microSD, 32 GB** (SanDisk High Endurance SDSQQNR-032G-GN6IA: −25 to 85 °C) | Years of raw data | 32 GB is SDHC, so it formats as FAT32, which the ESP32 reads. Consumer camera-grade card: the dusk write (5) protects it from power loss. **If the dusk test or the winter (7) shows corrupted files, use an industrial card** (with power-loss protection in its firmware, about €42–65) for the nine |
+| 16 | **IP65 box** (about 115 × 90 × 55 mm), 4–5 cable glands, a breather vent, a desiccant pack | Housing | Glands: panel, sun cell, DS18B20, air probe, spare |
 | 17 | Wire ferrules, short wires, standoffs | Assembly | Ferrules on every stranded wire into a screw terminal |
 
 **Optional, only if testing asks for them:** two 10 F supercaps in series, if dusk brownouts misbehave.
 
-**Rough cost** without the panel: about **€185 per wall** (Nov 2026), the largest items being the air probe (about €26), the shield (about €25, or €5 printed in ASA), the box (about €25) and the industrial card (about €20). The budget ([budget/](../budget/)) has the line-by-line figures and sources.
+**Rough cost** without the panel: about **€180 per wall** (Nov 2026), the largest items being the air probe (about €26), the shield (about €20, or €5 printed in ASA) and the box (about €25). The budget ([budget/](../budget/)) has the line-by-line figures and sources.
 
 ## 3. Wiring
 
@@ -57,9 +57,9 @@ panel − ──────────────────┼── buck I
                                      4.7 k ── GND
                                      100 nF ── GND
 
-reference cell + ──┬── GPIO 35                                  (sun)
+sun cell +       ──┬── GPIO 35                                  (sun)
                    R_cell
-reference cell − ──┴── GND
+sun cell −       ──┴── GND
 
 DS18B20: red 3V3 · black GND · yellow GPIO 4, 4.7 k from GPIO 4 to 3V3   (panel temperature)
 DS3231:  VCC 3V3 · GND · SDA GPIO 21 · SCL GPIO 22   (I2C 0x68, 0x57)    (clock)
@@ -75,14 +75,17 @@ microSD: VCC 3V3 · GND · SCK GPIO 18 · MISO GPIO 19 · MOSI GPIO 23 · CS GPI
 
 ## 4. The sensors
 
-### 4.1 The reference cell (sun)
+### 4.1 The sun cell
 
-The sun is measured by a small cell on the panel's frame, not by the big panel. It is read **near short circuit**, where its current rises in proportion to the light; the resistor turns that current into a small voltage, well below the cell's working voltage, so the cell stays linear.
+The sun is measured by a small solar cell, not by the big panel: an **ANYSOLAR KXOB25-05X3F**, a 23 × 8 mm strip of three monocrystalline cells. It is read **near short circuit**, where its current rises in proportion to the light; the resistor turns that current into a small voltage, well below the cell's working voltage, so the reading stays in proportion.
 
-- **R_cell = 1.0 V ÷ the cell's label I_sc.** The P124's I_sc of 0.22 A gives 4.5 Ω: fit **4.7 Ω** (full sun about 1.03 V). For other cells: I_sc 180 mA → 5.6 Ω; I_sc 100 mA → 10 Ω. Under 0.2 W in the resistor.
-- Full sun gives about 1.0 V at GPIO 35, read at the **2.5 dB range** (about 0.1–1.25 V), where the ESP32 is most accurate. A vertical wall's clear noon gives less; the dial's threshold (a third of clear noon) stays well above 0.1 V.
-- **Placing it:** in the panel's plane, facing the same way, fixed to the frame without shading the panel; at the edge most like the panel's average light (where shadows cross the wall, the side the shadow reaches first or last, as the artist's proof shows). Its lead enters through its own gland with a drip loop. Clean it when the panel is cleaned.
-- **What it means for the dial:** the dial records sun on the cell, at one edge of the panel. On a clear wall that is the same as the whole panel; where a shadow crosses, a few sections at its edge can differ.
+- **R_cell = about 0.75 V ÷ the cell's I_sc**, keeping the voltage under about 40 % of the cell's V_oc. For the KXOB25-05X3F (I_sc 19.5 mA, V_oc 2.07 V): **39 Ω**, so full sun gives about 0.76 V. Power in the resistor is negligible.
+- GPIO 35 is read at the **2.5 dB range** (about 0.1–1.25 V), where the ESP32 is most accurate. A vertical wall's clear noon gives less than full sun; the dial's threshold (a third of clear noon) stays above 0.2 V.
+- **Where it goes: on the gnomon mount.** The gnomon's aluminium-angle mount sits at the top centre of the panel (GNOMON.md); its front face is parallel to the glass. Bond the cell to that face, **beside the tube's root, not on the tube**. In the panel's plane it sees the sun exactly as the panel does. (The tube's own top faces the sky at Bosa's latitude, like a tilted solar panel: in summer it would read sun for about an hour and a half at each end of the day while the sun is behind the wall's plane.)
+- **The rod's shadow:** near the root, the rod's shadow lies along the top edge only around 6:00 and 18:00 solar, when the wall gets little or no sun. It does not cross the cell otherwise.
+- **The wires:** two fine wires from the cell's pads, behind the mount, over the top frame edge and down to the box through their own gland, with a drip loop.
+- **The face must be wide enough:** the angle stock's front leg needs about 10 mm more than the cell's 23 mm beside the root. If it is narrower, the fallback is the glass just below the top frame edge, in the strip between the frame and the first cells.
+- **What it means for the dial:** the dial records sun at the top centre of the panel. On a clear wall that is the same as the whole panel; a shadow from eaves or a balcony above reaches it first, as it reaches the top of the panel. Clean it when the panel is cleaned.
 
 ### 4.2 The air probe and its shield
 
@@ -104,7 +107,7 @@ Under the panel's lower edge, **at least 10 cm from the wall and the panel**, ou
 
 ### 4.5 Not fitted, and why
 
-Rain (a gauge needs an open site and power at night) · wind (an anemometer on a wall measures the wall; 4.4 does better here) · separate light or UV sensors (the reference cell already measures the sun).
+Rain (a gauge needs an open site and power at night) · wind (an anemometer on a wall measures the wall; 4.4 does better here) · separate light or UV sensors (the sun cell already measures the sun).
 
 ## 5. Storage and power
 
@@ -120,7 +123,7 @@ The MVP build of firmware 6.2 (SUNDIAL.md), with these build flags:
 
 | Flag | Meaning | Replaces |
 | --- | --- | --- |
-| `SUN_CELL 1` | Sun from the reference cell: GPIO 35 at 2.5 dB (`analogSetPinAttenuation`), `analogReadMilliVolts` averaged, divided by `R_CELL`. Continuous and silent; no pulse, no GPIO 25 | `SUN_SENSE` (the carrier's MOSFET pulse), `SHUNT_OHM`, `SENSE_GAIN` |
+| `SUN_CELL 1` | Sun from the sun cell: GPIO 35 at 2.5 dB (`analogSetPinAttenuation`), `analogReadMilliVolts` averaged, divided by `R_CELL`. Continuous and silent; no pulse, no GPIO 25 | `SUN_SENSE` (the carrier's MOSFET pulse), `SHUNT_OHM`, `SENSE_GAIN` |
 | `PANEL_SENSE 1`, `USE_RTC 1` | Divider and clock fitted | Unchanged |
 | `LOGGER 1` | SHT-30 and BME280 read into the 1-minute log; every log line mirrored to the card; the day's hash at the dusk close; card writes stop below a set panel voltage; admin download of any date range from the card | New |
 
@@ -143,7 +146,7 @@ The wall choice, gnomon and face are in [GNOMON.md](GNOMON.md). For the logger, 
 
 | Carrier v1 | MVP v1 |
 | --- | --- |
-| The panel itself is the sensor | A reference cell on its frame (4.1) |
+| The panel itself is the sensor | A small sun cell on the gnomon mount (4.1) |
 | One soldered board | Modules and screw terminals: more connections to check |
 | Protection on board (TVS, input diode, fuses) | The inline fuse and MC4 polarity; nothing else |
 | AUX output, switched 5 V, spare headers | None. An add-on takes its power from the panel through its own converter; the SUNSET I/O board connects to the breakout's pins |
@@ -162,4 +165,4 @@ The same build, with three things added and one taken away. **The sun reading, t
 | **Remove** | The panel-voltage divider: the Victron reports panel and battery voltage |
 | **Plus** | The SUNSET I/O board for whatever the node switches (io-board.md, SUNSET repository), wired to the breakout's pins |
 
-**Why the Victron data alone can't draw the dial:** a small battery is full by mid-morning, after which the Victron holds the panel back to the node's small load, and its harvest figures would show shade for the rest of every sunny day. The reference cell avoids that, and keeps the Sun page honest on every node.
+**Why the Victron data alone can't draw the dial:** a small battery is full by mid-morning, after which the Victron holds the panel back to the node's small load, and its harvest figures would show shade for the rest of every sunny day. The sun cell avoids that, and keeps the Sun page honest on every node.

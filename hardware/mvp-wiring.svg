@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 830" font-family="Helvetica, Arial, sans-serif" font-size="14">
 <rect width="1200" height="830" fill="#ffffff"/>
 <text x="30" y="36" font-size="22" fill="#222" text-anchor="start" font-weight="bold">SUNDIAL wall — MVP v1 wiring (with the logger layer)</text>
-<text x="30" y="58" font-size="13" fill="#555" text-anchor="start">Modules on a screw-terminal breakout. No custom board; the only soldering is two leads on the reference cell. hardware/MVP.md</text>
+<text x="30" y="58" font-size="13" fill="#555" text-anchor="start">Modules on a screw-terminal breakout. No custom board; the only soldering is two fine leads on the sun cell. hardware/MVP.md</text>
 <line x1="760" y1="30" x2="790" y2="30" stroke="#d62828" stroke-width="3"/>
 <text x="796" y="34" font-size="12" fill="#333" text-anchor="start">panel voltage (up to ~48 V)</text>
 <line x1="760" y1="48" x2="790" y2="48" stroke="#f08c00" stroke-width="3"/>
@@ -83,14 +83,14 @@
 <text x="345" y="512" font-size="12" fill="#555" text-anchor="start">common GND</text>
 <rect x="40" y="440" width="130" height="80" rx="4" fill="#e8eef7" stroke="#334" stroke-width="2"/>
 <g stroke="#9ab"><line x1="40" y1="480" x2="170" y2="480"/><line x1="105" y1="440" x2="105" y2="520"/></g>
-<text x="105" y="540" font-size="14" fill="#222" text-anchor="middle" font-weight="bold">Reference cell</text>
-<text x="105" y="556" font-size="12" fill="#555" text-anchor="middle">Voltaic P124, 6 V 1.2 W,</text>
-<text x="105" y="571" font-size="12" fill="#555" text-anchor="middle">on the panel frame</text>
+<text x="105" y="540" font-size="14" fill="#222" text-anchor="middle" font-weight="bold">Sun cell</text>
+<text x="105" y="556" font-size="12" fill="#555" text-anchor="middle">KXOB25-05X3F, 23 × 8 mm,</text>
+<text x="105" y="571" font-size="12" fill="#555" text-anchor="middle">on the gnomon mount</text>
 <polyline points="170,455 200,455 200,600 490,600 490,475 560,475" fill="none" stroke="#1f6feb" stroke-width="3"/>
 <circle cx="200" cy="600" r="4" fill="#1f6feb"/>
 <polyline points="200,600 200,610" fill="none" stroke="#1f6feb" stroke-width="3"/>
 <rect x="185" y="610" width="30" height="34" rx="3" fill="#fff" stroke="#334" stroke-width="2"/>
-<text x="225" y="632" font-size="12" fill="#222" text-anchor="start">R_cell = 1.0 V ÷ I_sc: 4.7 Ω for the P124</text>
+<text x="225" y="632" font-size="12" fill="#222" text-anchor="start">R_cell 39 Ω (about 0.75 V ÷ I_sc)</text>
 <polyline points="170,505 180,505 180,652 200,652 200,644" fill="none" stroke="#222" stroke-width="3"/>
 <polyline points="180,652 440,652 440,520" fill="none" stroke="#222" stroke-width="3"/>
 <text x="300" y="594" font-size="12" fill="#1f6feb" text-anchor="start">sun → G35</text>
@@ -152,7 +152,7 @@
 <circle cx="820" cy="652" r="3.5" fill="#222"/>
 <rect x="560" y="700" width="200" height="80" rx="6" fill="#fff" stroke="#334" stroke-width="2"/>
 <text x="660" y="722" font-size="14" fill="#222" text-anchor="middle" font-weight="bold">microSD module (SPI)</text>
-<text x="660" y="740" font-size="12" fill="#555" text-anchor="middle">Kingston industrial 8 GB card</text>
+<text x="660" y="740" font-size="12" fill="#555" text-anchor="middle">high-endurance 32 GB card</text>
 <text x="660" y="756" font-size="12" fill="#555" text-anchor="middle">years of raw data</text>
 <polyline points="610,640 610,700" fill="none" stroke="#1f6feb" stroke-width="2.5"/>
 <text x="614" y="676" font-size="10" fill="#1f6feb" text-anchor="start">SCK</text>

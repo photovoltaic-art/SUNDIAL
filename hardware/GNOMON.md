@@ -23,6 +23,7 @@ Front: the face, the gnomon and the wall plate. Side: the noon sun and the three
 | --- | --- |
 | Panel | Trina Solar TSM-185DC01: 80 × 160 cm measured (label: 1581 × 809 × 40 mm, 15.6 kg), portrait, vertical, facing due south. Frame depth 40 mm |
 | Gnomon | 15 mm OD aluminium tube, **45 cm** long, mitred and TIG-welded to an aluminium angle mount; two M6 bolts through the top frame flange |
+| Sun cell | ANYSOLAR KXOB25-05X3F (23 × 8 mm), bonded to the **front face of the gnomon mount, beside the tube's root**, in the panel's plane; the mount's front leg needs about 10 mm spare beside the root. Its wires run behind the mount, over the top frame edge, to the box ([MVP.md](MVP.md) 4.1) |
 | Gnomon angle | **50°** from the glass, pointing down and out, exactly on the panel's vertical centre line (ideal for Bosa: 49.7°) |
 | Hour lines | 11 lines on the glass, solar hours 7 to 17, radiating from the gnomon's root to the frame edge. **No numbers.** 3 mm wide, a light colour, in UV-stable outdoor vinyl pinstripe tape, removable |
 | Date marks | 3 short ticks across the noon line, 8 cm wide, in the same tape: winter solstice, equinoxes, summer solstice ([Date marks](#date-marks)) |
@@ -170,6 +171,7 @@ Between these dates it changes by at most a minute or two per week. For any othe
 - **Because every panel faces exactly south,** this is the same on all nine, and any difference between their dials comes purely from place.
 - **Summer noon sun strikes the glass steeply,** so a vertical panel gives roughly a third of its rated power at noon: still far more than the board needs. The sun rule is calibrated against each panel's own clear-noon current, so it is unaffected.
 - **The gnomon's shadow crosses the cells** and causes a small, regular dip in the panel's current each day, too small to change a section's colour.
+- **The sun cell sits on the gnomon mount, not on the gnomon.** The tube is parallel to the Earth's axis, so its top faces the sky at the latitude's tilt and would see the summer sun for hours while it is behind the wall. On the mount's front face the cell is in the panel's plane and sees exactly what the panel sees. The rod's shadow lies along the top edge, over the cell, only around 6:00 and 18:00 solar, when the face gets little or no sun.
 - **The lines and marks shade a thin strip of cells** all the time: a small, constant loss, measured on the artist's proof and taken into each panel's own calibration.
 
 ## Reusing the panels

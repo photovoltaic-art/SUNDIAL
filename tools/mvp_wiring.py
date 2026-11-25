@@ -14,7 +14,7 @@ W,H=1200,830
 a(f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" font-family="Helvetica, Arial, sans-serif" font-size="14">')
 a(f'<rect width="{W}" height="{H}" fill="#ffffff"/>')
 t(30,36,"SUNDIAL wall — MVP v1 wiring (with the logger layer)",22,bold=True)
-t(30,58,"Modules on a screw-terminal breakout. No custom board; the only soldering is two leads on the reference cell. hardware/MVP.md",13,"#555")
+t(30,58,"Modules on a screw-terminal breakout. No custom board; the only soldering is two fine leads on the sun cell. hardware/MVP.md",13,"#555")
 for (x,y,c,l) in [(760,30,R,"panel voltage (up to ~48 V)"),(760,48,O,"5 V / 3.3 V"),(980,30,K,"GND"),(980,48,B,"signal")]:
     a(f'<line x1="{x}" y1="{y}" x2="{x+30}" y2="{y}" stroke="{c}" stroke-width="3"/>'); t(x+36,y+4,l,12,"#333")
 # panel
@@ -57,10 +57,10 @@ t(345,512,"common GND",12,"#555")
 # reference cell
 box(40,440,130,80,"#e8eef7",4)
 a('<g stroke="#9ab"><line x1="40" y1="480" x2="170" y2="480"/><line x1="105" y1="440" x2="105" y2="520"/></g>')
-t(105,540,"Reference cell",anchor="middle",bold=True); t(105,556,"Voltaic P124, 6 V 1.2 W,",12,"#555","middle"); t(105,571,"on the panel frame",12,"#555","middle")
+t(105,540,"Sun cell",anchor="middle",bold=True); t(105,556,"KXOB25-05X3F, 23 × 8 mm,",12,"#555","middle"); t(105,571,"on the gnomon mount",12,"#555","middle")
 pl([(170,455),(200,455),(200,600),(490,600),(490,475),(560,475)],B); dot(200,600,B)
 pl([(200,600),(200,610)],B); box(185,610,30,34,rx=3)
-t(225,632,"R_cell = 1.0 V ÷ I_sc: 4.7 Ω for the P124",12)
+t(225,632,"R_cell 39 Ω (about 0.75 V ÷ I_sc)",12)
 pl([(170,505),(180,505),(180,652),(200,652),(200,644)],K); pl([(180,652),(440,652),(440,520)],K)
 t(300,594,"sun → G35",12,B)
 # rails
@@ -87,7 +87,7 @@ module(490,82,"SHT-30 probe, outside",[("air temperature + humidity · I2C 0x44"
 module(590,72,"BME280, inside the box",[("air pressure · I2C 0x76","#555"),("box temperature + humidity (maintenance)","#555")],[(605,850),(620,870)],[(640,800,O),(652,820,K)])
 # SD
 box(560,700,200,80,"#fff")
-t(660,722,"microSD module (SPI)",anchor="middle",bold=True); t(660,740,"Kingston industrial 8 GB card",12,"#555","middle"); t(660,756,"years of raw data",12,"#555","middle")
+t(660,722,"microSD module (SPI)",anchor="middle",bold=True); t(660,740,"high-endurance 32 GB card",12,"#555","middle"); t(660,756,"years of raw data",12,"#555","middle")
 for x,l in [(610,"SCK"),(645,"MISO"),(680,"MOSI"),(715,"CS")]:
     pl([(x,640),(x,700)],B,2.5); t(x+4,676,l,10,B)
 t(30,800,"All grounds meet at the breakout's GND, the panel's − included. GPIO 34 and 35 are ADC1: the only analog inputs that work with Wi-Fi on.",12,"#555")
