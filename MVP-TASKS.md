@@ -46,7 +46,7 @@ Everything needed to build **one** MVP v1 panel, the artist's proof, and nothing
 ## 1. Parts for the artist's proof (one panel)
 
 - [ ] Buy one of each part in MVP.md 2 (parts 2–17); the panel is already chosen (Trina TSM-185DC01)
-- [ ] Check the screw-terminal breakout fits the ELEGOO's row spacing **before** buying nine
+- [ ] Check the screw-terminal breakout fits the ELEGOO's row spacing **before** buying
 - [ ] Industrial microSD: Kingston SDCIT2/8GB, or another card whose datasheet (not listing) says pSLC/SLC and −25 to 85 °C or wider
 - [ ] Air probe: Adafruit 4099 (DigiKey had stock in Nov 2026; up to 18 weeks when out): **order the nine plus a spare early**
 - [ ] Reference cell: Voltaic P124 (DigiKey marketplace, or The Pi Hut); solder short leads to its pads
