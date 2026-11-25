@@ -230,7 +230,7 @@ The visitor's phone counts once per solar hour as a dot on the dial, never ident
 
 Each panel is also a vertical sundial, mounted vertical and facing due south: see [hardware/GNOMON.md](hardware/GNOMON.md) for the gnomon, the drilling template, the installation and the noon-shadow wall test. Where there is no suitable wall, a panel can stand on its own post on private ground, such as a café's seating area, with USB sockets that charge phones from its sun in daylight: [hardware/POST.md](hardware/POST.md).
 
-**The build: [hardware/MVP.md](hardware/MVP.md) (v1).** Recycled panel, inline fuse, buck converter, ELEGOO ESP32 on a screw-terminal breakout, DS3231 clock, a small reference cell on the frame as the sun sensor, DS18B20 on the panel back, the panel-voltage divider, and the logger layer: SHT45 air temperature and humidity in a radiation shield, BME280 pressure, and a microSD card. No custom board, no soldering. Wiring: [hardware/mvp-wiring.png](hardware/mvp-wiring.png). Build order and open tasks: [MVP-TASKS.md](MVP-TASKS.md).
+**The build: [hardware/MVP.md](hardware/MVP.md) (v1).** Recycled panel, inline fuse, buck converter, ELEGOO ESP32 on a screw-terminal breakout, DS3231 clock, a small reference cell on the frame as the sun sensor, DS18B20 on the panel back, the panel-voltage divider, and the logger layer: SHT-30 air temperature and humidity in a radiation shield, BME280 pressure, and a microSD card. No custom board, no soldering. Wiring: [hardware/mvp-wiring.png](hardware/mvp-wiring.png). Build order and open tasks: [MVP-TASKS.md](MVP-TASKS.md).
 
 The earlier stage builds and the carrier board's sun sensor (shorting the panel through a MOSFET every 10 s) are kept in [hardware/CARRIER.md](hardware/CARRIER.md), on hold.
 

@@ -48,8 +48,8 @@ Each line is appended and the file closed after every write (MVP.md 9.2). A day 
 | `time` | `time` (ISO 8601, UTC, `2027-06-21T05:31:00Z`) | — | DS3231 |
 | `sun_rel` | `sundial_relative_irradiance` (SUNDIAL): the reading divided by the calibrated clear noon | 1 (0 to about 1.2) | Reference cell |
 | `sun_raw` | `sundial_reference_cell_current` (SUNDIAL) | A | Reference cell |
-| `t_air` | `air_temperature` | K in the file; °C on the website | SHT45 |
-| `rh_air` | `relative_humidity` | 1 (0–1) in the file; % on the website | SHT45 |
+| `t_air` | `air_temperature` | K in the file; °C on the website | SHT-30 |
+| `rh_air` | `relative_humidity` | 1 (0–1) in the file; % on the website | SHT-30 |
 | `p_air` | `air_pressure` (at the station, not reduced to sea level) | Pa | BME280 |
 | `t_panel` | `sundial_panel_back_temperature` (SUNDIAL) | K | DS18B20 |
 | `v_panel` | `sundial_panel_voltage` (SUNDIAL), close to open circuit | V | Divider |
@@ -71,10 +71,10 @@ Missing values are empty fields, never zero. Every SUNDIAL-specific name is defi
   "mount": { "surface": "wall", "azimuth_deg": 180, "tilt_deg": 90, "height_m": 2.4 },
   "panel": { "model": "Trina TSM-185DC01", "installed": "2027-05-01" },
   "sensors": [
-    { "column": "t_air,rh_air", "model": "SHT45", "shield": "8-plate, ASA", "height_m": 2.0, "wall_distance_m": 0.15 },
+    { "column": "t_air,rh_air", "model": "SHT-30 (Adafruit 4099)", "shield": "8-plate, ASA", "height_m": 2.0, "wall_distance_m": 0.15 },
     { "column": "p_air,t_box,rh_box", "model": "BME280", "position": "enclosure" },
     { "column": "t_panel", "model": "DS18B20", "position": "panel back, centre" },
-    { "column": "sun_rel,sun_raw", "model": "6 V 1 W mini panel", "r_cell_ohm": 5.6, "position": "frame, east edge" }
+    { "column": "sun_rel,sun_raw", "model": "Voltaic P124", "r_cell_ohm": 4.7, "position": "frame, east edge" }
   ],
   "calibrations": [ { "time": "2027-05-20T11:02:00Z", "iref_A": 0.142 } ],
   "osem_box_id": "",
@@ -124,8 +124,8 @@ The Zenodo deposit gives each town's year a DOI: a citable, permanent record tha
 
 | Title | Unit | Type | From column |
 | --- | --- | --- | --- |
-| Air temperature | °C | SHT45 | `t_air` |
-| Relative humidity | % | SHT45 | `rh_air` |
+| Air temperature | °C | SHT-30 | `t_air` |
+| Relative humidity | % | SHT-30 | `rh_air` |
 | Air pressure | hPa | BME280 | `p_air` |
 | Sun (relative) | % | Reference cell | `sun_rel` × 100 |
 | Panel temperature | °C | DS18B20 | `t_panel` |
