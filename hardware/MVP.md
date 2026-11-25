@@ -2,7 +2,9 @@
 
 The simplest wall that makes the full SUNDIAL dial: **off-the-shelf modules on a screw-terminal breakout, no PCB to design, no soldering.** Any town can build it from this page.
 
-> Status: draft 1, 31 Oct 2026. **The core build for every panel, in both years:** SUNDIAL's walls in year 1, and every SUNSET node in year 2 (interactive nodes add a battery, section 8). Made first as the artist's proof. The carrier board ([CARRIER.md](CARRIER.md), [carrier/](carrier/README.md)) is **on hold**: kept, complete and quoted, for the day the module build proves too fragile outdoors or the walls need what only it offers.
+> Status: draft 2, 25 Nov 2026. Draft 2 adds the **logger layer** (section 9): a microSD card, an outdoor air temperature and humidity probe, and a pressure sensor in the box, so each panel is also a small weather station and a long-term data logger. The dial does not change.
+>
+> Draft 1, 31 Oct 2026: **The core build for every panel, in both years:** SUNDIAL's walls in year 1, and every SUNSET node in year 2 (interactive nodes add a battery, section 8). Made first as the artist's proof. The carrier board ([CARRIER.md](CARRIER.md), [carrier/](carrier/README.md)) is **on hold**: kept, complete and quoted, for the day the module build proves too fragile outdoors or the walls need what only it offers.
 
 ---
 
@@ -39,10 +41,14 @@ The simplest wall that makes the full SUNDIAL dial: **off-the-shelf modules on a
 | 10 | **Divider: 100 kΩ and 4.7 kΩ, 1 %**, + 100 nF | Panel voltage, and the dawn and dusk gates | As before (firmware DIVIDER unchanged) |
 | 11 | **IP65 box** (about 115 × 90 × 55 mm), 3–4 cable glands, a breather vent, a desiccant pack | Housing | Smaller than the carrier's box |
 | 12 | Wire ferrules, short wires, standoffs | Assembly | Ferrules on every stranded wire into a screw terminal |
+| 13 | **microSD module (SPI, 3.3 V)** + **industrial microSD, 8–32 GB** (pSLC/SLC, rated −25 to 85 °C) | Long-term storage (9.2) | Years of raw data on the panel. Consumer cards corrupt at brownout and in heat: use an industrial card |
+| 14 | **SHT45 probe** (I2C, PTFE-capped, on about 1 m of cable) in a **small radiation shield** under the panel | Air temperature and humidity (9.1) | Shield: a 5–8 plate mini Stevenson shield, bought or 3D-printed in ASA. Never in the box, never touching the panel |
+| 15 | **BME280 module** (I2C), inside the box | Air pressure; box temperature and humidity (9.1) | Pressure is the same inside a vented box. Box humidity tells PVA when the desiccant is spent |
+| 16 | **1000 µF / 10 V capacitor** on the 5 V input | Holds up the card's last write at dusk (9.2) | Now standard, no longer optional |
 
-**Optional, only if testing asks for them:** a 1000 µF / 10 V capacitor on the 5 V input (if Wi-Fi peaks cause resets); the two 10 F supercaps (if dusk brownouts misbehave).
+**Optional, only if testing asks for them:** the two 10 F supercaps (if dusk brownouts misbehave).
 
-**Rough cost** without the panel: about €50–60 per wall. Estimates, not quotes.
+**Rough cost** without the panel: about €50–60 per wall for the dial alone (parts 1–12); about **€75–95** with the logger layer (13–16), most of the difference being the shield and the industrial card. Estimates, not quotes.
 
 ## 3. Wiring
 
@@ -64,9 +70,16 @@ reference cell − ──┴── GND
 
 DS18B20: red 3V3 · black GND · yellow GPIO 4, 4.7 k from GPIO 4 to 3V3   (temperature)
 DS3231:  VCC 3V3 · GND · SDA GPIO 21 · SCL GPIO 22                         (clock)
+SHT45:   VCC 3V3 · GND · SDA GPIO 21 · SCL GPIO 22   (I2C 0x44)            (air temperature, humidity)
+BME280:  VCC 3V3 · GND · SDA GPIO 21 · SCL GPIO 22   (I2C 0x76)            (pressure, box health)
+microSD: VCC 3V3 · GND · SCK GPIO 18 · MISO GPIO 19 · MOSI GPIO 23 · CS GPIO 5   (storage)
+1000 µF across 5V and GND at the breakout
 ```
 
+*The drawing (mvp-wiring.svg) shows draft 1 and still needs the logger layer added.*
+
 - **All grounds meet at the breakout's GND,** the panel's − included.
+- **One I2C bus for three parts** (clock 0x68 and its EEPROM 0x57, SHT45 0x44, BME280 0x76): no address clashes. Run it at 100 kHz; the SHT45's 1 m cable is fine at that speed. If readings drop out, shorten the cable before anything else.
 - **GPIO 34 and 35 must stay as they are:** they are on ADC1, the only analog inputs that work with Wi-Fi on.
 - The divider's top resistor sits at panel voltage (up to about 48 V): keep its terminal apart from the 3.3 V side, and keep the panel leads away from the ESP32's antenna end.
 
@@ -101,6 +114,7 @@ Small, and in one place: `readSunI()` and the build flags.
 | Calibration | Admin page, *Calibrate*, on a clear noon | **Unchanged**: same button, same rule; it now calibrates the cell |
 | Dawn and dusk gates | Panel voltage (divider) | Unchanged |
 | Rules | rules-1, rules-2 | Unchanged |
+| Logger layer (9) | — | New flag `LOGGER 1`: read SHT45 and BME280 into the 1-minute log; mirror every log line to the card; admin download of any date range from the card; stop card writes below a set panel voltage before the dusk gate (9.2) |
 
 Readings are now **continuous and silent**: no 1 ms short of the panel every 10 s. They can be taken as often as the firmware likes.
 
@@ -119,7 +133,7 @@ Readings are now **continuous and silent**: no 1 ms short of the panel every 10 
 | The panel itself is the sensor | A reference cell on its frame (1) |
 | One soldered board | Modules and screw terminals: more connections to check |
 | Protection on board (TVS, input diode, fuses) | The inline fuse and MC4 polarity; nothing else |
-| AUX output, switched 5 V, spare headers, microSD | None. A garden node or an add-on takes its power from the panel through its own converter. The SUNSET I/O board connects to the breakout's pins instead of the carrier's headers |
+| AUX output, switched 5 V, spare headers, microSD | microSD returns in draft 2 as a plug-in module (9.2). Otherwise none. A garden node or an add-on takes its power from the panel through its own converter. The SUNSET I/O board connects to the breakout's pins instead of the carrier's headers |
 | A designed and quoted board | Nothing to design: parts from a list |
 
 ## 8. With a battery (SUNSET's interactive nodes, year 2)
@@ -135,3 +149,42 @@ The same build, with three things added and one taken away. **The sun reading an
 | **Plus** | The SUNSET I/O board for whatever the node switches (io-board.md, SUNSET repository), wired to the breakout's pins |
 
 **Why the Victron data alone can't draw the dial:** a small battery is full by mid-morning, after which the Victron holds the panel back to the wall's ~1 W load. Its harvest figures would show shade for the rest of every sunny day. The reference cell avoids that, and keeps Sole honest on every node.
+
+## 9. The logger layer: a weather station that the sun switches on
+
+Draft 2 adds three sensors and a card. With them the used panel is also a **long-term data logger**: a record of one wall's sun and weather, and of the panel's own ageing, kept for years and collected on the fortnightly round. The dial, the rules and the print don't change; the new readings go to the raw logs and to the year-round *Sun* page.
+
+### 9.1 What it measures
+
+| Reading | From | Note |
+| --- | --- | --- |
+| Sun in the panel's plane | Reference cell (already fitted) | Relative to the calibrated clear noon. Over years, a record of the wall's sunlight |
+| Panel temperature | DS18B20 (already fitted) | |
+| Panel voltage | Divider (already fitted) | The panel is almost unloaded, so this is close to its open-circuit voltage |
+| **Air temperature and humidity** | SHT45 in its shield | The new weather reading. Dew point follows from the two |
+| **Air pressure** | BME280 in the box | Falling pressure: weather on the way. Needs no shield |
+| Box temperature and humidity | BME280 (and the DS3231's own sensor) | Maintenance only, not weather: heat in the box, a spent desiccant, a failing seal |
+
+**What the panel itself adds** (from readings already taken, no new parts):
+
+- **Panel heating = panel temperature − air temperature,** at a given sun. On a still day the panel runs hot; wind cools it. Over a year this is a wind index for the wall, without an anemometer.
+- **The panel's ageing:** its voltage corrected to 25 °C, on clear middays only, year on year. A slow fall is the panel wearing out. This is a coarse measure (voltage shows ageing less than current or power do, and only the carrier could measure current) but it is the panel's own story, told by itself, at no cost.
+
+### 9.2 Storage and the dusk write
+
+- **On the card:** every raw log line, every day, kept for years (about 15 MB a year at summer rates; a 16 GB card holds decades). LittleFS keeps doing what it does now (event archives and recent logs), so the panel still works if the card fails.
+- **Collection:** the fortnightly round downloads as now; the card means **a missed round, or several, loses nothing.**
+- **The dusk write:** the wall loses power at dusk with no warning other than the falling panel voltage. The firmware stops writing to the card at a set voltage above the dusk gate, closes the day's file, and only then lets the dusk close run. Each line is appended and the file closed after every write, so a sudden loss costs one line at most. The 1000 µF capacitor covers the last write.
+
+### 9.3 What it is not
+
+- **Not a standard weather station.** A wall is warm, sheltered and shades itself; the readings are **this wall's microclimate**, which is the point: same sun, different data. They are not comparable with an airport's or ARPA Sardegna's, and the *Sun* page says so.
+- **Daylight only.** The wall is off at night (section 1 of SUNDIAL.md: no battery, by design). The night is missing, but the day's minimum temperature is usually just before dawn, so the first reading at wake is close to it. A full 24-hour record needs the battery tier (section 8), not a change to the wall.
+- **Not added, and why:** rain (a gauge needs a clear, open site and power at night), wind (an anemometer on a wall measures the wall; the panel-heating index does better here), separate light and UV sensors (the reference cell already measures the sun).
+
+### 9.4 Build and test, added steps
+
+1. **Bench:** SHT45, BME280 and card on the breakout with the clock; the admin status shows all three; a day of USB logging reads back from the card.
+2. **Dusk test:** run the wall from a bench supply and lower the voltage slowly; the card closes cleanly before the ESP32 browns out, every time, ten times in a row.
+3. **Shield placement on the artist's proof:** under the panel's lower edge, at least 10 cm from the wall and the panel, out of the panel's afternoon re-radiation. Compare a week against a hand-held thermometer in shade.
+
