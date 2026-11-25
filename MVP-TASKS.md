@@ -15,33 +15,33 @@
 - [x] Data plan: file format, archive, openSenseMap network, Data page (DATA.md)
 - [x] Parts checked for availability and the budget updated for MVP v1 (Nov 2026): about €185 of electronics per wall
 
-## BOM: bill of materials
+## BOM: the artist's proof (one panel)
 
-Per wall and for the full order: **10 sets** (the nine and the artist's proof) plus spares where marked. Prices are per unit in euros, including VAT, from the budget (`budget/make_budget.py`, Nov 2026). **L** = listed price seen online, **E** = estimate. Part numbers match hardware/MVP.md 2. When a price or part changes, change it here and in the budget script together.
+Everything needed to build **one** MVP v1 panel, the artist's proof, and nothing else: no spares, shipping or contingency. Prices are per unit in euros, including VAT, from the budget (`budget/make_budget.py`, Nov 2026). **L** = listed price seen online, **E** = estimate. Part numbers match hardware/MVP.md 2.
 
-| # | Part | Per wall | Order | Unit € | Order € | Source / part number | Basis |
-| --- | --- | --- | --- | --- | --- | --- | --- |
-| 1 | Recycled PV panel, Trina TSM-185DC01 class | 1 | 11 (1 spare) | 30 | 330 | End-of-life; may be donated | E |
-| 2 | MC4 inline fuse holder (10×38) + **2 A gPV fuse** | 1 | 10 | 15 | 150 | Any 10×38 MC4 holder; fuse e.g. Eaton PV-2A10F (the holders' own fuses are 10–30 A) | E |
-| 3 | Buck converter, 8–60 V in → 5 V | 1 | 11 (1 spare) | 8 | 88 | Generic module | E |
-| 5 | ELEGOO ESP32 30-pin, USB-C | 1 | 11 (1 spare) | 10 | 110 | ELEGOO 3-pack, about €28 | L |
-| 6 | Screw-terminal breakout, 30-pin ESP32 | 1 | 11 (1 spare) | 6 | 66 | Any; **check the row spacing on the first one** | E |
-| 7 | DS3231 clock module + CR2032 | 1 | 11 (1 spare) | 5 | 55 | Generic; remove the charging parts on ZS-042 | E |
-| 8 | Reference cell, Voltaic P124, 6 V 1.2 W ETFE | 1 | 11 (1 spare) | 15 | 165 | DigiKey 2600-P124-ND (shipped by Voltaic, own fee), or The Pi Hut | L |
-| 10 | DS18B20 waterproof probe | 1 | 10 | 4 | 40 | Generic | E |
-| 12 | Air probe, Adafruit 4099 SHT-30 weatherproof, 1 m | 1 | 11 (1 spare) | 26 | 286 | DigiKey 1528-4099-ND; **order early** (up to 18 weeks when out of stock) | L |
-| 13 | Radiation shield, small multi-plate | 1 | 10 | 25 | 250 | Bought; about €5 if printed in ASA | E |
-| 14 | BME280 module, I2C | 1 | 10 | 12 | 120 | Reputable seller; square chip = BME280, oblong = BMP280 | E |
-| 15 | microSD module, SPI, 3.3 V | 1 | 10 | 3 | 30 | Generic | E |
-| 15 | Industrial microSD 8 GB, Kingston SDCIT2/8GB | 1 | 11 (1 spare) | 20 | 220 | RS, Galaxus and others; €18–30 by seller | L |
-| 4, 9, 11 | Small parts (below) | 1 set | 10 sets | 2 | 20 | Any | E |
-| 16 | IP65 box (about 115 × 90 × 55 mm), 5 glands, breather vent, desiccant, tamper screws | 1 | 10 | 25 | 250 | Generic | E |
-| 17 | Wire, ferrules, standoffs | 1 lot | 10 lots | 8 | 80 | Generic | E |
-| | **Total** | **about €184** + panel | | | **€2,260** | | |
+| # | Part | Qty | € | Source / part number | Basis |
+| --- | --- | --- | --- | --- | --- |
+| 1 | Recycled PV panel, Trina TSM-185DC01 class | 1 | 30 | End-of-life; may be donated | E |
+| 2 | MC4 inline fuse holder (10×38) + **2 A gPV fuse** | 1 | 15 | Any 10×38 MC4 holder; fuse e.g. Eaton PV-2A10F (the holders' own fuses are 10–30 A) | E |
+| 3 | Buck converter, 8–60 V in → 5 V | 1 | 8 | Generic module | E |
+| 5 | ELEGOO ESP32 30-pin, USB-C | 1 | 10 | ELEGOO; sold as a 3-pack, about €28 | L |
+| 6 | Screw-terminal breakout, 30-pin ESP32 | 1 | 6 | Any; check it fits the ELEGOO's row spacing | E |
+| 7 | DS3231 clock module + CR2032 | 1 | 5 | Generic; remove the charging parts on ZS-042 | E |
+| 8 | Reference cell, Voltaic P124, 6 V 1.2 W ETFE | 1 | 15 | DigiKey 2600-P124-ND (shipped by Voltaic), or The Pi Hut | L |
+| 10 | DS18B20 waterproof probe | 1 | 4 | Generic | E |
+| 12 | Air probe, Adafruit 4099 SHT-30 weatherproof, 1 m | 1 | 26 | DigiKey 1528-4099-ND | L |
+| 13 | Radiation shield, small multi-plate | 1 | 25 | Bought; about €5 if printed in ASA | E |
+| 14 | BME280 module, I2C | 1 | 12 | Reputable seller; square chip = BME280, oblong = BMP280 | E |
+| 15 | microSD module, SPI, 3.3 V | 1 | 3 | Generic | E |
+| 15 | Industrial microSD 8 GB, Kingston SDCIT2/8GB | 1 | 20 | RS, Galaxus and others; €18–30 by seller | L |
+| 4, 9, 11 | Small parts (below) | 1 set | 2 | Any | E |
+| 16 | IP65 box (about 115 × 90 × 55 mm), 5 glands, breather vent, desiccant, tamper screws | 1 | 25 | Generic | E |
+| 17 | Wire, ferrules, standoffs | 1 lot | 8 | Generic | E |
+| | **Total** | | **€214** (€184 without the panel) | | |
 
-**Small parts, per wall:** 1000 µF / 10 V electrolytic capacitor (5 V input) · 100 kΩ and 4.7 kΩ 1 % resistors and a 100 nF capacitor (panel divider) · 4.7 Ω 1 % ¼ W resistor (R_cell, for the P124) · 4.7 kΩ resistor (DS18B20 pull-up).
+**Small parts:** 1000 µF / 10 V electrolytic capacitor (5 V input) · 100 kΩ and 4.7 kΩ 1 % resistors and a 100 nF capacitor (panel divider) · 4.7 Ω 1 % ¼ W resistor (R_cell, for the P124) · 4.7 kΩ resistor (DS18B20 pull-up).
 
-**Not in this table** (in the budget under their own headings): the gnomon, hour-line tape and stand-offs (GNOMON.md), wall fixings and plates, shipping, contingency.
+**Not in this table:** the gnomon, hour-line tape and stand-offs for the face (GNOMON.md), and wall fixings. The nine and their spares are in the budget.
 
 ## 1. Parts for the artist's proof (one panel)
 
