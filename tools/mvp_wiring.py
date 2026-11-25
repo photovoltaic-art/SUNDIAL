@@ -14,7 +14,7 @@ W,H=1200,830
 a(f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" font-family="Helvetica, Arial, sans-serif" font-size="14">')
 a(f'<rect width="{W}" height="{H}" fill="#ffffff"/>')
 t(30,36,"SUNDIAL wall — MVP v1 wiring (with the logger layer)",22,bold=True)
-t(30,58,"Modules on a screw-terminal breakout. No custom board, no soldering. hardware/MVP.md",13,"#555")
+t(30,58,"Modules on a screw-terminal breakout. No custom board; the only soldering is two leads on the reference cell. hardware/MVP.md",13,"#555")
 for (x,y,c,l) in [(760,30,R,"panel voltage (up to ~48 V)"),(760,48,O,"5 V / 3.3 V"),(980,30,K,"GND"),(980,48,B,"signal")]:
     a(f'<line x1="{x}" y1="{y}" x2="{x+30}" y2="{y}" stroke="{c}" stroke-width="3"/>'); t(x+36,y+4,l,12,"#333")
 # panel
@@ -24,7 +24,7 @@ t(105,230,"PV panel",anchor="middle",bold=True); t(105,247,"Trina 185 W, V_oc 44
 t(188,116,"+",12); t(188,190,"−",12)
 box(225,105,70,30,rx=4); t(260,125,"MC4 fuse",12,anchor="middle"); t(260,152,"2 A",11,"#555","middle")
 box(345,95,140,120,"#fff4e0"); t(415,150,"Buck converter",anchor="middle",bold=True)
-t(415,167,"8–60 V in → 5.0 V",12,"#555","middle"); t(415,182,"set 5.0 V first",11,"#a00","middle")
+t(415,167,"8–60 V in → 5.0 V",12,"#555","middle"); t(415,182,"check 5.0 V first",11,"#a00","middle")
 t(352,122,"IN+",11); t(352,200,"IN−",11); t(450,122,"OUT+",11); t(450,200,"OUT−",11)
 pl([(180,120),(225,120)],R); pl([(295,120),(345,120)],R); pl([(180,195),(345,195)],K)
 # divider
@@ -57,10 +57,10 @@ t(345,512,"common GND",12,"#555")
 # reference cell
 box(40,440,130,80,"#e8eef7",4)
 a('<g stroke="#9ab"><line x1="40" y1="480" x2="170" y2="480"/><line x1="105" y1="440" x2="105" y2="520"/></g>')
-t(105,540,"Reference cell",anchor="middle",bold=True); t(105,556,"6 V mini panel, 0.5–1 W,",12,"#555","middle"); t(105,571,"on the panel frame",12,"#555","middle")
+t(105,540,"Reference cell",anchor="middle",bold=True); t(105,556,"Voltaic P124, 6 V 1.2 W,",12,"#555","middle"); t(105,571,"on the panel frame",12,"#555","middle")
 pl([(170,455),(200,455),(200,600),(490,600),(490,475),(560,475)],B); dot(200,600,B)
 pl([(200,600),(200,610)],B); box(185,610,30,34,rx=3)
-t(225,632,"R_cell ≈ 1.0 V ÷ I_sc (5–10 Ω)",12)
+t(225,632,"R_cell = 1.0 V ÷ I_sc: 4.7 Ω for the P124",12)
 pl([(170,505),(180,505),(180,652),(200,652),(200,644)],K); pl([(180,652),(440,652),(440,520)],K)
 t(300,594,"sun → G35",12,B)
 # rails
@@ -83,11 +83,11 @@ box(900,330,270,62); t(1035,350,"DS18B20 probe",anchor="middle",bold=True)
 t(1035,368,"panel back temperature",12,"#555","middle"); t(1035,383,"4.7 k pull-up from G4 to 3V3",12,"#555","middle")
 pl([(760,355),(900,355)],B,2.5); pl([(800,342),(900,342)],O,2); dot(800,342,O,3.5); pl([(820,377),(900,377)],K,2); dot(820,377,K,3.5)
 module(400,78,"DS3231 clock + CR2032",[("I2C 0x68 · time at dawn, offline","#555"),("remove the charging parts (ZS-042)","#a00")],[(412,850),(437,870)],[(455,800,O),(468,820,K)])
-module(490,82,"SHT45 probe, outside",[("air temperature + humidity · I2C 0x44","#555"),("in a radiation shield, on 1 m of cable","#555"),("under the panel, ≥ 10 cm from wall","#555")],[(505,850),(522,870)],[(545,800,O),(560,820,K)])
+module(490,82,"SHT-30 probe, outside",[("air temperature + humidity · I2C 0x44","#555"),("in a radiation shield, on 1 m of cable","#555"),("under the panel, ≥ 10 cm from wall","#555")],[(505,850),(522,870)],[(545,800,O),(560,820,K)])
 module(590,72,"BME280, inside the box",[("air pressure · I2C 0x76","#555"),("box temperature + humidity (maintenance)","#555")],[(605,850),(620,870)],[(640,800,O),(652,820,K)])
 # SD
 box(560,700,200,80,"#fff")
-t(660,722,"microSD module (SPI)",anchor="middle",bold=True); t(660,740,"industrial card, 8–32 GB",12,"#555","middle"); t(660,756,"years of raw data",12,"#555","middle")
+t(660,722,"microSD module (SPI)",anchor="middle",bold=True); t(660,740,"Kingston industrial 8 GB card",12,"#555","middle"); t(660,756,"years of raw data",12,"#555","middle")
 for x,l in [(610,"SCK"),(645,"MISO"),(680,"MOSI"),(715,"CS")]:
     pl([(x,640),(x,700)],B,2.5); t(x+4,676,l,10,B)
 t(30,800,"All grounds meet at the breakout's GND, the panel's − included. GPIO 34 and 35 are ADC1: the only analog inputs that work with Wi-Fi on.",12,"#555")
