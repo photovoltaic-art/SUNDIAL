@@ -22,7 +22,7 @@ lines=[
 ("Panels and boards","DS3231 clock module + CR2032 (10 + 1 spare)",11,5,E,"Remove the charging parts on ZS-042 modules","Yes"),
 ("Panels and boards","DS18B20 waterproof probe",10,4,E,"","Yes"),
 ("Panels and boards","Air probe: Adafruit 4099 SHT-30 weatherproof, 1 m cable (10 + 1 spare)",11,26,L,"DigiKey Italy €21.21 + VAT, in stock Nov 2026; lead time up to 18 weeks when out: order early","Yes"),
-("Panels and boards","Radiation shield, small multi-plate",10,25,E,"About €5 each if printed in ASA instead of bought","Yes"),
+("Panels and boards","Radiation shield, AcuRite multi-plate",10,20,L,"Amazon Italy €20 (Nov 2026); about €5 each if printed in ASA instead","Yes"),
 ("Panels and boards","BME280 module, from a reputable seller",10,12,E,"Cheap 'BME280' modules are often BMP280 (no humidity): check the square chip","Yes"),
 ("Panels and boards","microSD module, SPI, 3.3 V",10,3,E,"","Yes"),
 ("Panels and boards","microSD 32 GB, SanDisk High Endurance SDSQQNR-032G-GN6IA (−25 to 85 °C) (10 + 1 spare)",11,28,L,"Amazon Italy €28 (Nov 2026). If tests fail, industrial cards at about €42–65 instead","Yes"),

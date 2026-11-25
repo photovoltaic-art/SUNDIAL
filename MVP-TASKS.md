@@ -30,14 +30,14 @@ Everything needed to build **one** MVP v1 panel, the artist's proof, and nothing
 | 8 | Sun cell, ANYSOLAR KXOB25-05X3F, 23 × 8 mm | 1 | 4 | DigiKey KXOB25-05X3F-CT (cut tape); about €3 + VAT | L |
 | 10 | DS18B20 waterproof probe | 1 | 4 | Generic | E |
 | 12 | Air probe, Adafruit 4099 SHT-30 weatherproof, 1 m | 1 | 26 | DigiKey 1528-4099-ND | L |
-| 13 | Radiation shield, small multi-plate | 1 | 25 | Bought; about €5 if printed in ASA | E |
+| 13 | Radiation shield, AcuRite (multi-plate, for small temperature/humidity sensors) | 1 | 20 | Amazon Italy, €20 (Nov 2026) | L |
 | 14 | BME280 module, I2C | 1 | 12 | Reputable seller; square chip = BME280, oblong = BMP280 | E |
 | 15 | microSD module, SPI, 3.3 V | 1 | 3 | Generic | E |
 | 15 | High-endurance microSD 32 GB, SanDisk High Endurance SDSQQNR-032G-GN6IA (−25 to 85 °C) | 1 | 28 | Amazon Italy, €28 (Nov 2026); often cheaper elsewhere. Industrial fallback if the tests fail: about €42 (RS) | L |
 | 4, 9, 11 | Small parts (below) | 1 set | 2 | Any | E |
 | 16 | IP65 box (about 115 × 90 × 55 mm), 5 glands, breather vent, desiccant, tamper screws | 1 | 25 | Generic | E |
 | 17 | Wire, ferrules, standoffs | 1 lot | 8 | Generic | E |
-| | **Total** | | **€211** (€181 without the panel) | | |
+| | **Total** | | **€206** (€176 without the panel) | | |
 
 **Small parts:** 1000 µF / 10 V electrolytic capacitor (5 V input) · 100 kΩ and 4.7 kΩ 1 % resistors and a 100 nF capacitor (panel divider) · 39 Ω 1 % ¼ W resistor (R_cell, for the KXOB25-05X3F) · 4.7 kΩ resistor (DS18B20 pull-up).
 
