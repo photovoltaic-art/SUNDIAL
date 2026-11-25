@@ -73,6 +73,7 @@ texts/
   slow-art-sun-record.md      Slow Art: Sun Record, a year of Campbell–Stokes sunshine cards in 14 frames, plus sun-drawing workshops
 budget/
   SUNDIAL-budget.xlsx         the cost of the nine panels and the first event (draft), and the script that builds it
+DATA.md                       the panel as a long-term logger: file format, archive, openSenseMap network, Data page
 hardware/
   MVP.md                      the build to make first: modules on a screw-terminal breakout, reference-cell sun sensor, no custom board
   CARRIER.md                  the carrier board: everything factory-fitted except the ESP32 and buck converter
